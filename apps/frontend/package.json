@@ -1,8 +1,6 @@
 {
   "private": true,
-  "name": "frontend",
-  "type": "module",
-  "version": "0.0.1",
+  "name": "@flightcore/frontend",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -11,8 +9,22 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.9.2",
     "@astrojs/check": "^0.7.0",
+    "@astrojs/react": "^3.4.0",
+    "@astrojs/tailwind": "^5.1.0",
+    "@flightcore/uikit": "workspace:libs/uikit",
+    "@types/react-dom": "^18.3.0",
+    "astro": "^4.9.2",
+    "astro-icon": "^1.1.0",
+    "clsx": "^2.1.1",
+    "embla-carousel-autoplay": "^8.1.3",
+    "embla-carousel-react": "^8.1.3",
+    "nanostores": "^0.10.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "typescript": "^5.4.5"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3"
   }
 }

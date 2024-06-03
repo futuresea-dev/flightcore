@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content'
+
+import { getImage } from 'astro:assets'
+import { ClientsCarousele } from './Clients.Carousele'
+
+const [collection] = [await getCollection('clients')]
+
+const clientsLogos = collection.map((entry) => entry.data.logo)
+---
+
+<section class="clients">
+  <h3 class="clients__title">Tworzyliśmy projekty z...</h3>
+  <div class="clients__content">
+    <ClientsCarousele client:load clientLogos={clientsLogos} />
+  </div>
+</section>
+
+<style>
+  .clients {
+    @apply py-[48px];
+  }
+  .clients__title {
+    @apply text-center text-heading3 mb-[40px];
+  }
+  .clients__content {
+    @apply flex items-center bg-extra-dark h-[188px];
+  }
+</style>

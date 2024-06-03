@@ -1,0 +1,57 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  overflow: auto;
+  z-index: 15;
+  opacity: 0;
+}
+
+.overlay::before {
+  content: '';
+  display: block;
+  position: absolute;
+  inset: 0;
+  @apply bg-blue-medium opacity-[0.7];
+}
+
+.overlay--entered {
+  visibility: visible;
+  opacity: 1;
+}
+
+.overlay--entering {
+  visibility: visible;
+  transition: opacity 0.15s linear;
+  opacity: 1;
+}
+
+.overlay--exited {
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, 0);
+  opacity: 0;
+}
+
+.overlay--exiting {
+  visibility: visible;
+  opacity: 0;
+  transition: opacity 0.15s linear;
+}
+
+.overlay {
+  @apply fixed overflow-auto z-[15] opacity-0;
+}
+.overlay::before {
+  @apply content-[''] block absolute inset-0 bg-blue-medium opacity-[0.7];
+}
+.overlay--entered {
+  @apply visible opacity-100;
+}
+.overlay--entering {
+  @apply visible transition-opacity duration-[0.15s] ease-linear opacity-100;
+}
+.overlay--exited {
+  @apply invisible bg-[rgba(0,0,0,0)] opacity-0;
+}
+.overlay--exiting {
+  @apply visible opacity-0 transition-opacity duration-[0.15s] ease-linear;
+}

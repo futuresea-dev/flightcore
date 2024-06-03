@@ -1,0 +1,5 @@
+node_modules
+
+pgadmin-data
+db-data
+db-data/**

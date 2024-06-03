@@ -1,0 +1,50 @@
+---
+import { Icon } from 'astro-icon/components'
+---
+
+<header class="header">
+  <div class="header-container">
+    <a href="/" class="brand">
+      <Icon
+        class="brand-icon"
+        width={undefined}
+        height={undefined}
+        name="brand/wide/medium"
+      />
+    </a>
+    <slot />
+  </div>
+</header>
+
+<script>
+  const $header = document.querySelector('.header')
+
+  function handleScroll() {
+    if (!$header) return
+    if (document.documentElement.scrollTop > 0) {
+      return $header.classList.add('header--scroll')
+    }
+    $header.classList.remove('header--scroll')
+  }
+
+  window.addEventListener('scroll', handleScroll)
+  handleScroll()
+</script>
+
+<style>
+  .header {
+    @apply sticky top-0 z-10 border-b-[1px] border-transparent transition-colors duration-200;
+  }
+  .header--scroll {
+    @apply bg-blue-dark  border-blue-medium;
+  }
+  .header-container {
+    @apply h-[118px] flex items-center justify-between container;
+  }
+  .brand {
+    @apply block;
+  }
+  .brand-icon {
+    @apply text-green w-[280px];
+  }
+</style>

@@ -1,0 +1,32 @@
+---
+import { TestimonialsCarousele } from './Testimonials.Carousele'
+---
+
+<section class="testimonials">
+  <div class="container">
+    <h3 class="title">Rekomendują</h3>
+    <p class="subtitle">
+      Wiemy, że nie czytasz, ale poniżej kilka opinii ludzi, którzy
+      skorzystali...
+    </p>
+  </div>
+  <div class="container">
+    <TestimonialsCarousele />
+  </div>
+</section>
+
+<style>
+  .testimonials {
+    @apply text-white py-[80px];
+  }
+  .title,
+  .subtitle {
+    @apply text-center;
+  }
+  .title {
+    @apply text-heading3 mb-[40px];
+  }
+  .subtitle {
+    @apply text-body1;
+  }
+</style>

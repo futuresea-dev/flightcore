@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "@flightcore/uikit",
+  "type": "module",
+  "main": "index.ts",
+  "version": "0.0.1",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "tailwindcss": "^3.4.3"
+  }
+}

@@ -1,0 +1,35 @@
+---
+export type Props = {
+  size?: 'small' | 'medium' | 'large'
+  href?: string
+  class?: string
+}
+
+const { size = 'medium', href, class: className } = Astro.props
+
+const mapSizeToClass = {
+  small: 'w-[18px] h-[18px]',
+  medium: 'w-[30px] h-[30px]',
+  large: 'w-[36px] h-[36px]',
+}
+
+const Tag = typeof href === 'undefined' ? 'div' : 'a'
+---
+
+<Tag
+  href={href}
+  target="__blank"
+  class:list={['icon-field', mapSizeToClass[size], className]}
+>
+  <slot />
+</Tag>
+
+<style>
+  .icon-field {
+    @apply flex items-center justify-center bg-blue-medium rounded-[8px] transition-shadow;
+    box-shadow: 0 0 0 0 #5db13329;
+  }
+  .icon-field:hover {
+    box-shadow: 0px 0px 6px 0px #5db13329;
+  }
+</style>

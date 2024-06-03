@@ -1,0 +1,62 @@
+.studio-item {
+  @apply relative w-[390px] h-[440px] cursor-pointer p-[4px];
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0), #243447);
+}
+
+.inner-container {
+  @apply relative flex items-end p-[2px] w-full h-full;
+}
+
+.studio-item,
+.inner-container {
+  @apply rounded-[20px] overflow-hidden;
+}
+
+.studio-item__poster {
+  position: absolute;
+  object-fit: cover;
+  object-position: 50% 50%;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.studio-item__title {
+  @apply text-heading3;
+  @apply text-green-dark;
+  @apply font-bold;
+  @apply p-[14px];
+}
+
+.overlay {
+  @apply absolute inset-0 flex items-center justify-center text-green text-body1 font-bold opacity-0 bg-blue-medium transition transition-opacity duration-75;
+}
+
+.studio-item:hover .overlay {
+  @apply opacity-[0.7];
+}
+
+.dialog {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.dialog-card {
+  @apply relative bg-blue-dark rounded-[20px] w-full max-w-[624px] z-[1] pt-[70px] px-[48px] pb-[48px];
+  @apply space-y-[24px];
+}
+
+.dialog-text {
+  @apply text-white text-body3;
+}
+
+.dialog-close {
+  @apply absolute top-[19px] right-[21px] text-green transition scale-[1];
+}
+
+.dialog-close:hover {
+  @apply scale-[0.9];
+}

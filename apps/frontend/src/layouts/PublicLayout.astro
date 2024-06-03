@@ -1,0 +1,20 @@
+---
+import BaseLayout from './BaseLayout.astro'
+
+import Footer from '../components/Footer/Footer.astro'
+import Header from '../components/Header/Header.astro'
+---
+
+<BaseLayout>
+  <Header />
+  <main>
+    <slot />
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  main {
+    @apply text-blue-lightest overflow-x-hidden overflow-y-auto;
+  }
+</style>

@@ -1,0 +1,24 @@
+---
+import HeaderBase from '../HeaderBase/HeaderBase.astro'
+import SocialsFields from '../shared/SocialsFields/SocialsFields.astro'
+import NavigationPage from '../shared/NavigationPage/NavigationPage.astro'
+---
+
+<HeaderBase>
+  <div class="nav">
+    <NavigationPage />
+    <nav class="nav-social">
+      <SocialsFields />
+    </nav>
+  </div>
+</HeaderBase>
+
+<style>
+  .nav {
+    @apply flex gap-[32px];
+  }
+
+  .nav-social {
+    @apply flex gap-[12px] text-green;
+  }
+</style>

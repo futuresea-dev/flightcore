@@ -1,0 +1,29 @@
+---
+type Props = {
+  class?: string
+}
+
+const { class: className } = Astro.props
+---
+
+<div class:list={['icon-tile', className]}>
+  <div class="icon-tile__inner-container">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .icon-tile,
+  .icon-tile__inner-container {
+    @apply rounded-[10px];
+  }
+
+  .icon-tile {
+    @apply w-[72px] h-[72px] p-[2px];
+    background: linear-gradient(180deg, #243447 0%, #217f1c 100%);
+  }
+  .icon-tile__inner-container {
+    @apply flex items-center justify-center;
+    @apply w-full h-full bg-extra-dark;
+  }
+</style>

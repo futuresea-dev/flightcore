@@ -1,0 +1,25 @@
+---
+import '../styles/fonts.css'
+
+interface Props {
+  metaTitle?: string
+  metaDesc?: string
+}
+
+const { metaTitle = 'Flightcore', metaDesc = '' } = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{metaTitle}</title>
+    <meta name="description" content={metaDesc} />
+  </head>
+  <body class="bg-blue-dark">
+    <slot />
+    <div id="portal"></div>
+  </body>
+</html>

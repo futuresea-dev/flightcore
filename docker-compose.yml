@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+  database:
+    image: "postgres:latest"
+    ports:
+      - 5420:5432
+    environment:
+      - POSTGRES_PASSWORD=changeme
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=flightcoredb
+    networks:
+      - postgres-network
+    volumes:
+      - ./db-data/:/var/lib/postgresql/data/
+      # - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - 5421:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@localhost.local
+      - PGADMIN_DEFAULT_PASSWORD=changeme
+    depends_on:
+      - database
+    networks:
+      - postgres-network
+    volumes:
+      - ./pgadmin-data/:/var/lib/pgadmin/
+
+networks:
+  postgres-network:
+    driver: bridge

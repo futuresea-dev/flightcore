@@ -1,0 +1,55 @@
+@font-face {
+  font-family: 'Tactic Round';
+  src: url('/assets/fonts/Tactic Round Bld.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Tactic Round';
+  src: url('/assets/fonts/Tactic Round Blk.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Tactic Round';
+  src: url('/assets/fonts/Tactic Round Lgt.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Tactic Round';
+  src: url('/assets/fonts/Tactic Round Med.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Tactic Round';
+  src: url('/assets/fonts/Tactic Round Reg.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Tactic Round';
+  src: url('/assets/fonts/Tactic Round Thn.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Tactic Round';
+  src: url('/assets/fonts/Tactic Round Ult.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  text-rendering: optimizeLegibility;
+}

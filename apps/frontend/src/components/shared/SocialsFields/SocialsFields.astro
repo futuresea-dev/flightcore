@@ -1,0 +1,23 @@
+---
+import { Icon } from 'astro-icon/components'
+import IconField, {
+  type Props as IconFieldProps,
+} from '../IconField/IconField.astro'
+
+export type Props = {
+  size?: IconFieldProps['size']
+}
+const { size } = Astro.props
+---
+
+<Fragment>
+  <IconField size={size} href="https://www.youtube.com/@flightcore">
+    <Icon width={16} height={12} name="social/youtube" />
+  </IconField>
+  <IconField size={size} href="https://www.instagram.com/flightcore.studios/">
+    <Icon width={15} height={15} name="social/instagram" />
+  </IconField>
+  <IconField size={size} href="https://www.facebook.com/flightcore.studios">
+    <Icon width={8} height={15} name="social/facebook" />
+  </IconField>
+</Fragment>

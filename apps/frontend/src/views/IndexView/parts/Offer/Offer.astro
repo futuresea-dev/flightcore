@@ -1,0 +1,58 @@
+---
+import OfferTile from './Offer.Tile.astro'
+
+const tiles = [
+  {
+    icon: 'music_note',
+    title: 'Produkcja muzyki',
+    desc: 'Jaki styl muzyczny jest Twoim ulubionym? Razem stworzymy unikalny instrumental, który przypadnie Ci do gustu.',
+  },
+  {
+    icon: 'file_document',
+    title: 'Tworzenie tekstu',
+    desc: 'Jaką historię chciałbyś opowiedzieć? Wspólnie zamienimy rozmaite doświadczenia i emocje w piosenkę skrojoną na miarę Twojej osobowości.',
+  },
+  {
+    icon: 'business_finance_service_money_customer',
+    title: 'Realizacja nagrań',
+    desc: 'Sesje przebiegają u nas w luźnej atmosferze. Realizator służy radą tworząc przestrzeń na spełnienie Twojej wizji.',
+  },
+  {
+    icon: 'speaker',
+    title: 'Mix/mastering',
+    desc: 'Na tym etapie wyciągamy całą esencję brzmienia utworu. Odrobina studyjnej magii i voila - piosenka gotowa!',
+  },
+  {
+    icon: 'streaming',
+    title: 'Streaming',
+    desc: 'Zapytaj nas o przygotowanie okładki, nakręcenie teledysku lub dystrybucję muzyki w serwisach streamingowych. Wiemy, do kogo się udać!',
+  },
+]
+---
+
+<section class="offer">
+  <div class="container">
+    <h3 class="offer__title">
+      {`Team Flightcore wesprze Twoją twórczość na każdym etapie`}
+    </h3>
+    <div class="offer__tiles">
+      {
+        tiles.map((tile) => (
+          <OfferTile icon={tile.icon} title={tile.title} desc={tile.desc} />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .offer {
+    @apply py-[80px];
+  }
+  .offer__title {
+    @apply text-center text-heading3 px-[180px] mb-[64px];
+  }
+  .offer__tiles {
+    @apply flex items-start justify-between gap-[25px];
+  }
+</style>

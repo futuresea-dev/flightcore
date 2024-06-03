@@ -1,0 +1,58 @@
+---
+import { Button } from '@flightcore/uikit'
+import { Icon } from 'astro-icon/components'
+---
+
+<section id="hero">
+  <div class="hero-container">
+    <div class="content">
+      <h1 class="content-title">
+        <span>FLIGHT TO</span>
+        <span>THE CORE</span>
+      </h1>
+      <p class="content-text">
+        Podziel się ze światem tym, co gra Ci w duszy. Wspólnie zamienimy
+        projekty z szuflady w dzieła z najwyższej półki.
+      </p>
+      <Button> BOOKING </Button>
+    </div>
+    <div class="hero-image"></div>
+  </div>
+  <Icon
+    name="brand/short/big"
+    class="bg-icon"
+    width={undefined}
+    height={undefined}
+  />
+</section>
+
+<style>
+  #hero {
+    @apply relative text-blue-lightest;
+  }
+  .hero-container {
+    @apply flex container gap-[95px] py-[175px];
+  }
+  .content-title {
+    @apply text-heading1;
+  }
+  .content-title span {
+    @apply block whitespace-nowrap;
+  }
+  .content-text {
+    @apply text-subtitle max-w-[563px] pt-[40px] pb-[56px];
+  }
+  .hero-image {
+    min-width: 561px;
+    height: 390px;
+    background: #333;
+  }
+  .bg-icon {
+    @apply text-extra-dark;
+    position: absolute;
+    z-index: -1;
+    width: min(81.25vw, 1177px);
+    top: 36px;
+    left: calc(-1 * calc(min(81.25vw, 1177px) / 2));
+  }
+</style>
