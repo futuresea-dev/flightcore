@@ -1,0 +1,93 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Booking {
+  id                               Int      @id @default(autoincrement())
+  cal_kind                         String?
+  cal_etag                         String?
+  cal_id                           String?
+  cal_status                       String?
+  cal_htmllink                     String?
+  cal_created                      String?
+  cal_updated                      String?
+  cal_summary                      String?
+  cal_creator                      String?
+  cal_organizer                    String?
+  organizer_display_name           String?
+  organizer_self                   Boolean?
+  cal_start_datetime               String?
+  cal_start_timezone               String?
+  cal_end                          String?
+  cal_end_timezone                 String?
+  cal_icaluid                      String?
+  cal_sequence                     String?
+  extendedproperties_location_id   String?
+  extendedproperties_realizator_id String?
+  cal_reminders                    Int?
+  cal_eventtype                    Int?
+  cal_recurrence                   Int?
+  rrule_flag                       Boolean  @default(false)
+  rrule                            String?
+
+  sound_engineer    SoundEngineer @relation(fields: [sound_engineer_id], references: [id])
+  sound_engineer_id Int
+}
+
+model SoundEngineer {
+  id             Int       @id @default(autoincrement())
+  ksywa          String?
+  imie           String?
+  nazwisko       String?
+  nrtel          Int?
+  haslo          String?
+  discord        String
+  bknc_od_pon    String?
+  bknc_do_pon    String?
+  bknc_off_pon   String?
+  bknc_od_wt     String?
+  bknc_do_wt     String?
+  bknc_off_wt    String?
+  bknc_od_sr     String?
+  bknc_do_sr     String?
+  bknc_off_sr    String?
+  bknc_od_czw    String?
+  bknc_do_czw    String?
+  bknc_off_czw   String?
+  bknc_od_pt     String?
+  bknc_do_pt     String?
+  bknc_off_pt    String?
+  bknc_od_sob    String?
+  bknc_do_sob    String?
+  bknc_off_sob   String?
+  bknc_od_ndz    String?
+  bknc_do_ndz    String?
+  bknc_off_ndz   String?
+  informed       String?
+  uprawnienia    String?
+  widoczny       Int?
+  bookable       Boolean?
+  booking_names  String?
+  prefTV         String?
+  prefMinimeters String?
+  prefDPI        String?
+  bookings       Booking[]
+}
+
+model StudioLocation {
+  id        Int     @id @default(autoincrement())
+  location  String?
+  google_id String?
+  info      String?
+}

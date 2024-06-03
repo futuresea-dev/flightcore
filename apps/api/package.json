@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "api",
+  "type": "module",
+  "module": "index.ts",
+  "version": "0.0.1",
+  "dependencies": {
+    "db": "workspace:libs/db"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

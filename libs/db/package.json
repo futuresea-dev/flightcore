@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "name": "db",
+  "module": "index.ts",
+  "types": "inedx.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "prisma": "^5.14.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^5.14.0",
+    "@prisma/client": "^5.14.0",
+    "pg": "^8.11.5"
+  }
+}
