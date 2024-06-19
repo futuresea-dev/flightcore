@@ -89,17 +89,6 @@ model Appointment {
   soundEngineerId Int
   soundEngineer   SoundEngineer @relation(fields: [soundEngineerId], references: [id])
 
-  clientId Int
-  client   Client @relation(fields: [clientId], references: [id])
-
-  @@index([id, clientId])
+  @@index([id])
 }
 
-model Client {
-  id           Int           @id @default(autoincrement())
-  firstName    String
-  lastName     String
-  email        String
-  phoneNumber  String
-  appointments Appointment[]
-}
