@@ -25,7 +25,7 @@ const collection = await getCollection('studios')
       </h6>
       <div class="flex gap-[25px]">
         {
-          collection.map((entry) => (
+          collection.map((entry: any) => (
             <StudiosItem
               client:load
               poster={entry.data.poster}

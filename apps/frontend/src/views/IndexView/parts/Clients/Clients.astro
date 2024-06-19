@@ -6,7 +6,7 @@ import { ClientsCarousele } from './Clients.Carousele'
 
 const [collection] = [await getCollection('clients')]
 
-const clientsLogos = collection.map((entry) => entry.data.logo)
+const clientsLogos = collection.map((entry: any) => entry.data.logo)
 ---
 
 <section class="clients">
