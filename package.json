@@ -2,17 +2,13 @@
   "private": true,
   "name": "flightcore",
   "scripts": {
-    "api": "pnpm --filter @flightcore/api",
-    "fe": "pnpm --filter @flightcore/frontend",
-    "db": "pnpm --filter @flightcore/db",
-    "uikit": "pnpm --filter @flightcore/uikit",
-    "format": "prettier --write apps libs"
+    "frontend": "pnpm --filter @flightcore/frontend",
+    "uikit": "pnpm --filter @flightcore/uikit"
   },
   "devDependencies": {
-    "prettier": "^3.3.0"
+    "prettier": "^3.3.3"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
-  },
-  "dependencies": {}
+  }
 }

@@ -29,7 +29,7 @@
 }
 
 .overlay {
-  @apply absolute inset-0 flex items-center justify-center text-green text-body1 font-bold opacity-0 bg-blue-medium transition transition-opacity duration-75;
+  @apply absolute inset-0 flex items-center justify-center text-green text-body1 font-bold opacity-0 bg-blue-medium transition duration-100;
 }
 
 .studio-item:hover .overlay {

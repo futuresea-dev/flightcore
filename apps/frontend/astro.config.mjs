@@ -16,8 +16,9 @@ export default defineConfig({
       iconDir: './src/icons',
     }),
   ],
-  output: 'server',
-  adapter: node({
-    mode: 'middleware',
-  }),
+  output: 'static',
+  // output: 'server',
+  // adapter: node({
+  //   mode: 'middleware',
+  // }),
 })

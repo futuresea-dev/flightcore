@@ -1,5 +1,7 @@
 import tailwindConfigBase from '@flightcore/uikit/tailwind.config.mjs'
 
+console.log(require.resolve('@flightcore/uikit'))
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
