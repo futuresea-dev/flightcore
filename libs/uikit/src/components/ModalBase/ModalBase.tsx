@@ -16,13 +16,13 @@ import {
 
 import styles from './ModalBase.module.css'
 import { Portal } from '../Portal/Portal'
+import clsx from 'clsx'
 
 export type ModalBasePropsType = {
   show: boolean
   onRequestClose?: () => void
   transitionEvents?: TransitionEvents
   className?: string
-  disableTransition?: boolean
 }
 
 type ModalBaseContextType = {
@@ -40,13 +40,7 @@ export const useModalTransitionState = () => {
 }
 
 export const ModalBase: FC<PropsWithChildren<ModalBasePropsType>> = (props) => {
-  const {
-    transitionEvents: events,
-    show,
-    children,
-    disableTransition,
-    onRequestClose,
-  } = props
+  const { transitionEvents: events, show, children, onRequestClose } = props
 
   const overlayRef = useRef<HTMLDialogElement>(null)
 
@@ -75,20 +69,21 @@ export const ModalBase: FC<PropsWithChildren<ModalBasePropsType>> = (props) => {
   useEffect(() => {
     if (transitionState !== 'entered') return
     const onKeyDown = (e: KeyboardEvent) => {
+      console.log(e.key)
       if (e.key !== 'Escape') return
       onRequestClose?.()
     }
-    document.documentElement.addEventListener('keydown', onKeyDown)
+    document.addEventListener('keydown', onKeyDown)
     return () => {
-      document.documentElement.removeEventListener('keydown', onKeyDown)
+      document.removeEventListener('keydown', onKeyDown)
     }
   }, [onRequestClose, transitionState])
 
   const transitionClassName = {
-    entered: styles['overlay--entered'],
-    entering: styles['overlay--entering'],
-    exited: styles['overlay--exited'],
-    exiting: styles['overlay--exiting'],
+    entered: styles['root--entered'],
+    entering: styles['root--entering'],
+    exited: styles['root--exited'],
+    exiting: styles['root--exiting'],
   }[transitionState]
 
   if (isMount === false && show === false) return null
@@ -98,18 +93,15 @@ export const ModalBase: FC<PropsWithChildren<ModalBasePropsType>> = (props) => {
       <dialog
         open
         tabIndex={0}
-        className={cx(
-          styles.overlay,
-          disableTransition !== true && transitionClassName
-        )}
+        className={clsx(styles.root, transitionClassName)}
         ref={overlayRef}
-        onClick={(e) => {
-          // Click on overlay
-          if (e.target === overlayRef.current) {
-            onRequestClose?.()
-          }
-        }}
       >
+        <div
+          aria-label="Dialog overlay"
+          tabIndex={0}
+          className={clsx(styles.overlay)}
+          onClick={() => onRequestClose?.()}
+        />
         <ModalBaseContext.Provider value={{ transitionState }}>
           {children}
         </ModalBaseContext.Provider>

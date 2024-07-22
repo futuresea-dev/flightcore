@@ -1,7 +1,6 @@
 import React, { useEffect, useCallback } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
-import clsx from 'clsx'
 
 type ClientsCarouselePropsType = {
   clientLogos: string[]
@@ -11,7 +10,7 @@ export const ClientsCarousele: React.FC<ClientsCarouselePropsType> = ({
   clientLogos,
 }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(
-    { loop: true, dragFree: true, slidesToScroll: 1, skipSnaps: true },
+    { loop: true, dragFree: false, slidesToScroll: 1, skipSnaps: false },
     [
       Autoplay({
         playOnInit: true,

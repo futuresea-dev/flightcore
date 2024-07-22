@@ -17,8 +17,4 @@ export default defineConfig({
     }),
   ],
   output: 'static',
-  // output: 'server',
-  // adapter: node({
-  //   mode: 'middleware',
-  // }),
 })

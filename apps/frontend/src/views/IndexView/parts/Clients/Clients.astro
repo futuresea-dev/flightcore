@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content'
 import { getImage } from 'astro:assets'
 import { ClientsCarousele } from './Clients.Carousele'
 
-const [collection] = [await getCollection('clients')]
+const [collection] = [await getCollection('client')]
 
 const clientsLogos = collection.map((entry: any) => entry.data.logo)
 ---

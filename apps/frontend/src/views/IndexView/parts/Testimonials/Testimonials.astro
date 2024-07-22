@@ -1,8 +1,14 @@
 ---
-import { TestimonialsCarousele } from './Testimonials.Carousele'
+import { Card } from '@flightcore/uikit'
+
+import { QuotesCarousele } from './QuotesCarousele/QuotesCarousele'
+import { QuoteCard } from './QuoteCard/QuoteCard'
+import { getEntry } from 'astro:content'
+
+const { data: quotes } = await getEntry('quotes', 'pl/index')
 ---
 
-<section class="testimonials">
+<section class="root">
   <div class="container">
     <h3 class="title">Rekomendują</h3>
     <p class="subtitle">
@@ -10,13 +16,11 @@ import { TestimonialsCarousele } from './Testimonials.Carousele'
       skorzystali...
     </p>
   </div>
-  <div class="container">
-    <TestimonialsCarousele />
-  </div>
+  <QuotesCarousele quotes={quotes} client:only="react" />
 </section>
 
 <style>
-  .testimonials {
+  .root {
     @apply text-white py-[80px];
   }
   .title,

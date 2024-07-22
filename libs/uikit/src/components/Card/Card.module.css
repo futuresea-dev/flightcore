@@ -1,0 +1,20 @@
+.root {
+  @apply p-[2px];
+}
+
+.--green {
+  background: linear-gradient(180deg, #243447 0%, #217f1c 100%);
+}
+
+.--gray {
+  @apply bg-blue-medium;
+}
+
+.inner {
+  @apply bg-extra-dark p-[32px]
+}
+
+.root,
+.inner {
+  @apply rounded-[10px];
+}

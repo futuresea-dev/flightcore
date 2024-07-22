@@ -1,0 +1,29 @@
+.root {
+  /* max-width: 48rem; */
+  margin: auto;
+  padding: 32px 0;
+
+  --slide-height: 200px;
+  --slide-spacing: 1rem;
+  --slide-size: 480px;
+
+  /* min-height: 20rem; */
+}
+
+.viewport {
+  overflow: hidden;
+  padding: 32px 0;
+}
+
+.viewportContainer {
+  backface-visibility: hidden;
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+  /* margin-left: calc(var(--slide-spacing) * -1); */
+}
+
+.slide {
+  flex: 0 0 var(--slide-size);
+  min-width: var(--slide-size);
+  /* padding-left: var(--slide-spacing); */
+}

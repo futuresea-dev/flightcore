@@ -1,30 +1,42 @@
-.overlay {
+.root {
   position: fixed;
   top: 0;
   width: 100%;
   height: 100%;
   z-index: 100;
   background: transparent;
+  display: flex;
 }
 
-.overlay--entered {
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.root--entered .overlay {
   visibility: visible;
-  @apply bg-player-background-color;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
 }
 
-.overlay--entering {
+.root--entering .overlay {
   visibility: visible;
-  @apply bg-player-background-color;
-  transition: background-color 220ms linear;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  transition: background-color 220ms linear, background-color 220ms linear;
 }
 
-.overlay--exited {
+.root--exited .overlay {
   visibility: hidden;
   background-color: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0px);
 }
 
-.overlay--exiting {
+.root--exiting .overlay {
   visibility: visible;
   background-color: rgba(0, 0, 0, 0);
-  transition: background-color 220ms linear;
+  backdrop-filter: blur(0px);
+  transition: background-color 220ms linear, background-color 220ms linear;
 }

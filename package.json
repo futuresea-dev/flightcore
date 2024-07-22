@@ -6,9 +6,7 @@
     "uikit": "pnpm --filter @flightcore/uikit"
   },
   "devDependencies": {
-    "prettier": "^3.3.3"
-  },
-  "peerDependencies": {
+    "prettier": "^3.3.3",
     "typescript": "^5.0.0"
   }
 }

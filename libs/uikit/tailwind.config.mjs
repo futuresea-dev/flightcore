@@ -1,6 +1,19 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   theme: {
+    container: {
+      center: true,
+      padding: 16,
+      screens: {
+        sm: '640px',
+        md: '768px',
+        // lg: "1024px",
+        // lg: 'min(100vw, 1252px)',
+        lg: '1252px',
+        // xl: "1280px",
+        // "2xl": "1536px",
+      },
+    },
     extend: {
       fontFamily: {
         sans: ['Tactic Round'],
