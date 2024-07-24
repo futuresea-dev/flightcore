@@ -1,13 +1,13 @@
 {
   "title": "Studio 3",
   "desc": "Ta przestrzeń jest aktualnie poddawana procesom rewitalizacji. Według naszej wizji miejsce to będzie studiem wielofunkcyjnym, idealnym dla sesji zdjęciowych, prób koncertowych, a także procesów postprodukcji filmowej.\nStudio 3 będzie ukończone w azjatyckim, przytulnym stylu, który jest synonimem harmonii i spokoju. Przestrzeń będzie wypełniona roślinnością, tworząc naturalne otoczenie sprzyjające kreatywności.\nCałość dopełni mural przedstawiający japoński ogród, nadając niepowtarzalnego klimatu.",
-  "poster": "/assets/images/studio-3/poster.png",
+  "poster": "studio-3/poster.png",
   "photos": [
-    "/assets/images/studio-2/1.jpg",
-    "/assets/images/studio-2/2.jpg",
-    "/assets/images/studio-2/3.jpg",
-    "/assets/images/studio-2/4.jpg",
-    "/assets/images/studio-2/5.jpg",
-    "/assets/images/studio-2/6.jpg"
+    "studio-2/1.jpg",
+    "studio-2/2.jpg",
+    "studio-2/3.jpg",
+    "studio-2/4.jpg",
+    "studio-2/5.jpg",
+    "studio-2/6.jpg"
   ]
 }

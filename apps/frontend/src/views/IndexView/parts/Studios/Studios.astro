@@ -4,8 +4,16 @@ import { getCollection } from 'astro:content'
 
 import { StudioCard } from './StudioCard/StudioCard'
 import { StudioDialog } from './StudioDialog/StudioDialog'
+import { optimizedStudiosImages } from '../../../../assets/studio'
 
-const collection = await getCollection('studio')
+const studioCollection = await getCollection('studio')
+
+const optimizedStudioCollection = studioCollection.map(({ data }) => {
+  const studio = { ...data, photos: [...data.photos] }
+  studio.poster = optimizedStudiosImages[data.poster].src
+  studio.photos = data.photos.map((photo) => optimizedStudiosImages[photo].src)
+  return studio
+})
 ---
 
 <section class="studios">
@@ -20,7 +28,7 @@ const collection = await getCollection('studio')
   <div class="container">
     <h6 class="text-green-darker text-subtitle mb-[24px]">Warszawa, ul. Mickiewicza 9</h6>
     <div class="flex gap-[25px]">
-      {collection.map((entry) => <StudioCard client:only="react" studio={entry.data} />)}
+      {optimizedStudioCollection.map((entry) => <StudioCard client:idle studio={entry} />)}
     </div>
   </div>
   <Icon name="brand/short/big" class="bg-icon" width={undefined} height={undefined} />

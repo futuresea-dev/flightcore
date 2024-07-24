@@ -4,10 +4,11 @@ import { useTransition, type TransitionEvents, type TransitionState } from '../.
 
 import clsx from 'clsx'
 import { Portal } from '../Portal/Portal'
+
 import styles from './ModalBase.module.css'
 
 export type ModalBasePropsType = {
-  show: boolean
+  visible: boolean
   onRequestClose?: () => void
   transitionEvents?: TransitionEvents
   className?: string
@@ -26,12 +27,12 @@ export const useModalTransitionState = () => {
 }
 
 export const ModalBase: FC<PropsWithChildren<ModalBasePropsType>> = (props) => {
-  const { transitionEvents: events, show, children, onRequestClose } = props
+  const { transitionEvents: events, visible, children, onRequestClose } = props
 
   const overlayRef = useRef<HTMLDialogElement>(null)
 
   const { transitionState, isMount } = useTransition({
-    transitionIn: show,
+    transitionIn: visible,
     duration: 220,
     events: {
       onEntered: events?.onEntered,
@@ -55,7 +56,6 @@ export const ModalBase: FC<PropsWithChildren<ModalBasePropsType>> = (props) => {
   useEffect(() => {
     if (transitionState !== 'entered') return
     const onKeyDown = (e: KeyboardEvent) => {
-      console.log(e.key)
       if (e.key !== 'Escape') return
       onRequestClose?.()
     }
@@ -72,7 +72,7 @@ export const ModalBase: FC<PropsWithChildren<ModalBasePropsType>> = (props) => {
     exiting: styles['root--exiting'],
   }[transitionState]
 
-  if (isMount === false && show === false) return null
+  if (isMount === false && visible === false) return null
 
   return (
     <Portal>

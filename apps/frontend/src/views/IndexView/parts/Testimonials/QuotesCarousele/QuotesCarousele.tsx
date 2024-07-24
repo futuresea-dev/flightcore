@@ -83,8 +83,6 @@ export const QuotesCarousele: FC<QuotesCarouselePropsType> = ({ quotes }) => {
     setTweenFactor(emblaApi)
     tweenScale(emblaApi)
 
-    console.log(emblaApi.internalEngine())
-
     emblaApi
       .on('reInit', setTweenNodes)
       .on('reInit', setTweenFactor)

@@ -1,5 +1,6 @@
 export * from './Button'
 export * from './Card'
+export * from './CardModal'
 export * from './Carousele'
 export * from './CarouseleBullet'
 export * from './Input'
