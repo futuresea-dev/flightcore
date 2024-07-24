@@ -2,16 +2,27 @@
 import { getCollection } from 'astro:content'
 
 import { ClientsCarousele } from './Clients.Carousele'
+import { getImage } from 'astro:assets'
 
-const [collection] = [await getCollection('client')]
+const clientsCollection = await getCollection('client')
 
-const clientsLogos = collection.map((entry: any) => entry.data.logo)
+const clientsLogosGlobs = import.meta.glob<ImageMetadata>('/src/assets/clients/**', { eager: true, import: 'default' })
+
+const clientLogos = await Promise.all(
+  clientsCollection.map(async (entry) => {
+    const {
+      data: { logo },
+    } = entry
+    const optimizedImage = await getImage({ src: clientsLogosGlobs[logo] })
+    return optimizedImage.src
+  }),
+)
 ---
 
 <section class="clients">
   <h3 class="clients__title">Tworzyliśmy projekty z...</h3>
   <div class="clients__content">
-    <ClientsCarousele client:load clientLogos={clientsLogos} />
+    <ClientsCarousele client:idle clientLogos={clientLogos} />
   </div>
 </section>
 

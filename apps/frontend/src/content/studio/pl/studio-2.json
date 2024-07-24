@@ -2,12 +2,5 @@
   "title": "Studio 2",
   "desc": "Studio wykończone w chłodnych, świeżych barwach - inspirujące oraz przyjemne do przebywania.\nZaprojektowane z myślą o naszej poprzedniej lokalizacji, gdzie przeważał styl głównie trapowy - mnóstwo kolorowych świateł oraz nowoczesny wystrój. Znajduje się tutaj realizatorka wyposażona w monitory średniego pola oraz starannie wytłumiona kabina nagraniowa.",
   "poster": "studio-2/poster.png",
-  "photos": [
-    "studio-2/1.jpg",
-    "studio-2/2.jpg",
-    "studio-2/3.jpg",
-    "studio-2/4.jpg",
-    "studio-2/5.jpg",
-    "studio-2/6.jpg"
-  ]
+  "photos": ["studio-2/1.jpg", "studio-2/2.jpg", "studio-2/3.jpg", "studio-2/4.jpg", "studio-2/5.jpg", "studio-2/6.jpg"]
 }
