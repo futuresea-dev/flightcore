@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, type FC } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import type { EmblaCarouselType, EmblaEventType } from 'embla-carousel'
+import EmblaClassNames from 'embla-carousel-class-names'
 import type { CollectionEntry } from 'astro:content'
 import { useCarousele } from '@flightcore/uikit'
 
@@ -13,7 +14,16 @@ type QuotesCarouselePropsType = {
 }
 
 export const QuotesCarousele: FC<QuotesCarouselePropsType> = ({ quotes }) => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+      loop: true,
+      align: 'center',
+      containScroll: 'trimSnaps',
+      watchResize: true,
+      
+    },
+    [EmblaClassNames()]
+  )
 
   const tweenFactor = useRef(0)
   const tweenNodes = useRef<HTMLElement[]>([])
@@ -23,8 +33,8 @@ export const QuotesCarousele: FC<QuotesCarouselePropsType> = ({ quotes }) => {
 
   const setTweenNodes = useCallback((emblaApi: EmblaCarouselType): void => {
     tweenNodes.current = emblaApi.slideNodes().map((slideNode) => {
-      console.log(slideNode)
-      return slideNode.children[0] as HTMLElement
+      // console.log(slideNode)
+      return slideNode as HTMLElement
     })
   }, [])
 
@@ -39,10 +49,10 @@ export const QuotesCarousele: FC<QuotesCarouselePropsType> = ({ quotes }) => {
       const slidesInView = emblaApi.slidesInView()
       const isScrollEvent = eventName === 'scroll'
 
+      console.log('here', emblaApi.scrollSnapList())
+
       emblaApi.scrollSnapList().forEach((scrollSnap, snapIndex) => {
         let diffToTarget = scrollSnap - scrollProgress
-
-        console.log({scrollSnap, scrollProgress})
 
         const slidesInSnap = engine.slideRegistry[snapIndex]
 
@@ -70,9 +80,8 @@ export const QuotesCarousele: FC<QuotesCarouselePropsType> = ({ quotes }) => {
           const scale = numberWithinRange(tweenValue, 0, 1).toString()
           const tweenNode = tweenNodes.current[slideIndex]
 
-          // console.log({scrollSnap, tweenValue, diffToTarget, scale})
-
-          if (tweenNode) tweenNode.style.transform = `scale(${scale})`
+          // tweenNode.style.transform = `scale(${scale})`
+          tweenNode.style.setProperty('--factor', scale)
         })
       })
     },
@@ -86,6 +95,8 @@ export const QuotesCarousele: FC<QuotesCarouselePropsType> = ({ quotes }) => {
     setTweenFactor(emblaApi)
     tweenScale(emblaApi)
 
+    console.log(emblaApi.internalEngine())
+
     emblaApi
       .on('reInit', setTweenNodes)
       .on('reInit', setTweenFactor)
@@ -95,15 +106,13 @@ export const QuotesCarousele: FC<QuotesCarouselePropsType> = ({ quotes }) => {
   }, [emblaApi, tweenScale])
 
   return (
-    <div className="container">
+    <div className="">
       <div className={styles.root}>
         <div className={styles.viewport} ref={emblaRef}>
           <div className={styles.viewportContainer}>
             {quotes.map((quote, index) => (
-              <div key={index} className="">
-                <div>
-                  <QuoteCard className={styles.slide} {...quote} />
-                </div>
+              <div className={styles.slide} key={index}>
+                <QuoteCard {...quote} className={styles.slideQuote} />
               </div>
             ))}
           </div>
@@ -116,4 +125,4 @@ export const QuotesCarousele: FC<QuotesCarouselePropsType> = ({ quotes }) => {
 const numberWithinRange = (number: number, min: number, max: number): number =>
   Math.min(Math.max(number, min), max)
 
-const TWEEN_FACTOR_BASE = 0.2
+const TWEEN_FACTOR_BASE = 0.1

@@ -53,6 +53,9 @@ importers:
       embla-carousel-autoplay:
         specifier: 8.1.6
         version: 8.1.6(embla-carousel@8.1.6)
+      embla-carousel-class-names:
+        specifier: ^8.1.7
+        version: 8.1.7(embla-carousel@8.1.6)
       embla-carousel-fade:
         specifier: 8.1.6
         version: 8.1.6(embla-carousel@8.1.6)
@@ -1198,6 +1201,11 @@ packages:
     resolution: {integrity: sha512-e5n9f4q+DVeBPiPPT3gwzqpiqfae8aP8fQACS4OZkPFvFLdsVhnWcw+cwtewryP7snWJGKPXEMA1GOjieEKv+w==}
     peerDependencies:
       embla-carousel: 8.1.6
+
+  embla-carousel-class-names@8.1.7:
+    resolution: {integrity: sha512-vg6HlUmyW3Md7tlV46GkX/Ko9q3tEnu+vySqLqe8lu6gGNvGeDODXV0njyQDECSumvnCCo+9QdamkAg/ur+fpw==}
+    peerDependencies:
+      embla-carousel: 8.1.7
 
   embla-carousel-fade@8.1.6:
     resolution: {integrity: sha512-5fUPjHaLO97ldycR+6yVMU5jN31rfblHKS+B/oovsYHFOMtuuNpiF7I093xms8FOx0v1HRWVla4O+mclOZq2zw==}
@@ -3924,6 +3932,10 @@ snapshots:
   electron-to-chromium@1.4.832: {}
 
   embla-carousel-autoplay@8.1.6(embla-carousel@8.1.6):
+    dependencies:
+      embla-carousel: 8.1.6
+
+  embla-carousel-class-names@8.1.7(embla-carousel@8.1.6):
     dependencies:
       embla-carousel: 8.1.6
 

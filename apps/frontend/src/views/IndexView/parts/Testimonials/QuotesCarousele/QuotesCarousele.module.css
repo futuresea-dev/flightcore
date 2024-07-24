@@ -23,7 +23,13 @@
 }
 
 .slide {
-  flex: 0 0 var(--slide-size);
-  min-width: var(--slide-size);
+  flex: 0;
+  /* flex: 0 0 var(--slide-size); */
+  /* min-width: var(--slide-size); */
   /* padding-left: var(--slide-spacing); */
+}
+
+.slideQuote {
+  min-width: var(--slide-size);
+  transform: scale(var(--factor));
 }
