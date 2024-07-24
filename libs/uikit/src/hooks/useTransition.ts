@@ -21,13 +21,7 @@ export type TransitionOptions = {
 }
 
 export const useTransition = (options?: TransitionOptions) => {
-  const {
-    transitionOnMount = false,
-    transitionIn = true,
-    duration = 300,
-    delay = 0,
-    events,
-  } = options || {}
+  const { transitionOnMount = false, transitionIn = true, duration = 300, delay = 0, events } = options || {}
 
   const [mount, setMount] = useState(false)
 
@@ -39,12 +33,9 @@ export const useTransition = (options?: TransitionOptions) => {
       return transitionIn ? 'exited' : 'entered'
     }
     return transitionIn ? 'entered' : 'exited'
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const [transitionState, setTransitionState] = useState<TransitionState>(
-    initialTransitionState
-  )
+  const [transitionState, setTransitionState] = useState<TransitionState>(initialTransitionState)
 
   const lastTransitionState = useRef<TransitionState>()
 

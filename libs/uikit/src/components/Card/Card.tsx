@@ -1,7 +1,7 @@
 import type { FC, PropsWithChildren } from 'react'
 
-import styles from './Card.module.css'
 import clsx from 'clsx'
+import styles from './Card.module.css'
 
 type CardPropsType = {
   variant?: 'green' | 'gray'
@@ -9,12 +9,7 @@ type CardPropsType = {
   innerClassName?: string
 }
 
-export const Card: FC<PropsWithChildren<CardPropsType>> = ({
-  variant = 'green',
-  className,
-  innerClassName,
-  children,
-}) => {
+export const Card: FC<PropsWithChildren<CardPropsType>> = ({ variant = 'green', className, innerClassName, children }) => {
   const variantToClassName = {
     green: styles['--green'],
     gray: styles['--gray'],

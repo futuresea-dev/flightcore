@@ -1,9 +1,8 @@
-import { useCallback, useEffect, useRef, type FC } from 'react'
-import useEmblaCarousel from 'embla-carousel-react'
-import type { EmblaCarouselType, EmblaEventType } from 'embla-carousel'
-import EmblaClassNames from 'embla-carousel-class-names'
 import type { CollectionEntry } from 'astro:content'
-import { useCarousele } from '@flightcore/uikit'
+import type { EmblaCarouselType, EmblaEventType, EmblaOptionsType } from 'embla-carousel'
+import EmblaClassNames from 'embla-carousel-class-names'
+import useEmblaCarousel from 'embla-carousel-react'
+import { useCallback, useEffect, useRef, type FC } from 'react'
 
 import { QuoteCard } from '../QuoteCard/QuoteCard'
 
@@ -13,27 +12,22 @@ type QuotesCarouselePropsType = {
   quotes: CollectionEntry<'quotes'>['data']
 }
 
+const options: EmblaOptionsType = {
+  loop: true,
+  align: 'center',
+  containScroll: 'trimSnaps',
+}
+
+const plugins = [EmblaClassNames()]
+
 export const QuotesCarousele: FC<QuotesCarouselePropsType> = ({ quotes }) => {
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    {
-      loop: true,
-      align: 'center',
-      containScroll: 'trimSnaps',
-      watchResize: true,
-      
-    },
-    [EmblaClassNames()]
-  )
+  const [emblaRef, emblaApi] = useEmblaCarousel(options, plugins)
 
   const tweenFactor = useRef(0)
   const tweenNodes = useRef<HTMLElement[]>([])
 
-  const { selectedIndex, scrollSnaps, onDotButtonClick } =
-    useCarousele(emblaApi)
-
   const setTweenNodes = useCallback((emblaApi: EmblaCarouselType): void => {
     tweenNodes.current = emblaApi.slideNodes().map((slideNode) => {
-      // console.log(slideNode)
       return slideNode as HTMLElement
     })
   }, [])
@@ -42,51 +36,45 @@ export const QuotesCarousele: FC<QuotesCarouselePropsType> = ({ quotes }) => {
     tweenFactor.current = TWEEN_FACTOR_BASE * emblaApi.scrollSnapList().length
   }, [])
 
-  const tweenScale = useCallback(
-    (emblaApi: EmblaCarouselType, eventName?: EmblaEventType) => {
-      const engine = emblaApi.internalEngine()
-      const scrollProgress = emblaApi.scrollProgress()
-      const slidesInView = emblaApi.slidesInView()
-      const isScrollEvent = eventName === 'scroll'
+  const tweenScale = useCallback((emblaApi: EmblaCarouselType, eventName?: EmblaEventType) => {
+    const engine = emblaApi.internalEngine()
+    const scrollProgress = emblaApi.scrollProgress()
+    const slidesInView = emblaApi.slidesInView()
+    const isScrollEvent = eventName === 'scroll'
 
-      console.log('here', emblaApi.scrollSnapList())
+    emblaApi.scrollSnapList().forEach((scrollSnap, snapIndex) => {
+      let diffToTarget = scrollSnap - scrollProgress
 
-      emblaApi.scrollSnapList().forEach((scrollSnap, snapIndex) => {
-        let diffToTarget = scrollSnap - scrollProgress
+      const slidesInSnap = engine.slideRegistry[snapIndex]
 
-        const slidesInSnap = engine.slideRegistry[snapIndex]
+      slidesInSnap.forEach((slideIndex) => {
+        if (isScrollEvent && !slidesInView.includes(slideIndex)) return
 
-        slidesInSnap.forEach((slideIndex) => {
-          if (isScrollEvent && !slidesInView.includes(slideIndex)) return
+        if (engine.options.loop) {
+          engine.slideLooper.loopPoints.forEach((loopItem) => {
+            const target = loopItem.target()
 
-          if (engine.options.loop) {
-            engine.slideLooper.loopPoints.forEach((loopItem) => {
-              const target = loopItem.target()
+            if (slideIndex === loopItem.index && target !== 0) {
+              const sign = Math.sign(target)
 
-              if (slideIndex === loopItem.index && target !== 0) {
-                const sign = Math.sign(target)
-
-                if (sign === -1) {
-                  diffToTarget = scrollSnap - (1 + scrollProgress)
-                }
-                if (sign === 1) {
-                  diffToTarget = scrollSnap + (1 - scrollProgress)
-                }
+              if (sign === -1) {
+                diffToTarget = scrollSnap - (1 + scrollProgress)
               }
-            })
-          }
+              if (sign === 1) {
+                diffToTarget = scrollSnap + (1 - scrollProgress)
+              }
+            }
+          })
+        }
 
-          const tweenValue = 1 - Math.abs(diffToTarget * tweenFactor.current)
-          const scale = numberWithinRange(tweenValue, 0, 1).toString()
-          const tweenNode = tweenNodes.current[slideIndex]
+        const tweenValue = 1 - Math.abs(diffToTarget * tweenFactor.current)
+        const scale = numberWithinRange(tweenValue, 0, 1).toString()
+        const tweenNode = tweenNodes.current[slideIndex]
 
-          // tweenNode.style.transform = `scale(${scale})`
-          tweenNode.style.setProperty('--factor', scale)
-        })
+        tweenNode.style.setProperty('--factor', scale)
       })
-    },
-    []
-  )
+    })
+  }, [])
 
   useEffect(() => {
     if (!emblaApi) return
@@ -122,7 +110,6 @@ export const QuotesCarousele: FC<QuotesCarouselePropsType> = ({ quotes }) => {
   )
 }
 
-const numberWithinRange = (number: number, min: number, max: number): number =>
-  Math.min(Math.max(number, min), max)
+const numberWithinRange = (number: number, min: number, max: number): number => Math.min(Math.max(number, min), max)
 
 const TWEEN_FACTOR_BASE = 0.1

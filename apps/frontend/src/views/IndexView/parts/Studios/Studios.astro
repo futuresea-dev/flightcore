@@ -12,31 +12,18 @@ const collection = await getCollection('studio')
   <div class="container mb-[76px]">
     <h3 class="studios__title">Witamy na stronie Flightcore</h3>
     <p class="studios__text">
-      Zespołu trzech studiów nagraniowych na Żoliborzu. Na początku mieliśmy
-      tylko marzenia, dziś pomagamy je spełniać również innym. Nasze studia
-      wyróżnia niepowtarzalna atmosfera, wykwalifikowany personel oraz światowy
-      tor audio, o czym czym przekonały się już tysiące artystów. Dołącz do ich
-      grona - wesprzemy Cię przy procesie twórczym od A do Z.
+      Zespołu trzech studiów nagraniowych na Żoliborzu. Na początku mieliśmy tylko marzenia, dziś pomagamy je spełniać również
+      innym. Nasze studia wyróżnia niepowtarzalna atmosfera, wykwalifikowany personel oraz światowy tor audio, o czym czym
+      przekonały się już tysiące artystów. Dołącz do ich grona - wesprzemy Cię przy procesie twórczym od A do Z.
     </p>
   </div>
   <div class="container">
-    <h6 class="text-green-darker text-subtitle mb-[24px]">
-      Warszawa, ul. Mickiewicza 9
-    </h6>
+    <h6 class="text-green-darker text-subtitle mb-[24px]">Warszawa, ul. Mickiewicza 9</h6>
     <div class="flex gap-[25px]">
-      {
-        collection.map((entry) => (
-          <StudioCard client:only="react" studio={entry.data} />
-        ))
-      }
+      {collection.map((entry) => <StudioCard client:only="react" studio={entry.data} />)}
     </div>
   </div>
-  <Icon
-    name="brand/short/big"
-    class="bg-icon"
-    width={undefined}
-    height={undefined}
-  />
+  <Icon name="brand/short/big" class="bg-icon" width={undefined} height={undefined} />
 </section>
 
 <StudioDialog client:only="react" />

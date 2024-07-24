@@ -1,14 +1,15 @@
 {
   "private": true,
   "name": "@flightcore/frontend",
+  "type": "module",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
-    "format": "prettier --write .",
     "preview": "astro preview",
     "astro": "astro",
-    "server": "node ./run-server.mjs"
+    "format": "prettier --write .",
+    "lint": "eslint"
   },
   "dependencies": {
     "@astrojs/check": "^0.7.0",
@@ -23,7 +24,7 @@
     "clsx": "^2.1.1",
     "embla-carousel": "8.1.6",
     "embla-carousel-autoplay": "8.1.6",
-    "embla-carousel-class-names": "^8.1.7",
+    "embla-carousel-class-names": "^8.1.6",
     "embla-carousel-fade": "8.1.6",
     "embla-carousel-react": "8.1.6",
     "express": "^4.19.2",
@@ -33,6 +34,17 @@
     "typescript": "^5.5.3"
   },
   "devDependencies": {
-    "@types/react": "^18.3.3"
+    "prettier-plugin-astro": "^0.14.1",
+    "@eslint/js": "^9.7.0",
+    "@types/eslint__js": "^8.42.3",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/parser": "^7.16.1",
+    "eslint": "^9.7.0",
+    "eslint-plugin-astro": "^1.2.3",
+    "prettier": "^3.3.3",
+    "svgo": "^3.3.2",
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^7.16.1"
   }
 }

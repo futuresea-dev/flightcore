@@ -25,7 +25,7 @@ const quotesSchema = z.array(
   z.object({
     text: z.string(),
     author: z.string(),
-  })
+  }),
 )
 
 const quotesCollection = defineCollection({

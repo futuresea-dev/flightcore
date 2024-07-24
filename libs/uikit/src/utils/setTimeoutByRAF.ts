@@ -1,7 +1,4 @@
-export const setTimeoutByRAF = (
-  callback: () => void,
-  delay: number = 0
-): (() => void) => {
+export const setTimeoutByRAF = (callback: () => void, delay: number = 0): (() => void) => {
   let start: number | null = null
   let animationFrameId: number | null = null
 

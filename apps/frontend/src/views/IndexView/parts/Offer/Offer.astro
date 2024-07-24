@@ -36,11 +36,7 @@ const tiles = [
       {`Team Flightcore wesprze Twoją twórczość na każdym etapie`}
     </h3>
     <div class="offer__tiles">
-      {
-        tiles.map((tile) => (
-          <OfferTile icon={tile.icon} title={tile.title} desc={tile.desc} />
-        ))
-      }
+      {tiles.map((tile) => <OfferTile icon={tile.icon} title={tile.title} desc={tile.desc} />)}
     </div>
   </div>
 </section>

@@ -1,5 +1,5 @@
-import { type FC, type PropsWithChildren } from 'react'
 import clsx from 'clsx'
+import { type FC, type PropsWithChildren } from 'react'
 
 type ButtonSize = 'large' | 'small'
 type ButtonColor = 'yellow' | 'green'
@@ -23,7 +23,6 @@ export const Button: FC<ButtonPropsType> = ({
   disabled,
   children,
   className,
-  style,
 }) => {
   const radiusClassName = {
     large: 'rounded-[32px]',
@@ -46,10 +45,8 @@ export const Button: FC<ButtonPropsType> = ({
       green: 'bg-green hover:bg-green-accent',
     },
     outline: {
-      yellow:
-        'border-2 border-yellow hover:border-yellow-accent text-yellow hover:text-yellow-accent',
-      green:
-        'border-2 border-green hover:border-green-accent text-green hover:text-green-accent',
+      yellow: 'border-2 border-yellow hover:border-yellow-accent text-yellow hover:text-yellow-accent',
+      green: 'border-2 border-green hover:border-green-accent text-green hover:text-green-accent',
     },
   }[variant][color]
 
@@ -63,9 +60,8 @@ export const Button: FC<ButtonPropsType> = ({
         typographyClassName,
         colorsClassName,
         disabled && 'bg-blue-lightest',
-        className
-      )}
-    >
+        className,
+      )}>
       {children}
     </button>
   )

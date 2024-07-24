@@ -8,9 +8,7 @@ type UseCarouseleReturnType = {
   onDotButtonClick: (index: number) => void
 }
 
-export const useCarousele = (
-  emblaApi: EmblaCarouselType | undefined
-): UseCarouseleReturnType => {
+export const useCarousele = (emblaApi: EmblaCarouselType | undefined): UseCarouseleReturnType => {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
 
@@ -19,7 +17,7 @@ export const useCarousele = (
       if (!emblaApi) return
       emblaApi.scrollTo(index)
     },
-    [emblaApi]
+    [emblaApi],
   )
 
   const onInit = useCallback((emblaApi: EmblaCarouselType) => {

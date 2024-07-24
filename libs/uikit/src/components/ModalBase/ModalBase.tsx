@@ -1,22 +1,10 @@
-import cx from 'clsx'
-import {
-  type FC,
-  useEffect,
-  useRef,
-  type PropsWithChildren,
-  createContext,
-  useContext,
-} from 'react'
+import { createContext, useContext, useEffect, useRef, type FC, type PropsWithChildren } from 'react'
 
-import {
-  useTransition,
-  type TransitionEvents,
-  type TransitionState,
-} from '../../hooks'
+import { useTransition, type TransitionEvents, type TransitionState } from '../../hooks'
 
-import styles from './ModalBase.module.css'
-import { Portal } from '../Portal/Portal'
 import clsx from 'clsx'
+import { Portal } from '../Portal/Portal'
+import styles from './ModalBase.module.css'
 
 export type ModalBasePropsType = {
   show: boolean
@@ -29,9 +17,7 @@ type ModalBaseContextType = {
   transitionState: TransitionState
 }
 
-const ModalBaseContext = createContext<ModalBaseContextType | undefined>(
-  undefined
-)
+const ModalBaseContext = createContext<ModalBaseContextType | undefined>(undefined)
 
 export const useModalTransitionState = () => {
   const context = useContext(ModalBaseContext)
@@ -90,21 +76,9 @@ export const ModalBase: FC<PropsWithChildren<ModalBasePropsType>> = (props) => {
 
   return (
     <Portal>
-      <dialog
-        open
-        tabIndex={0}
-        className={clsx(styles.root, transitionClassName)}
-        ref={overlayRef}
-      >
-        <div
-          aria-label="Dialog overlay"
-          tabIndex={0}
-          className={clsx(styles.overlay)}
-          onClick={() => onRequestClose?.()}
-        />
-        <ModalBaseContext.Provider value={{ transitionState }}>
-          {children}
-        </ModalBaseContext.Provider>
+      <dialog open tabIndex={0} className={clsx(styles.root, transitionClassName)} ref={overlayRef}>
+        <div aria-label="Dialog overlay" tabIndex={0} className={clsx(styles.overlay)} onClick={() => onRequestClose?.()} />
+        <ModalBaseContext.Provider value={{ transitionState }}>{children}</ModalBaseContext.Provider>
       </dialog>
     </Portal>
   )

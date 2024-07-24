@@ -5,7 +5,8 @@
   "main": "index.ts",
   "version": "0.0.1",
   "scripts": {
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "lint": "eslint"
   },
   "devDependencies": {
     "@types/bun": "latest",

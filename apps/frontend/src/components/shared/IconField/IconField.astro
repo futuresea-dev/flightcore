@@ -16,11 +16,7 @@ const mapSizeToClass = {
 const Tag = typeof href === 'undefined' ? 'div' : 'a'
 ---
 
-<Tag
-  href={href}
-  target="__blank"
-  class:list={['icon-field', mapSizeToClass[size], className]}
->
+<Tag href={href} target="__blank" class:list={['icon-field', mapSizeToClass[size], className]}>
   <slot />
 </Tag>
 
