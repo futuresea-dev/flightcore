@@ -27,8 +27,8 @@ const StudioDialogContent: FC = () => {
         <div ref={emblaRef} className="w-full h-full bg-blue-dark rounded-[20px] overflow-hidden">
           <div className="flex w-full h-full">
             {focusedStudio?.photos.map((photo) => (
-              <div key={photo} className="flex-[1_0_100%]">
-                <img className="w-full h-full object-center object-cover" srcSet={photo} loading="lazy" decoding="async" />
+              <div key={photo.src} className="flex-[1_0_100%]">
+                <img className="w-full h-full object-center object-cover" src={photo.src} srcSet={photo.srcSet.attribute} />
               </div>
             ))}
           </div>
@@ -40,7 +40,7 @@ const StudioDialogContent: FC = () => {
 
       <div className="flex justify-center gap-[8px] mt-[16px] mb-[24px]">
         {scrollSnaps.map((_, index) => (
-          <CarouseleBullet active={index === selectedIndex} onClick={() => onDotButtonClick(index)} />
+          <CarouseleBullet key={index} active={index === selectedIndex} onClick={() => onDotButtonClick(index)} />
         ))}
       </div>
 

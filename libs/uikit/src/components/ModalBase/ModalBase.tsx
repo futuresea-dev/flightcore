@@ -77,8 +77,10 @@ export const ModalBase: FC<PropsWithChildren<ModalBasePropsType>> = (props) => {
   return (
     <Portal>
       <dialog open tabIndex={0} className={clsx(styles.root, transitionClassName)} ref={overlayRef}>
-        <div aria-label="Dialog overlay" tabIndex={0} className={clsx(styles.overlay)} onClick={() => onRequestClose?.()} />
-        <ModalBaseContext.Provider value={{ transitionState }}>{children}</ModalBaseContext.Provider>
+        <div className={styles.viewport}>
+          <div aria-label="Dialog overlay" tabIndex={0} className={clsx(styles.overlay)} onClick={() => onRequestClose?.()} />
+          <ModalBaseContext.Provider value={{ transitionState }}>{children}</ModalBaseContext.Provider>
+        </div>
       </dialog>
     </Portal>
   )

@@ -1,7 +1,7 @@
 .dialog {
   transform-origin: 50%;
   margin: auto;
-  transform: scale(1)
+  transform: scale(1);
 }
 
 .dialog--entered {

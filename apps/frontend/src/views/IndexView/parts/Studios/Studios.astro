@@ -4,18 +4,32 @@ import { getCollection } from 'astro:content'
 
 import { StudioCard } from './StudioCard/StudioCard'
 import { StudioDialog } from './StudioDialog/StudioDialog'
-import { optimizedStudiosImages } from '../../../../assets/studio'
+import { getImage } from 'astro:assets'
 
 const studioCollection = await getCollection('studio')
 
-const optimizedStudioCollection = studioCollection.map(({ data }) => {
-  const studio = { ...data, photos: [...data.photos] }
-  // @ts-expect-error TODO: Clear this
-  studio.poster = optimizedStudiosImages[data.poster].srcSet.attribute
-  // @ts-expect-error TODO: Clear this
-  studio.photos = data.photos.map((photo) => optimizedStudiosImages[photo].srcSet.attribute)
-  return studio
-})
+const globs = import.meta.glob<ImageMetadata>(`/src/assets/studio/**/*`, { eager: true, import: 'default' })
+
+async function optimizeStudioImage(source: string, widths = [320, 720, 1280, 720]) {
+  const glob = globs[source]
+  if (!glob) throw new Error(`Invalid ${source} glob source`)
+
+  const optimizedImage = await getImage({
+    src: glob,
+    width: 320,
+    widths,
+  })
+
+  return optimizedImage
+}
+
+const optimizedStudioCollection = await Promise.all(
+  studioCollection.map(async (entry) => ({
+    ...entry.data,
+    photos: await Promise.all(entry.data.photos.map((source) => optimizeStudioImage(source, [320, 720]))),
+    poster: await optimizeStudioImage(entry.data.poster),
+  })),
+)
 ---
 
 <section class="studios">
