@@ -1,4 +1,6 @@
 ---
+import { ViewTransitions } from 'astro:transitions'
+
 import '../styles/fonts.css'
 import '../styles/global.css'
 
@@ -20,6 +22,7 @@ const { metaTitle = 'Flightcore', metaDesc = '' } = Astro.props
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{metaTitle}</title>
     <meta name="description" content={metaDesc} />
+    <ViewTransitions />
   </head>
   <body class="bg-blue-dark">
     <slot />

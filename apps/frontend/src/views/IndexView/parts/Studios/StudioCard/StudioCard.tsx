@@ -14,7 +14,7 @@ export const StudioCard: FC<StudioCardPropsType> = ({ studio }) => {
     <>
       <div tabIndex={0} onClick={() => studioDialogController.show(studio)} className={styles['studio-item']}>
         <div className={styles['inner-container']}>
-          <img src={poster} className={styles['studio-item__poster']} loading="eager" decoding="async" />
+          <img srcSet={poster} className={styles['studio-item__poster']} loading="eager" decoding="async" />
           <p className={styles['studio-item__title']}>{title}</p>
         </div>
         <div className={styles['overlay']}>

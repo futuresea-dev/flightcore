@@ -5,7 +5,7 @@ const globs = import.meta.glob<ImageMetadata>('/src/assets/studio/**/*', { eager
 export const optimizedStudiosImages: Record<string, { src: string }> = {}
 
 for (const globPath in globs) {
-  getImage({ src: globs[globPath] }).then((optimizedImage) => {
+  getImage({ src: globs[globPath], format: 'webp', quality: 'max', widths: [320, 720, 1280] }).then((optimizedImage) => {
     const [fileName] = [new URL(globs[globPath].src, 'https://directdental.com')]
       .map(({ pathname }) => pathname)
       .map((pathname) => {

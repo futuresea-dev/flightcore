@@ -10,8 +10,10 @@ const studioCollection = await getCollection('studio')
 
 const optimizedStudioCollection = studioCollection.map(({ data }) => {
   const studio = { ...data, photos: [...data.photos] }
-  studio.poster = optimizedStudiosImages[data.poster].src
-  studio.photos = data.photos.map((photo) => optimizedStudiosImages[photo].src)
+  // @ts-expect-error TODO: Clear this
+  studio.poster = optimizedStudiosImages[data.poster].srcSet.attribute
+  // @ts-expect-error TODO: Clear this
+  studio.photos = data.photos.map((photo) => optimizedStudiosImages[photo].srcSet.attribute)
   return studio
 })
 ---

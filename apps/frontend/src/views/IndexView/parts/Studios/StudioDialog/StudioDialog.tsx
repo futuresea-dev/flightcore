@@ -1,17 +1,50 @@
-import { CardModal } from '@flightcore/uikit'
+import { CardModal, CarouseleBullet, useCarousele } from '@flightcore/uikit'
 import { useStore } from '@nanostores/react'
+import AutoPlay from 'embla-carousel-autoplay'
+import useEmblaCarousel from 'embla-carousel-react'
+
 import type { FC } from 'react'
 
 import { controller } from './StudioDialogController'
 
-import styles from './StudioDialog.module.css'
-
 const StudioDialogContent: FC = () => {
   const focusedStudio = useStore(controller.focusedStudio)
+
+  const [emblaRef, emblaAPI] = useEmblaCarousel(
+    {
+      slidesToScroll: 1,
+      loop: true,
+      align: 'start',
+    },
+    [AutoPlay({ playOnInit: true, delay: 3000 })],
+  )
+
+  const { selectedIndex, scrollSnaps, onDotButtonClick } = useCarousele(emblaAPI)
+
   return (
     <div>
-      <div style={{ width: 528, height: 400, background: '#333' }}></div>
-      <p className={styles['dialog-text']}>{focusedStudio?.desc}</p>
+      <div className="relative p-[2px] rounded-[20px] aspect-[528/400] bg-gradient-to-b from-transparent from-50% to-blue-medium">
+        <div ref={emblaRef} className="w-full h-full bg-blue-dark rounded-[20px] overflow-hidden">
+          <div className="flex w-full h-full">
+            {focusedStudio?.photos.map((photo) => (
+              <div key={photo} className="flex-[1_0_100%]">
+                <img className="w-full h-full object-center object-cover" srcSet={photo} loading="lazy" decoding="async" />
+              </div>
+            ))}
+          </div>
+        </div>
+        <h6 className="absolute top-[24px] left-[24px] font-bold text-[34px] leading-[40px] tracking-[0.25px] text-green-dark pointer-events-none select-none">
+          {focusedStudio?.title}
+        </h6>
+      </div>
+
+      <div className="flex justify-center gap-[8px] mt-[16px] mb-[24px]">
+        {scrollSnaps.map((_, index) => (
+          <CarouseleBullet active={index === selectedIndex} onClick={() => onDotButtonClick(index)} />
+        ))}
+      </div>
+
+      <p className="whitespace-pre-wrap text-white text-body3">{focusedStudio?.desc}</p>
     </div>
   )
 }

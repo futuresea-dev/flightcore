@@ -8,3 +8,8 @@ db-data
 db-data/**
 
 *.(jpg|png)
+
+*.jpg
+*.png
+*.webp
+*.svg
