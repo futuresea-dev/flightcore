@@ -132,6 +132,9 @@ importers:
       '@typescript-eslint/parser':
         specifier: ^7.16.1
         version: 7.17.0(eslint@9.7.0)(typescript@5.5.3)
+      astro-nanointl:
+        specifier: ^1.0.0
+        version: 1.0.0(astro@4.12.2(@types/node@20.14.11)(terser@5.31.3)(typescript@5.5.3))
       eslint:
         specifier: ^9.7.0
         version: 9.7.0
@@ -1177,6 +1180,11 @@ packages:
 
   astro-icon@1.1.0:
     resolution: {integrity: sha512-Nksc09p7UuHeMcPNS9w1pKqRw3+wEmmh0A3FJW+FNXvqaeWI4RLvD1MCWErpY3Z5Cvad317rvLdik/Hg8GEk8Q==}
+
+  astro-nanointl@1.0.0:
+    resolution: {integrity: sha512-rTd/9HCB0ddZqRG4a/+0zTgdigok7Dra4G62pnjhNOqzyIJWg5/+xhX786QZX3ExT2iwJPSBSSZfV4ZZv3jswQ==}
+    peerDependencies:
+      astro: ^4.0.0
 
   astro@4.12.2:
     resolution: {integrity: sha512-l6OmqlL+FiuSi9x6F+EGZitteOznq1JffOil7st7cdqeMCTEIym4oagI1a6zp6QekliKWEEZWdplGhgh1k1f7Q==}
@@ -5680,6 +5688,10 @@ snapshots:
       '@iconify/utils': 2.1.25
     transitivePeerDependencies:
       - supports-color
+
+  astro-nanointl@1.0.0(astro@4.12.2(@types/node@20.14.11)(terser@5.31.3)(typescript@5.5.3)):
+    dependencies:
+      astro: 4.12.2(@types/node@20.14.11)(terser@5.31.3)(typescript@5.5.3)
 
   astro@4.12.2(@types/node@20.14.11)(terser@5.31.3)(typescript@5.5.3):
     dependencies:

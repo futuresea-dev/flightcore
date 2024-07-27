@@ -1,6 +1,9 @@
 {
   "private": true,
   "name": "flightcore",
+  "engines": {
+    "pnpm": ">=9.5.0"
+  },
   "scripts": {
     "frontend": "pnpm --filter @flightcore/frontend",
     "uikit": "pnpm --filter @flightcore/uikit",
