@@ -1,0 +1,15 @@
+.header {
+  @apply translate-y-0 absolute top-0 left-0 right-0 z-10 border-b-[1px] border-transparent;
+}
+
+.header--sticky {
+  @apply fixed bg-blue-dark border-blue-medium;
+}
+
+.header-container {
+  @apply h-[80px] flex items-center justify-between container;
+}
+
+.brand {
+  @apply w-full max-w-[280px] text-green;
+}

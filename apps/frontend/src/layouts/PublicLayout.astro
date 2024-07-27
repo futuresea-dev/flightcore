@@ -3,14 +3,21 @@ import BaseLayout from './BaseLayout.astro'
 
 import Footer from '../components/layout/Footer/Footer.astro'
 import Header from '../components/layout/Header/Header.astro'
+
+type Props = {
+  metaTitle?: string
+  metaDesc?: string
+}
+
+const { metaTitle = 'Flightcore', metaDesc = '' } = Astro.props
 ---
 
-<BaseLayout>
-  <Header />
+<BaseLayout transition:persist metaTitle={metaTitle} metaDesc={metaDesc}>
+  <Header transition:persist />
   <main>
     <slot />
   </main>
-  <Footer />
+  <Footer transition:persist />
 </BaseLayout>
 
 <style>

@@ -1,0 +1,77 @@
+{
+  "pricing": {
+    "recording": {
+      "key": "recording",
+      "title": "Nagrania",
+      "items": [
+        {
+          "key": "recording_with_producer",
+          "service": "Nagrania z realizatorem",
+          "price": "150 zł / h"
+        },
+        {
+          "key": "self_recording",
+          "service": "Nagrania samodzielne (samorealizacja)",
+          "price": "120 zł / h"
+        },
+        {
+          "key": "intro_to_self_recording",
+          "service": "Wprowadzenie do nagrań samodzielnych (do samorealizacji)",
+          "price": "200 zł / h"
+        }
+      ]
+    },
+    "postproduction": {
+      "key": "postproduction",
+      "title": "Postprodukcja",
+      "items": [
+        {
+          "key": "music_mix_mastering",
+          "service": "Mix/mastering utworu muzycznego",
+          "price": "500 zł +"
+        },
+        {
+          "key": "vocal_mix",
+          "service": "Mix wokali",
+          "price": "400 zł +"
+        },
+        {
+          "key": "music_mastering",
+          "service": "Mastering utworu muzycznego",
+          "price": "300 zł +"
+        }
+      ]
+    },
+    "additional": {
+      "key": "additional",
+      "title": "Dodatkowo",
+      "items": [
+        {
+          "key": "concert_version_preparation",
+          "service": "Przygotowanie wersji koncertowej utworu",
+          "price": "50 zł utwór z Flightcore / 100 zł utwór spoza Flightcore"
+        },
+        {
+          "key": "ddp_files_preparation",
+          "service": "Przygotowanie plików DDP do wytłoczenia płyty",
+          "price": "500 zł +"
+        },
+        {
+          "key": "concert_service",
+          "service": "Obsługa koncertu",
+          "price": "1500 zł (+ koszty dojazdu)"
+        },
+        {
+          "key": "autotune_live_service",
+          "service": "Obsługa koncertu Autotune Live",
+          "price": "1000 zł (+ koszty dojazdu)"
+        },
+        {
+          "key": "concert_sound",
+          "service": "Nagłośnienie koncertu",
+          "price": "2000 zł + (w zależności od wielkości projektu)"
+        }
+      ]
+    }
+  }
+}

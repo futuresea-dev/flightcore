@@ -10,9 +10,6 @@ export type StudioCardPropsType = {
 
 export const StudioCard: FC<StudioCardPropsType> = ({ studio }) => {
   const { poster, title } = studio
-
-  console.log({ poster })
-
   return (
     <>
       <div tabIndex={0} onClick={() => studioDialogController.show(studio)} className={styles['studio-item']}>

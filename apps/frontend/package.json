@@ -3,11 +3,12 @@
   "name": "@flightcore/frontend",
   "type": "module",
   "scripts": {
+    "astro": "astro",
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "astro check && astro build && pnpm optimize:fonts",
     "preview": "astro preview",
-    "astro": "astro",
+    "optimize:fonts": "subfont -ir --root dist",
     "format": "prettier --write .",
     "lint": "eslint"
   },
@@ -15,11 +16,13 @@
     "@astrojs/check": "^0.7.0",
     "@astrojs/node": "^8.3.2",
     "@astrojs/react": "^3.6.0",
+    "@astrojs/sitemap": "^3.1.6",
     "@astrojs/tailwind": "^5.1.0",
     "@flightcore/uikit": "workspace:*",
     "@nanostores/react": "^0.7.2",
     "@types/react-dom": "^18.3.0",
     "astro": "^4.12.2",
+    "astro-font": "^0.0.81",
     "astro-icon": "^1.1.0",
     "blurhash": "^2.0.5",
     "clsx": "^2.1.1",
@@ -33,6 +36,7 @@
     "nanostores": "^0.10.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "subfont": "^7.2.1",
     "typescript": "^5.5.3"
   },
   "devDependencies": {

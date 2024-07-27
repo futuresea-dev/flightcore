@@ -1,0 +1,22 @@
+---
+import { getEntry } from 'astro:content'
+import { PriceList } from '../../components/shared/PriceList'
+
+const {
+  data: { pricing },
+} = await getEntry('prices', 'pl/index')
+---
+
+<section>
+  <div class="container mt-[160px] mb-[100px]">
+    <header class="mb-[100px]">
+      <h1 class="text-heading2 mb-[24px]">Cennik podstawowy Flightcore</h1>
+      <p class="text-body1">Poniżej znajdziesz podstawowy cennik świadczonych przez nas usług.</p>
+    </header>
+    <div class="space-y-[56px]">
+      <PriceList content={pricing.recording} />
+      <PriceList content={pricing.postproduction} />
+      <PriceList content={pricing.additional} />
+    </div>
+  </div>
+</section>

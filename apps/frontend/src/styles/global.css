@@ -3,7 +3,7 @@ body {
   scrollbar-gutter: stable;
 }
 
-* {
+/* * {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -14,3 +14,11 @@ body {
   text-rendering: optimizeLegibility;
   font-kerning: normal;
 }
+
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  text-rendering: optimizeLegibility;
+} */

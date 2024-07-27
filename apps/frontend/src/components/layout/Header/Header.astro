@@ -1,10 +1,12 @@
 ---
-import HeaderBase from './HeaderBase.astro'
+import { HeaderBase } from './HeaderBase/HeaderBase'
 import SocialsFields from '../../shared/SocialsFields/SocialsFields.astro'
 import Navigation from '../Navigation//Navigation.astro'
+import { Icon } from 'astro-icon/components'
 ---
 
-<HeaderBase>
+<HeaderBase client:load>
+  <Icon slot="brand" class="brand-icon" width={undefined} height={undefined} name="brand/wide/medium" />
   <div class="nav">
     <Navigation />
     <nav class="nav-social">
