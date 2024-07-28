@@ -1,7 +1,8 @@
-name: Code Quality
+name: Contact Form Cloudfalre Worker Deployment
 
 on:
   workflow_call:
+  workflow_dispatch:
 
 jobs:
   code_quality:
