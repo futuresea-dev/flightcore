@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import { type FC, type PropsWithChildren } from 'react'
 
 type ButtonSize = 'large' | 'small'
-type ButtonColor = 'yellow' | 'green'
+type ButtonColor = 'yellow' | 'green' | 'dark-blue'
 type ButtonVariant = 'filled' | 'outline'
 
 type ButtonPropsBase = {
@@ -14,7 +14,9 @@ type ButtonPropsBase = {
   className?: string
 }
 
-export type ButtonPropsType = PropsWithChildren<ButtonPropsBase>
+export type NativeButtonPropsType = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
+
+export type ButtonPropsType = PropsWithChildren<ButtonPropsBase> & NativeButtonPropsType
 
 export const Button: FC<ButtonPropsType> = ({
   size = 'large',
@@ -23,6 +25,7 @@ export const Button: FC<ButtonPropsType> = ({
   disabled,
   children,
   className,
+  ...props
 }) => {
   const radiusClassName = {
     large: 'rounded-[32px]',
@@ -43,15 +46,18 @@ export const Button: FC<ButtonPropsType> = ({
     filled: {
       yellow: 'hover:bg-yellow-accent bg-yellow',
       green: 'bg-green hover:bg-green-accent',
+      'dark-blue': 'bg-blue-dark hover:bg-blue-medium',
     },
     outline: {
       yellow: 'border-2 border-yellow hover:border-yellow-accent text-yellow hover:text-yellow-accent',
       green: 'border-2 border-green hover:border-green-accent text-green hover:text-green-accent',
+      'dark-blue': 'border-2 border-blue-dark hover:border-blue-medium text-blue-dark hover:text-blue-medium',
     },
   }[variant][color]
 
   return (
     <button
+      {...props}
       disabled={disabled}
       className={clsx(
         'transition-colors overflow-hidden',

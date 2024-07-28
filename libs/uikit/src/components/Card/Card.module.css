@@ -11,7 +11,7 @@
 }
 
 .inner {
-  @apply bg-extra-dark p-[32px];
+  @apply bg-extra-dark;
 }
 
 .root,

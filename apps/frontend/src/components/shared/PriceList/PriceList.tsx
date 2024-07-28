@@ -3,10 +3,10 @@ import type { FC } from 'react'
 import { PriceListCard } from './PriceList.Card'
 import { PriceListItem } from './PriceList.Item'
 
-type PricingType = CollectionEntry<'prices'>['data']['pricing']
+type PricingType = CollectionEntry<'prices'>['data']['pricing'][number]
 
 export type PriceListPropsType = {
-  content: PricingType['additional'] | PricingType['postproduction'] | PricingType['recording']
+  content: PricingType
 }
 
 export const PriceList: FC<PriceListPropsType> = ({ content }) => {

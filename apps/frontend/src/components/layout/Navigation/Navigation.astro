@@ -7,10 +7,16 @@ const { showPriceListRoute = true } = Astro.props
 ---
 
 <nav class="nav-page">
-  {showPriceListRoute && <a href="/prices">Cennik </a>}
-  <a href="/about-us">O nas </a>
-  <a href="#" class="nav-page__item--green">Booking</a>
-  <a href="/contact">Kontakt </a>
+  {
+    showPriceListRoute && (
+      <a tabindex={0} href="/prices">
+        Cennik{' '}
+      </a>
+    )
+  }
+  <a tabindex={0} href="/about-us">O nas </a>
+  <!-- <a tabindex={0} href="#" class="nav-page__item--green">Booking</a> -->
+  <a tabindex={0} href="/contact">Kontakt </a>
 </nav>
 
 <style>

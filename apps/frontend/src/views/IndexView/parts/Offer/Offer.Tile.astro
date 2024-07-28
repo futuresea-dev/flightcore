@@ -1,5 +1,5 @@
 ---
-import IconTile from '../../../../components/shared/IconTile/IconTile.astro'
+import { Card } from '@flightcore/uikit'
 import { Icon } from 'astro-icon/components'
 
 type Props = {
@@ -12,9 +12,9 @@ const { icon, title, desc } = Astro.props
 ---
 
 <div class="offer-tile">
-  <IconTile>
+  <Card className="offer-tile__card" innerClassName="offer-tile__card-inner">
     <Icon class="offer-tile__svg" width={undefined} height={undefined} name={icon} />
-  </IconTile>
+  </Card>
   <h6 class="offer-tile__title">
     {title}
   </h6>
@@ -26,6 +26,14 @@ const { icon, title, desc } = Astro.props
 <style>
   .offer-tile {
     @apply flex flex-col justify-center items-center;
+  }
+
+  .offer-tile :global(.offer-tile__card) {
+    @apply w-[72px] h-[72px] p-[2px];
+  }
+
+  .offer-tile :global(.offer-tile__card-inner) {
+    @apply w-full h-full p-[10px];
   }
 
   .offer-tile__svg {

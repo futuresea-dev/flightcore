@@ -1,6 +1,6 @@
 {
-  "pricing": {
-    "recording": {
+  "pricing": [
+    {
       "key": "recording",
       "title": "Nagrania",
       "items": [
@@ -21,7 +21,7 @@
         }
       ]
     },
-    "postproduction": {
+    {
       "key": "postproduction",
       "title": "Postprodukcja",
       "items": [
@@ -42,7 +42,7 @@
         }
       ]
     },
-    "additional": {
+    {
       "key": "additional",
       "title": "Dodatkowo",
       "items": [
@@ -73,5 +73,28 @@
         }
       ]
     }
-  }
+  ],
+  "vouchers": [
+    {
+      "key": "bronze",
+      "title": "Bronze",
+      "price": "150 zł",
+      "background": "bronze",
+      "footerCheckList": ["Godzina nagrań", "Prevka"]
+    },
+    {
+      "key": "silver",
+      "title": "Silver",
+      "price": "150 zł",
+      "background": "silver",
+      "footerCheckList": ["Godzina nagrań", "Prevka"]
+    },
+    {
+      "key": "gold",
+      "title": "Gold",
+      "price": "150 zł",
+      "background": "gold",
+      "footerCheckList": ["Godzina nagrań", "Prevka"]
+    }
+  ]
 }

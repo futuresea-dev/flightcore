@@ -1,9 +1,10 @@
 ---
 import { getEntry } from 'astro:content'
 import { PriceList } from '../../components/shared/PriceList'
+import { VoucherCard } from './parts/VoucherCard/VoucherCard'
 
 const {
-  data: { pricing },
+  data: { pricing, vouchers },
 } = await getEntry('prices', 'pl/index')
 ---
 
@@ -13,10 +14,14 @@ const {
       <h1 class="text-heading2 mb-[24px]">Cennik podstawowy Flightcore</h1>
       <p class="text-body1">Poniżej znajdziesz podstawowy cennik świadczonych przez nas usług.</p>
     </header>
-    <div class="space-y-[56px]">
-      <PriceList content={pricing.recording} />
-      <PriceList content={pricing.postproduction} />
-      <PriceList content={pricing.additional} />
+    <div class="space-y-[56px] mb-[56px]">
+      {pricing.map((category) => <PriceList content={category} />)}
+    </div>
+    <div>
+      <h3 class="text-heading3 mb-[24px]">Vouchery</h3>
+      <div class="flex w-full justify-between gap-[30px]">
+        {vouchers.map((voucher) => <VoucherCard content={voucher} />)}
+      </div>
     </div>
   </div>
 </section>
