@@ -1,0 +1,21 @@
+name: Code Quality
+
+on:
+  workflow_call:
+
+jobs:
+  code_quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        
+      - name: Code Setup
+        uses: ./.github/actions/code-setup
+        with:
+          PINTURA_AUTH_TOKEN: ${{ secrets.PINTURA_AUTH_TOKEN }}
+
+      - name: Deployment
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          workingDirectory: "apps/contact-form-cfworker"

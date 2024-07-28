@@ -26,32 +26,32 @@
     "astro-icon": "^1.1.0",
     "blurhash": "^2.0.5",
     "clsx": "^2.1.1",
-    "embla-carousel": "8.1.6",
-    "embla-carousel-auto-scroll": "^8.1.6",
-    "embla-carousel-autoplay": "8.1.6",
-    "embla-carousel-class-names": "^8.1.6",
-    "embla-carousel-fade": "8.1.6",
-    "embla-carousel-react": "8.1.6",
+    "embla-carousel": "8.1.7",
+    "embla-carousel-auto-scroll": "8.1.7",
+    "embla-carousel-autoplay": "8.1.7",
+    "embla-carousel-class-names": "8.1.7",
+    "embla-carousel-fade": "8.1.7",
+    "embla-carousel-react": "8.1.7",
     "express": "^4.19.2",
     "nanostores": "^0.10.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "subfont": "^7.2.1",
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.4"
   },
   "devDependencies": {
-    "@eslint/js": "^9.7.0",
+    "@eslint/js": "^9.8.0",
     "@types/eslint__js": "^8.42.3",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/parser": "^7.16.1",
+    "@typescript-eslint/parser": "^7.17.0",
     "astro-nanointl": "^1.0.0",
-    "eslint": "^9.7.0",
+    "eslint": "^9.8.0",
     "eslint-plugin-astro": "^1.2.3",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1",
     "svgo": "^3.3.2",
     "typescript": "^5.5.3",
-    "typescript-eslint": "^7.16.1"
+    "typescript-eslint": "^7.17.0"
   }
 }
