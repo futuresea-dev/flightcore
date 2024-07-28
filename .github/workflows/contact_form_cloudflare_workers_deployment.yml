@@ -11,8 +11,6 @@ jobs:
         
       - name: Code Setup
         uses: ./.github/actions/code-setup
-        with:
-          PINTURA_AUTH_TOKEN: ${{ secrets.PINTURA_AUTH_TOKEN }}
 
       - name: Deployment
         uses: cloudflare/wrangler-action@v3
