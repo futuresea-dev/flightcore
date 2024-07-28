@@ -1,0 +1,44 @@
+name: 'Code Setup'
+description: 'Sets up code environment with Node.js, dotenv, and pnpm'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    # - name: Load .env
+    #   uses: xom9ikk/dotenv@v2
+    #   with:
+    #     mode: ${{ inputs.EXPO_PUBLIC_CONFIG_PROFILE }}
+
+    - name: Read Node.js version from .nvmrc
+      id: read-node-version
+      shell: bash
+      if: ${{ inputs.node-version == '' }}
+      run: echo "node-version=$(cat .nvmrc)" >> $GITHUB_ENV
+
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 9
+
+    - name: Setup Node.js
+      id: setup-node
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ steps.read-node-version.outputs.node-version }}
+
+    - name: Cache node_modules directory
+      uses: actions/cache@v2
+      with:
+        path: |
+          node_modules 
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-node-modules
+
+    - name: Install Dependencies
+      shell: bash
+      run: |
+        pnpm install --frozen-lockfile

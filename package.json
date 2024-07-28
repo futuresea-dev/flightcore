@@ -2,11 +2,12 @@
   "private": true,
   "name": "flightcore",
   "engines": {
-    "pnpm": ">=9.5.0"
+    "pnpm": ">=9.0.0"
   },
   "scripts": {
     "frontend": "pnpm --filter @flightcore/frontend",
     "uikit": "pnpm --filter @flightcore/uikit",
+    "contact-form-worker": "pnpm --filter @flightcore/contact-form-worker",
     "format": "pnpm frontend format && pnpm uikit format",
     "lint": "pnpm frontend lint && pnpm uikit lint"
   },
@@ -21,6 +22,7 @@
     "prettier-plugin-organize-imports": "^3.2.4",
     "sharp": "^0.33.4",
     "typescript": "^5.5.3",
-    "typescript-eslint": "^7.16.1"
+    "typescript-eslint": "^7.16.1",
+    "wrangler": "^3.67.1"
   }
 }

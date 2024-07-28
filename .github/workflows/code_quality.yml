@@ -3,28 +3,20 @@ on:
   push:
 
 jobs:
-  build:
+  code_quality:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
         node-version: [20]
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Install pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: 9
+      - name: Code Setup
+        uses: ./.github/actions/code-setup
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'pnpm'
+      - name: Code Quality
+        run: pnpm lint
 
-    - name: Install dependencies
-      run: pnpm install
-
-    - name: Code Quality
-      run: pnpm lint
+      - name: Build
+        run: pnpm frontend build
