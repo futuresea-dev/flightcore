@@ -12,8 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         
-      - name: Code Setup
-        uses: ./.github/actions/code-setup
+      # - name: Code Setup
+      #   uses: ./.github/actions/code-setup
 
       - name: Deployment
         uses: cloudflare/wrangler-action@v3
