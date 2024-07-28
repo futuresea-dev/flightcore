@@ -29,7 +29,7 @@ runs:
         path: |
           node_modules
           /**/node_modules 
-        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.lock') }}
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
         restore-keys: |
           ${{ runner.os }}-node-modules
 
