@@ -1,18 +1,16 @@
 ---
-import { getCollection } from 'astro:content'
+import { getEntry } from 'astro:content'
 
 import { ClientsCarousele } from './Clients.Carousele'
 import { getImage } from 'astro:assets'
 
-const clientsCollection = await getCollection('client')
+const clientsCollection = await getEntry('client', 'pl/index')
 
 const clientsLogosGlobs = import.meta.glob<ImageMetadata>('/src/assets/clients/**', { eager: true, import: 'default' })
 
 const clientLogos = await Promise.all(
-  clientsCollection.map(async (entry) => {
-    const {
-      data: { logo },
-    } = entry
+  clientsCollection.data.map(async (entry) => {
+    const { logo } = entry
     const optimizedImage = await getImage({ src: clientsLogosGlobs[logo] })
     return optimizedImage.src
   }),
