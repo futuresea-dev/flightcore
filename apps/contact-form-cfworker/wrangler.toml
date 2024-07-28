@@ -3,6 +3,7 @@ name = "contact-form-worker"
 main = "src/index.ts"
 compatibility_date = "2024-07-27"
 compatibility_flags = ["nodejs_compat"]
+account_id = "4f2eab40bf3ae2718aa3bfd12f93adc1"
 
 # Automatically place your workloads in an optimal location to minimize latency.
 # If you are running back-end logic in a Worker, running it closer to your back-end infrastructure
