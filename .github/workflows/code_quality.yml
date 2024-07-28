@@ -1,7 +1,11 @@
 name: Code Quality
 on:
+  workflow_call:
   push:
-
+    branches:
+      - main
+  pull_request:
+    
 jobs:
   code_quality:
     runs-on: ubuntu-22.04
@@ -15,7 +19,7 @@ jobs:
       - name: Code Setup
         uses: ./.github/actions/code-setup
 
-      - name: Code Quality
+      - name: Lint
         run: pnpm lint
 
       - name: Build

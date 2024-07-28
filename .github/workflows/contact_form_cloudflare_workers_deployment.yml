@@ -1,8 +1,10 @@
 name: Contact Form Cloudfalre Worker Deployment
 
 on:
-  workflow_call:
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   code_quality:
