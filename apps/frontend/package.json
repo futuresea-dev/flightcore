@@ -6,11 +6,12 @@
     "astro": "astro",
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build && pnpm optimize:fonts",
+    "build": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide && astro check && astro build && pnpm optimize:fonts",
     "preview": "astro preview",
     "optimize:fonts": "subfont -ir --root dist",
     "format": "prettier --write .",
-    "lint": "eslint"
+    "lint": "eslint",
+    "postinstall": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide"
   },
   "dependencies": {
     "@astrojs/check": "^0.7.0",
@@ -19,6 +20,7 @@
     "@astrojs/sitemap": "^3.1.6",
     "@astrojs/tailwind": "^5.1.0",
     "@flightcore/uikit": "workspace:*",
+    "@inlang/paraglide-astro": "^0.2.2",
     "@nanostores/react": "^0.7.2",
     "@types/react-dom": "^18.3.0",
     "astro": "^4.12.2",
@@ -52,6 +54,7 @@
     "prettier-plugin-astro": "^0.14.1",
     "svgo": "^3.3.2",
     "typescript": "^5.5.3",
-    "typescript-eslint": "^7.17.0"
+    "typescript-eslint": "^7.17.0",
+    "@inlang/paraglide-js": "1.11.2"
   }
 }

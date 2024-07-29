@@ -5,6 +5,6 @@ export default [
   ...configBase,
   ...eslintPluginAstro.configs.recommended,
   {
-    ignores: ['dist/*', '.astro/*', 'public/*', 'astro.config.mjs', 'src/env.d.ts'],
+    ignores: ['dist/**', '.astro/**', 'public/**', 'astro.config.mjs', 'src/env.d.ts', 'src/paraglide'],
   },
 ]

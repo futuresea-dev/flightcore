@@ -1,16 +1,16 @@
 import react from '@astrojs/react'
+import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
+import paraglide from '@inlang/paraglide-astro'
 import icon from 'astro-icon'
 import { defineConfig } from 'astro/config'
-
-import sitemap from '@astrojs/sitemap'
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://flightcore.raqz.link',
   i18n: {
     defaultLocale: 'pl',
-    locales: ['pl'],
+    locales: ['pl', 'en'],
   },
   integrations: [
     tailwind({
@@ -21,6 +21,10 @@ export default defineConfig({
       iconDir: './src/icons',
     }),
     sitemap({}),
+    paraglide({
+      project: './project.inlang',
+      outdir: './src/paraglide', //where your files should be
+    }),
   ],
   output: 'static',
 })
