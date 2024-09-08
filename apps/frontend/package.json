@@ -14,16 +14,17 @@
     "postinstall": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide"
   },
   "dependencies": {
-    "@astrojs/check": "^0.7.0",
-    "@astrojs/node": "^8.3.2",
-    "@astrojs/react": "^3.6.0",
+    "@astrojs/check": "^0.9.3",
+    "@astrojs/mdx": "^3.1.5",
+    "@astrojs/node": "^8.3.3",
+    "@astrojs/react": "^3.6.2",
     "@astrojs/sitemap": "^3.1.6",
     "@astrojs/tailwind": "^5.1.0",
     "@flightcore/uikit": "workspace:*",
     "@inlang/paraglide-astro": "^0.2.2",
     "@nanostores/react": "^0.7.2",
     "@types/react-dom": "^18.3.0",
-    "astro": "^4.12.2",
+    "astro": "^4.15.4",
     "astro-font": "^0.0.81",
     "astro-icon": "^1.1.0",
     "blurhash": "^2.0.5",
@@ -43,6 +44,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
+    "@inlang/paraglide-js": "1.11.2",
     "@types/eslint__js": "^8.42.3",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
@@ -54,7 +56,6 @@
     "prettier-plugin-astro": "^0.14.1",
     "svgo": "^3.3.2",
     "typescript": "^5.5.3",
-    "typescript-eslint": "^7.17.0",
-    "@inlang/paraglide-js": "1.11.2"
+    "typescript-eslint": "^7.17.0"
   }
 }
