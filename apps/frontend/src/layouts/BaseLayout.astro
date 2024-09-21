@@ -1,6 +1,5 @@
 ---
 import { ViewTransitions } from 'astro:transitions'
-import { languageTag } from '../paraglide/runtime'
 import LoaderOverlay from '../components/layout/LoaderOverlay/LoaderOverlay.astro'
 
 import '../styles/fonts.css'
@@ -15,7 +14,7 @@ const { metaTitle, metaDesc } = Astro.props
 ---
 
 <!doctype html>
-<html lang={languageTag()}>
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
