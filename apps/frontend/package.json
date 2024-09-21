@@ -6,12 +6,11 @@
     "astro": "astro",
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide && astro check && astro build && pnpm optimize:fonts",
+    "build": "astro check && astro build && pnpm optimize:fonts",
     "preview": "astro preview",
     "optimize:fonts": "subfont -ir --root dist",
     "format": "prettier --write .",
-    "lint": "eslint",
-    "postinstall": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide"
+    "lint": "eslint"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.3",

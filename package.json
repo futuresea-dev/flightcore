@@ -10,10 +10,12 @@
     "contact-form-worker": "pnpm --filter @flightcore/contact-form-cfworker",
     "format": "pnpm frontend format && pnpm uikit format",
     "lint": "pnpm frontend lint && pnpm uikit lint",
-    "build": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide"
+    "build": "pnpm frontend build"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
+    "@inlang/paraglide-astro": "^0.2.2",
+    "@inlang/paraglide-js": "1.11.2",
     "@types/eslint__js": "^8.42.3",
     "@typescript-eslint/parser": "^7.17.0",
     "eslint": "^9.8.0",

@@ -15,6 +15,12 @@ importers:
       '@eslint/js':
         specifier: ^9.8.0
         version: 9.8.0
+      '@inlang/paraglide-astro':
+        specifier: ^0.2.2
+        version: 0.2.2(astro@4.15.4(@types/node@22.0.0)(rollup@4.21.2)(terser@5.31.3)(typescript@5.5.4))
+      '@inlang/paraglide-js':
+        specifier: 1.11.2
+        version: 1.11.2
       '@types/eslint__js':
         specifier: ^8.42.3
         version: 8.42.3
@@ -217,7 +223,7 @@ importers:
     devDependencies:
       '@types/bun':
         specifier: latest
-        version: 1.1.8
+        version: 1.1.10
       '@types/react':
         specifier: ^18.3.3
         version: 18.3.3
@@ -1386,8 +1392,8 @@ packages:
   '@types/btoa-lite@1.0.2':
     resolution: {integrity: sha512-ZYbcE2x7yrvNFJiU7xJGrpF/ihpkM7zKgw8bha3LNJSesvTtUNxbpzaT7WXBIryf6jovisrxTBvymxMeLLj1Mg==}
 
-  '@types/bun@1.1.8':
-    resolution: {integrity: sha512-PIwVFQKPviksiibobyvcWtMvMFMTj91T8dQEh9l1P3Ypr3ZuVn9w7HSr+5mTNrPqD1xpdDLEErzZPU8gqHBu6g==}
+  '@types/bun@1.1.10':
+    resolution: {integrity: sha512-76KYVSwrHwr9zsnk6oLXOGs9KvyBg3U066GLO4rk6JZk1ypEPGCUDZ5yOiESyIHWs9cx9iC8r01utYN32XdmgA==}
 
   '@types/cheerio@0.22.35':
     resolution: {integrity: sha512-yD57BchKRvTV+JD53UZ6PD8KWY5g5rvvMLRnZR3EQBCZXiDT/HR+pKpMzFGlWNhFrXlo7VPZXtKvIEwZkAWOIA==}
@@ -1850,8 +1856,8 @@ packages:
   buffer@5.7.1:
     resolution: {integrity: sha512-EHcyIPBQ4BSGlvjB16k5KgAJ27CIsHY/2JBmCRReo48y9rQ3MaUzWX3KVlBa4U7MyX02HdVj0K7C3WaB3ju7FQ==}
 
-  bun-types@1.1.26:
-    resolution: {integrity: sha512-n7jDe62LsB2+WE8Q8/mT3azkPaatKlj/2MyP6hi3mKvPz9oPpB6JW/Ll6JHtNLudasFFuvfgklYSE+rreGvBjw==}
+  bun-types@1.1.29:
+    resolution: {integrity: sha512-En3/TzSPMPyl5UlUB1MHzHpcrZDakTm7mS203eLoX1fBoEa3PW+aSS8GAqVJ7Is/m34Z5ogL+ECniLY0uDaCPw==}
 
   bytes@3.1.2:
     resolution: {integrity: sha512-/Nf7TyzTx6S3yRJObOAV7956r8cr2+Oj8AC5dt8wSP3BQAoeX58NoHyCU8P8zGkNXStjTSi6fzO6F0pBdcYbEg==}
@@ -6983,9 +6989,9 @@ snapshots:
 
   '@types/btoa-lite@1.0.2': {}
 
-  '@types/bun@1.1.8':
+  '@types/bun@1.1.10':
     dependencies:
-      bun-types: 1.1.26
+      bun-types: 1.1.29
 
   '@types/cheerio@0.22.35':
     dependencies:
@@ -7659,7 +7665,7 @@ snapshots:
       base64-js: 1.5.1
       ieee754: 1.2.1
 
-  bun-types@1.1.26:
+  bun-types@1.1.29:
     dependencies:
       '@types/node': 20.12.14
       '@types/ws': 8.5.11
