@@ -11,6 +11,7 @@ FROM base
 ENV HOST=0.0.0.0
 ENV PORT=10005
 EXPOSE 10005
-COPY /app/node_modules /app/node_modules
-COPY /app/dist /app/dist
-CMD node ./dist/server/entry.mjs
+# COPY /app/node_modules /app/node_modules
+# COPY /app/dist /app/dist
+
+CMD node ./app/apps/frontend/server/entry.mjs
