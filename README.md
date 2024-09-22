@@ -3,7 +3,6 @@
 ## Installation
 
 ### Requirements
-Install required tools
 
 | Name | Version                                  |
 | ---- | ---------------------------------------- |
@@ -17,8 +16,7 @@ Install dependencies `pnpm install` in root directory
 | Command                  | Description                                     |
 | ------------------------ | ----------------------------------------------- |
 | pnpm frontend            | Run command in the apps/frontend workspace      |
-| pnpm contact-form-worker | Run command in the apps/contact-lambda workspace|
-| pnpm uikit               | Run command in the libs/slack-bot workspace     |
+| pnpm uikit               | Run command in the packages/slack-bot workspace     |
 
 
 i.e.: `pnpm frontend dev` starts development frontend server
@@ -29,4 +27,4 @@ i.e.: `pnpm frontend dev` starts development frontend server
 
 | Variable             | Description                                      |
 |----------------------|--------------------------------------------------|
-| CLOUDFLARE_API_TOKEN | Used for `apps/contact-form-cfworker` deployment |
+|  |  |

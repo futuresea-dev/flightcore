@@ -1,15 +1,12 @@
 node_modules/
 
-
 pgadmin-data
 pgadmin-data/**
 
 db-data
 db-data/**
 
-*.(jpg|png)
-
-*.jpg
-*.png
-*.webp
-*.svg
+/**/*.jpg
+/**/*.png
+/**/*.webp
+/**/*.svg
