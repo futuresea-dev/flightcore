@@ -7,19 +7,16 @@ import { StudioDialog } from './StudioDialog/StudioDialog'
 import { getImage } from 'astro:assets'
 
 const studioCollection = await getCollection('studio')
-
 const globs = import.meta.glob<ImageMetadata>(`/src/assets/studio/**/*`, { eager: true, import: 'default' })
 
 async function optimizeStudioImage(source: string, widths = [320, 720, 1280, 720]) {
   const glob = globs[source]
   if (!glob) throw new Error(`Invalid ${source} glob source`)
-
   const optimizedImage = await getImage({
     src: glob,
     width: 320,
     widths,
   })
-
   return optimizedImage
 }
 
