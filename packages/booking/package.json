@@ -5,8 +5,8 @@
   "version": "1.0.0",
   "scripts": {},
   "devDependencies": {
-    "@types/react": "^18.3.3",
-    "typescript": "^5.5.4"
+    "@types/react": "^18.3.8",
+    "typescript": "^5.6.2"
   },
   "peerDependencies": {
     "react": "^18.3.1",
