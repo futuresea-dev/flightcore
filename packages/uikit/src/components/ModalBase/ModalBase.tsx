@@ -1,17 +1,15 @@
+import cx from 'clsx'
 import { createContext, useContext, useEffect, useRef, type FC, type PropsWithChildren } from 'react'
-
-import { useTransition, type TransitionEvents, type TransitionState } from '../../hooks'
-
-import clsx from 'clsx'
+import { useTransition, type TransitionEvents, type TransitionState } from '../../hooks/useTransition'
 import { Portal } from '../Portal/Portal'
-
 import styles from './ModalBase.module.css'
 
 export type ModalBasePropsType = {
-  visible: boolean
+  show: boolean
   onRequestClose?: () => void
   transitionEvents?: TransitionEvents
   className?: string
+  disableTransition?: boolean
 }
 
 type ModalBaseContextType = {
@@ -27,12 +25,12 @@ export const useModalTransitionState = () => {
 }
 
 export const ModalBase: FC<PropsWithChildren<ModalBasePropsType>> = (props) => {
-  const { transitionEvents: events, visible, children, onRequestClose } = props
+  const { transitionEvents: events, show, children, disableTransition, onRequestClose } = props
 
   const overlayRef = useRef<HTMLDialogElement>(null)
 
   const { transitionState, isMount } = useTransition({
-    transitionIn: visible,
+    transitionIn: show,
     duration: 220,
     events: {
       onEntered: events?.onEntered,
@@ -45,43 +43,44 @@ export const ModalBase: FC<PropsWithChildren<ModalBasePropsType>> = (props) => {
   })
 
   useEffect(() => {
-    if (typeof window === 'undefined') return
-    if (isMount) {
-      document.documentElement.classList.add('overflow-hidden')
-    } else {
-      document.documentElement.classList.remove('overflow-hidden')
-    }
-  }, [isMount])
-
-  useEffect(() => {
     if (transitionState !== 'entered') return
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key !== 'Escape') return
       onRequestClose?.()
     }
-    document.addEventListener('keydown', onKeyDown)
+    document.documentElement.addEventListener('keydown', onKeyDown)
     return () => {
-      document.removeEventListener('keydown', onKeyDown)
+      document.documentElement.removeEventListener('keydown', onKeyDown)
     }
   }, [onRequestClose, transitionState])
 
   const transitionClassName = {
-    entered: styles['root--entered'],
-    entering: styles['root--entering'],
-    exited: styles['root--exited'],
-    exiting: styles['root--exiting'],
+    entered: styles['overlay--entered'],
+    entering: styles['overlay--entering'],
+    exited: styles['overlay--exited'],
+    exiting: styles['overlay--exiting'],
   }[transitionState]
 
-  if (isMount === false && visible === false) return null
+  if (isMount === false && show === false) return null
 
   return (
     <Portal>
-      <dialog open tabIndex={0} className={clsx(styles.root, transitionClassName)} ref={overlayRef}>
-        <div className={styles.viewport}>
-          <div aria-label="Dialog overlay" tabIndex={0} className={clsx(styles.overlay)} onClick={() => onRequestClose?.()} />
-          <ModalBaseContext.Provider value={{ transitionState }}>{children}</ModalBaseContext.Provider>
-        </div>
+      <dialog
+        open
+        tabIndex={0}
+        className={cx(overlayClassNames, disableTransition !== true && transitionClassName)}
+        ref={overlayRef}
+        onClick={(e) => {
+          // Click on overlay
+          if (e.target === overlayRef.current) {
+            onRequestClose?.()
+          }
+        }}>
+        <ModalBaseContext.Provider value={{ transitionState }}>{children}</ModalBaseContext.Provider>
       </dialog>
     </Portal>
   )
 }
+
+const overlayClassNames =
+  'fixed w-full h-full z-[100] top-0 left-0 bg-transparent backdrop-blur-none transition-[background-color,backdrop-filter]'

@@ -1,57 +1,17 @@
-.root {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 100;
-  background: transparent;
-  /* overflow: auto; */
-  /* padding: 64px 0; */
+.overlay--entered {
+  @apply visible;
+  @apply bg-[#090e1e]/55 backdrop-blur-sm;
 }
 
-.viewport {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  padding: 24px 0;
+.overlay--entering {
+  @apply visible ease-linear duration-[220ms];
+  @apply bg-[#090e1e]/55 backdrop-blur-sm;
 }
 
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: -1;
+.overlay--exited {
+  @apply invisible bg-[rgba(0,0,0,0)] backdrop-blur-none;
 }
 
-.root--entered .overlay {
-  visibility: visible;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(3px);
-}
-
-.root--entering .overlay {
-  visibility: visible;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(3px);
-  transition:
-    background-color 220ms linear,
-    background-color 220ms linear;
-}
-
-.root--exited .overlay {
-  visibility: hidden;
-  background-color: rgba(0, 0, 0, 0);
-  backdrop-filter: blur(0px);
-}
-
-.root--exiting .overlay {
-  visibility: visible;
-  background-color: rgba(0, 0, 0, 0);
-  backdrop-filter: blur(0px);
-  transition:
-    background-color 220ms linear,
-    background-color 220ms linear;
+.overlay--exiting {
+  @apply visible bg-[rgba(0,0,0,0)] ease-linear duration-[220ms] backdrop-blur-none;
 }

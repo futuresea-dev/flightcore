@@ -22,7 +22,7 @@ const StudioDialogContent: FC = () => {
   const { selectedIndex, scrollSnaps, onDotButtonClick } = useCarousele(emblaAPI)
 
   return (
-    <div>
+    <div data-chuj>
       <div className="relative p-[2px] rounded-[20px] aspect-[528/400] bg-gradient-to-b from-transparent from-50% to-blue-medium">
         <div ref={emblaRef} className="w-full h-full bg-blue-dark rounded-[20px] overflow-hidden">
           <div className="flex w-full h-full">
@@ -53,7 +53,7 @@ export const StudioDialog: FC = () => {
   const visible = useStore(controller.visible)
   return (
     <CardModal
-      visible={visible}
+      show={visible}
       onRequestClose={controller.hide}
       transitionEvents={{
         onExited() {

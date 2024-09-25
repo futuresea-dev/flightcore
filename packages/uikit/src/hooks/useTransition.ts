@@ -23,8 +23,6 @@ export type TransitionOptions = {
 export const useTransition = (options?: TransitionOptions) => {
   const { transitionOnMount = false, transitionIn = true, duration = 300, delay = 0, events } = options || {}
 
-  const [mount, setMount] = useState(false)
-
   const transitionTimeoutCanceller = useRef<() => void>()
   const delayTimeoutCanceller = useRef<() => void>()
 
@@ -41,28 +39,23 @@ export const useTransition = (options?: TransitionOptions) => {
 
   // Events effects
   useEffect(() => {
-    if (typeof lastTransitionState.current === 'undefined') {
-      lastTransitionState.current = transitionState
-      return
-    }
-
+    // if (typeof lastTransitionState.current === 'undefined') {
+    //   lastTransitionState.current = transitionState
+    //   return
+    // }
     if (transitionState === lastTransitionState.current) return
-
     const eventFn = {
       entered: events?.onEntered,
       entering: events?.onEntering,
       exited: events?.onExited,
       exiting: events?.onExiting,
     }[transitionState]
-
     eventFn?.()
-
     lastTransitionState.current = transitionState
-  }, [events, transitionState, initialTransitionState])
+  }, [events?.onEntered, events?.onEntering, events?.onExited, events?.onExiting, transitionState, initialTransitionState])
 
   useEffect(() => {
     if (transitionIn && transitionState === 'exited') {
-      setMount(true)
       events?.onEnteringStart?.()
       delayTimeoutCanceller.current = setTimeoutByRAF(() => {
         setTransitionState('entering')
@@ -81,7 +74,7 @@ export const useTransition = (options?: TransitionOptions) => {
         delayTimeoutCanceller.current?.()
       }
     }
-  }, [transitionIn, transitionState, delay])
+  }, [transitionIn, transitionState, delay, events?.onEnteringStart, events?.onExitingStart])
 
   useEffect(() => {
     if (transitionIn && transitionState === 'entering') {
@@ -95,14 +88,15 @@ export const useTransition = (options?: TransitionOptions) => {
       transitionTimeoutCanceller.current?.()
       transitionTimeoutCanceller.current = setTimeoutByRAF(() => {
         setTransitionState('exited')
-        setMount(false)
       }, duration)
     }
   }, [duration, transitionIn, transitionState])
 
-  return {
-    transitionState,
-    isVisible: transitionState !== 'exited',
-    isMount: mount,
-  }
+  return useMemo(
+    () => ({
+      transitionState,
+      isMount: transitionState !== 'exited',
+    }),
+    [transitionState],
+  )
 }

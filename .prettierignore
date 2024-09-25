@@ -10,3 +10,8 @@ db-data/**
 /**/*.png
 /**/*.webp
 /**/*.svg
+
+.vscode
+
+.pnpm-store
+.pnpm-lock.yaml

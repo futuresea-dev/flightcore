@@ -11,6 +11,7 @@
 }
 
 .inner {
+  @apply p-4;
   @apply bg-extra-dark;
 }
 

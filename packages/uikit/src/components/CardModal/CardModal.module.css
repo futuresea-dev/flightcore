@@ -1,7 +1,5 @@
 .dialog {
-  transform-origin: 50%;
-  margin: auto;
-  transform: scale(1);
+  @apply flex w-full h-full;
 }
 
 .dialog--entered {
@@ -36,7 +34,7 @@
 }
 
 .dialog-card {
-  @apply relative bg-blue-dark rounded-[20px] w-full max-w-[624px] z-[1] pt-[70px] px-[48px] pb-[48px];
+  @apply self-center mx-auto relative bg-blue-dark rounded-[20px] w-full max-w-[624px] z-[1] pt-[70px] px-[48px] pb-[48px];
 }
 
 .dialog-close {

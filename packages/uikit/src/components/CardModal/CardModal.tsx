@@ -24,8 +24,14 @@ const CardModalContent: FC<PropsWithChildren<CardModalPropsType>> = ({
     [modalTransitionState],
   )
   return (
-    <div className={clsx(styles.dialog, transitionClassName, dialogCardViewportClassName)}>
-      <div className={clsx(styles['dialog-card'], dialogCardClassName)}>
+    <div onClick={props.onRequestClose} className={clsx(styles.dialog, transitionClassName, dialogCardViewportClassName)}>
+      <div
+        onClick={(e) => {
+          e.stopPropagation()
+          return false
+        }}
+        tabIndex={0}
+        className={clsx(styles['dialog-card'], dialogCardClassName)}>
         <button className={clsx(styles['dialog-close'], dialogCardCloseClassName)} onClick={props.onRequestClose}>
           <CloseSVG />
         </button>

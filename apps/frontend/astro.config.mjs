@@ -1,6 +1,7 @@
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
+import compressor from 'astro-compressor'
 import icon from 'astro-icon'
 import { defineConfig } from 'astro/config'
 
@@ -14,19 +15,45 @@ export default defineConfig({
     locales: ['pl', 'en'],
   },
   integrations: [
+    react(),
+    mdx(),
     tailwind({
       configFile: './tailwind.config.mjs',
+      nesting: true,
     }),
-    react(),
     icon({
       iconDir: './src/icons',
     }),
-    sitemap({}),
-    // paraglide({
-    //   project: './project.inlang',
-    //   outdir: './src/paraglide', //where your files should be
-    // }),
-    mdx(),
+    sitemap({
+      i18n: {
+        defaultLocale: 'pl',
+        locales: {
+          pl: 'pl-PL',
+          en: 'en-US',
+        },
+      },
+    }),
+    compressor({
+      fileExtensions: ['.html', '.css', '.js'],
+    }),
   ],
   output: 'static',
+  outDir: 'dist',
+  inlineStylesheets: 'never',
+  i18n: {
+    defaultLocale: 'pl',
+    locales: ['pl', 'en'],
+  },
+  security: {
+    checkOrigin: true,
+  },
+  vite: {
+    ssr: {
+      noExternal: ['astro-icon', '@iconify/tools'],
+    },
+  },
+  prefetch: {
+    prefetchAll: false,
+    defaultStrategy: 'viewport',
+  },
 })
