@@ -1,0 +1,32 @@
+
+
+.dialog--entered {
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.dialog--entering {
+  visibility: visible;
+  opacity: 1;
+  transition:
+    opacity 220ms ease-in-out,
+    transform 220ms ease-in-out;
+  transform: scale(1);
+}
+
+.dialog--exited {
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(0.9);
+  /* transform: scale(1); */
+}
+
+.dialog--exiting {
+  visibility: visible;
+  opacity: 0;
+  transition:
+    opacity 220ms ease-in-out,
+    transform 220ms ease-in-out;
+  transform: scale(0.9);
+}

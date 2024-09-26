@@ -20,7 +20,7 @@ const clientLogos = await Promise.all(
 <section class="clients">
   <h3 class="clients__title">Tworzyliśmy projekty z...</h3>
   <div class="clients__content">
-    <ClientsCarousele client:idle clientLogos={clientLogos} />
+    <ClientsCarousele client:load clientLogos={clientLogos} />
   </div>
 </section>
 

@@ -1,7 +1,7 @@
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
-import compressor from 'astro-compressor'
+// import compressor from 'astro-compressor'
 import icon from 'astro-icon'
 import { defineConfig } from 'astro/config'
 
@@ -33,9 +33,9 @@ export default defineConfig({
         },
       },
     }),
-    compressor({
-      fileExtensions: ['.html', '.css', '.js'],
-    }),
+    // compressor({
+    //   fileExtensions: ['.html', '.css', '.js'],
+    // }),
   ],
   output: 'static',
   outDir: 'dist',

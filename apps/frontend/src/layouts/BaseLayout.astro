@@ -2,6 +2,8 @@
 import { ViewTransitions } from 'astro:transitions'
 import LoaderOverlay from '../components/layout/LoaderOverlay/LoaderOverlay.astro'
 
+import { BookingModal } from '@flightcore/booking'
+
 import '../styles/fonts.css'
 import '../styles/global.css'
 
@@ -34,6 +36,7 @@ const { metaTitle, metaDesc, metaUrl } = Astro.props
   <body class="bg-blue-dark">
     <div id="viewport"><slot /></div>
     <div id="portal"></div>
+    <BookingModal client:only="react" />
     <LoaderOverlay transition:persist />
   </body>
 </html>

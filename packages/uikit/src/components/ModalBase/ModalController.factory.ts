@@ -25,10 +25,11 @@ export type ModalController<ResolveValue = unknown> = {
 
 export function createModalController<ResolveValue = unknown>(
   defaultConfig?: ModalControllerConfig,
+  defaultVisible: boolean = false,
 ): ModalController<ResolveValue> {
   const state: ModalControllerState<ResolveValue> = atom<IModalControllerState<ResolveValue>>({
     config: defaultConfig,
-    visible: false,
+    visible: defaultVisible,
     promiseHandlers: undefined,
   })
 

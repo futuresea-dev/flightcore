@@ -1,13 +1,15 @@
-export const BookingIFrame = () => (
-  <iframe
-    allowTransparency
-    style={{
-      width: '100%',
-      aspectRatio: '4 / 5',
-      maxWidth: 720,
-      marginLeft: 16,
-      marginRight: 16,
-    }}
-    src="flightcore.pl/booking"
-  />
-)
+export const BookingIFrame = () => {
+  return (
+    <iframe
+      style={{
+        minWidth: 370,
+        maxWidth: 980,
+        width: '100%',
+        height: '100%',
+      }}
+      loading="eager"
+      src="https://flightcore.pl/booking"
+      onClick={(e) => e.stopPropagation()}
+    />
+  )
+}
