@@ -5,7 +5,7 @@ import { getEntry } from 'astro:content'
 const { data: quotes } = await getEntry('quotes', 'pl/index')
 ---
 
-<section class="root">
+<section class="root" transition:name="index-quotes">
   <div class="container">
     <h3 class="title">Rekomendują</h3>
     <p class="subtitle">Wiemy, że nie czytasz, ale poniżej kilka opinii ludzi, którzy skorzystali...</p>

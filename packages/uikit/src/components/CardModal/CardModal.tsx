@@ -25,17 +25,19 @@ const CardModalContent: FC<PropsWithChildren<CardModalPropsType>> = ({
   )
   return (
     <div onClick={props.onRequestClose} className={clsx(styles.dialog, transitionClassName, dialogCardViewportClassName)}>
-      <div
-        onClick={(e) => {
-          e.stopPropagation()
-          return false
-        }}
-        tabIndex={0}
-        className={clsx(styles['dialog-card'], dialogCardClassName)}>
-        <button className={clsx(styles['dialog-close'], dialogCardCloseClassName)} onClick={props.onRequestClose}>
-          <CloseSVG />
-        </button>
-        {children}
+      <div className="flex justify-center items-center min-h-full">
+        <div
+          onClick={(e) => {
+            e.stopPropagation()
+            return false
+          }}
+          tabIndex={0}
+          className={clsx(styles['dialog-card'], dialogCardClassName)}>
+          <button className={clsx(styles['dialog-close'], dialogCardCloseClassName)} onClick={props.onRequestClose}>
+            <CloseSVG />
+          </button>
+          <div className={styles.innerSpacing}>{children}</div>
+        </div>
       </div>
     </div>
   )

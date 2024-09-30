@@ -1,5 +1,5 @@
 .dialog {
-  @apply flex w-full h-full;
+  @apply w-full h-full overflow-auto;
 }
 
 .dialog--entered {
@@ -34,7 +34,7 @@
 }
 
 .dialog-card {
-  @apply self-center mx-auto relative bg-blue-dark rounded-[20px] w-full max-w-[624px] z-[1] pt-[70px] px-[48px] pb-[48px];
+  @apply relative bg-blue-dark rounded-[20px] w-full max-w-[624px] z-[1];
 }
 
 .dialog-close {
@@ -43,4 +43,8 @@
 
 .dialog-close:hover {
   @apply scale-[0.9];
+}
+
+.innerSpacing {
+  @apply pt-[70px] px-[48px] pb-[48px];
 }

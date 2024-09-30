@@ -1,8 +1,9 @@
 ---
 import { ViewTransitions } from 'astro:transitions'
-import LoaderOverlay from '../components/layout/LoaderOverlay/LoaderOverlay.astro'
 
 import { BookingModal } from '@flightcore/booking'
+
+import { LoaderOverlay } from '@flightcore/uikit'
 
 import '../styles/fonts.css'
 import '../styles/global.css'
@@ -31,12 +32,21 @@ const { metaTitle, metaDesc, metaUrl } = Astro.props
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="robots" content="noindex,follow" />
     <title>{metaTitle}</title>
+    <link rel="preconnect" href="https://flightcore.pl/booking" />
     <ViewTransitions />
   </head>
   <body class="bg-blue-dark">
     <div id="viewport"><slot /></div>
     <div id="portal"></div>
-    <BookingModal client:only="react" />
+    <BookingModal transition:persist client:only="react" />
+
     <LoaderOverlay transition:persist />
   </body>
 </html>
+
+<script>
+  import { handleBookingDataAttributeNodes } from '@flightcore/booking'
+  document.addEventListener('astro:page-load', () => {
+    handleBookingDataAttributeNodes()
+  })
+</script>

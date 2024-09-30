@@ -11,6 +11,7 @@ export function hide() {
 }
 
 visible.subscribe((isVisible) => {
+  if (typeof document === 'undefined') return
   if (isVisible) {
     document.documentElement.classList.add('overflow-hidden')
     document.getElementById('overlay')?.classList.remove('hidden')

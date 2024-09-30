@@ -4,7 +4,7 @@
 }
 
 .overlay--entering {
-  @apply visible ease-linear duration-[220ms];
+  @apply visible transition ease-linear duration-[150ms];
   @apply bg-[#090e1e]/55 backdrop-blur-sm;
 }
 
@@ -13,5 +13,6 @@
 }
 
 .overlay--exiting {
-  @apply visible bg-[rgba(0,0,0,0)] ease-linear duration-[220ms] backdrop-blur-none;
+  @apply visible transition ease-linear duration-[150ms];
+  @apply bg-[rgba(0,0,0,0)] backdrop-blur-none;
 }

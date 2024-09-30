@@ -10,10 +10,15 @@
     "typescript": "^5.6.2"
   },
   "peerDependencies": {
+    "@flightcore/uikit": "workspace:*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "tailwindcss": "^3.4.7",
-    "@flightcore/uikit": "workspace:*"
+    "tailwindcss": "^3.4.7"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@nanostores/react": "^0.7.3",
+    "clsx": "^2.1.1",
+    "nanostores": "^0.11.3"
+  }
 }

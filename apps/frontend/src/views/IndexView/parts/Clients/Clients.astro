@@ -17,10 +17,10 @@ const clientLogos = await Promise.all(
 )
 ---
 
-<section class="clients">
+<section class="clients" transition:name="index-clients">
   <h3 class="clients__title">Tworzyliśmy projekty z...</h3>
   <div class="clients__content">
-    <ClientsCarousele client:load clientLogos={clientLogos} />
+    <ClientsCarousele client:only="react" clientLogos={clientLogos} />
   </div>
 </section>
 

@@ -7,6 +7,7 @@
   "scripts": {
     "frontend": "pnpm --filter @flightcore/frontend",
     "uikit": "pnpm --filter @flightcore/uikit",
+    "booking": "pnpm --filter @flightcore/booking",
     "contact-form-worker": "pnpm --filter @flightcore/contact-form-cfworker",
     "format": "pnpm frontend format && pnpm uikit format",
     "lint": "pnpm frontend lint && pnpm uikit lint",
