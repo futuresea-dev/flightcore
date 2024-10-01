@@ -13,3 +13,19 @@
 .brand {
   @apply w-full max-w-[280px] text-green;
 }
+
+.header--exited {
+  @apply -translate-y-full;
+}
+
+.header--exiting {
+  @apply -translate-y-full transition-[transform] duration-[130ms] ease-linear;
+}
+
+.header--entered {
+  @apply translate-y-0;
+}
+
+.header--entering {
+  @apply translate-y-0 transition-[transform] duration-[130ms] ease-linear;
+}

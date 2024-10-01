@@ -10,7 +10,7 @@ type Props = {
   metaUrl?: string
 }
 
-const { metaTitle = 'flightcore.pl - Hello', metaDesc = 'Hello from flightcore.pl', metaUrl = Astro.url.pathname } = Astro.props
+const { metaTitle = 'flightcore.pl', metaDesc = 'Hello from flightcore.pl', metaUrl = Astro.url.pathname } = Astro.props
 ---
 
 <BaseLayout metaTitle={metaTitle} metaDesc={metaDesc} metaUrl={metaUrl}>
@@ -18,7 +18,7 @@ const { metaTitle = 'flightcore.pl - Hello', metaDesc = 'Hello from flightcore.p
   <main>
     <slot />
   </main>
-  <Footer transition:persist />
+  <Footer />
 </BaseLayout>
 
 <style>

@@ -1,46 +1,64 @@
 ---
 import { Button } from '@flightcore/uikit'
 import { Icon } from 'astro-icon/components'
+import { Picture } from 'astro:assets'
+import heroImage from '/public/assets/images/showreel/Showreel@3x.jpg'
 ---
 
-<section id="hero" transition:name="index-hero">
+<section id="hero" transition:name="index-hero" aria-labelledby="hero-title">
   <div class="hero-container">
-    <div class="content">
-      <h1 class="content-title">
-        <span>FLIGHT TO</span>
-        <span>THE CORE</span>
-      </h1>
-      <p class="content-text">
-        Podziel się ze światem tym, co gra Ci w duszy. Wspólnie zamienimy projekty z szuflady w dzieła z najwyższej półki.
-      </p>
-      <Button data-booking-button> BOOKING </Button>
+    <!-- 1220 / 720 -->
+    <div class="hero-matrix">
+      <Picture
+        src={heroImage}
+        alt="A description of my image."
+        pictureAttributes={{ class: 'w-full h-full' }}
+        class="w-full h-full object-cover"
+        loading="eager"
+        decoding="async"
+        widths={[375, 750, 1125]}
+        formats={['avif', 'webp']}
+        fallbackFormat="jpeg"
+        quality={100}
+        width={1220}
+        height={720}
+      />
+      <div class="hero-content">
+        <h1 id="hero-title" class="hero-content__title">
+          <span>FLIGHT TO</span>
+          <span>THE CORE</span>
+        </h1>
+        <Button data-booking-button aria-label="Book Now">BOOKING</Button>
+      </div>
     </div>
-    <div class="hero-image"></div>
   </div>
   <Icon name="brand/short/big" class="bg-icon" width={undefined} height={undefined} />
 </section>
 
 <style>
   #hero {
-    @apply relative text-blue-lightest;
-  }
-  .hero-container {
-    @apply flex container gap-[95px] py-[175px];
-  }
-  .content-title {
-    @apply text-heading1;
-  }
-  .content-title span {
-    @apply block whitespace-nowrap;
-  }
-  .content-text {
-    @apply text-subtitle max-w-[563px] pt-[40px] pb-[56px];
+    @apply relative text-blue-lightest mt-[80px];
   }
   .hero-image {
-    min-width: 561px;
-    height: 390px;
-    background: #333;
+    width: 100%;
+    height: 100%;
   }
+  .hero-matrix {
+    @apply w-full relative aspect-[382/408] lg:aspect-[1220/720] rounded-[36px] overflow-hidden z-0 select-none;
+  }
+  .hero-container {
+    @apply py-[40px] lg:py-[64px] container;
+  }
+  .hero-content {
+    @apply absolute flex flex-col justify-center items-center gap-[64px] z-10 inset-0;
+  }
+  .hero-content__title {
+    @apply text-heading2 lg:text-heading1 font-bold;
+  }
+  .hero-content__title span {
+    @apply block whitespace-nowrap;
+  }
+
   .bg-icon {
     @apply text-extra-dark;
     position: absolute;

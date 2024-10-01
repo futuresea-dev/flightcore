@@ -33,13 +33,13 @@ const { metaTitle, metaDesc, metaUrl } = Astro.props
     <meta name="robots" content="noindex,follow" />
     <title>{metaTitle}</title>
     <link rel="preconnect" href="https://flightcore.pl/booking" />
+    <link rel="icon" href="/favicon.png" sizes="192x192" />
     <ViewTransitions />
   </head>
   <body class="bg-blue-dark">
     <div id="viewport"><slot /></div>
     <div id="portal"></div>
     <BookingModal transition:persist client:only="react" />
-
     <LoaderOverlay transition:persist />
   </body>
 </html>

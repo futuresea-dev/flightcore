@@ -5,7 +5,7 @@ import Navigation from '../Navigation//Navigation.astro'
 import { Icon } from 'astro-icon/components'
 ---
 
-<HeaderBase client:load>
+<HeaderBase transition:name="header-base" client:load>
   <Icon slot="brand" class="brand-icon" width={undefined} height={undefined} name="brand/wide/medium" />
   <div class="nav">
     <Navigation />

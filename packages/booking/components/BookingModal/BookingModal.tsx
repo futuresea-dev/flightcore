@@ -91,11 +91,7 @@ export const BookingModalInner = ({ onRequestsClose }: { onRequestsClose: () => 
           loading="eager"
           allowTransparency
         />
-        <div
-          className={clsx('z-50 select-none absolute flex flex-col justify-center items-center gap-2')}
-          style={{
-            visibility: showFrame ? 'hidden' : 'visible',
-          }}>
+        <div className={clsx('z-0 select-none absolute flex flex-col justify-center items-center gap-2')}>
           <svg className="animate-spin w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
             <path
