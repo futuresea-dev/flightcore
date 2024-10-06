@@ -1,11 +1,11 @@
+import mdx from '@astrojs/mdx'
+import node from '@astrojs/node'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
-// import compressor from 'astro-compressor'
+import compressor from 'astro-compressor'
 import icon from 'astro-icon'
 import { defineConfig } from 'astro/config'
-
-import mdx from '@astrojs/mdx'
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,30 +14,7 @@ export default defineConfig({
     defaultLocale: 'pl',
     locales: ['pl', 'en'],
   },
-  integrations: [
-    react(),
-    mdx(),
-    tailwind({
-      configFile: './tailwind.config.mjs',
-      nesting: true,
-    }),
-    icon({
-      iconDir: './src/icons',
-    }),
-    sitemap({
-      i18n: {
-        defaultLocale: 'pl',
-        locales: {
-          pl: 'pl-PL',
-          en: 'en-US',
-        },
-      },
-    }),
-    // compressor({
-    //   fileExtensions: ['.html', '.css', '.js'],
-    // }),
-  ],
-  output: 'static',
+  output: 'hybrid',
   outDir: 'dist',
   inlineStylesheets: 'never',
   i18n: {
@@ -56,4 +33,30 @@ export default defineConfig({
     prefetchAll: false,
     defaultStrategy: 'viewport',
   },
+  adapter: node({
+    mode: 'middleware',
+  }),
+  integrations: [
+    react(),
+    mdx(),
+    tailwind({
+      configFile: './tailwind.config.mjs',
+      nesting: true,
+    }),
+    icon({
+      iconDir: './src/icons',
+    }),
+    compressor({
+      fileExtensions: ['.html', '.css', '.js'],
+    }),
+    sitemap({
+      i18n: {
+        defaultLocale: 'pl',
+        locales: {
+          pl: 'pl-PL',
+          en: 'en-US',
+        },
+      },
+    }),
+  ],
 })
