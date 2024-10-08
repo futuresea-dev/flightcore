@@ -14,7 +14,7 @@ export default defineConfig({
     defaultLocale: 'pl',
     locales: ['pl', 'en'],
   },
-  output: 'hybrid',
+  output: 'server',
   outDir: 'dist',
   inlineStylesheets: 'never',
   i18n: {

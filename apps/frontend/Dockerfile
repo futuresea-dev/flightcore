@@ -1,4 +1,10 @@
-FROM node:lts-slim AS build
+FROM node:lts-slim
+
+ARG PUBLIC_BOOKING_IFRAME_SRC
+ARG CONTACT_WEBHOOK_URL
+ARG CONTACT_WEBHOOK_TOKEN_KEY
+ARG CONTACT_WEBHOOK_TOKEN_VALUE
+
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
@@ -7,6 +13,8 @@ WORKDIR /app
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 RUN pnpm run build
 
-FROM httpd:2.4 AS runtime
-COPY --from=build /app/apps/frontend/dist /usr/local/apache2/htdocs/
-EXPOSE 80
+ENV HOST=0.0.0.0
+ENV PORT=4321
+EXPOSE 4321
+
+CMD ["node", "./dist/server/entry.mjs"]
