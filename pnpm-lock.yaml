@@ -215,6 +215,9 @@ importers:
       '@nanostores/react':
         specifier: ^0.7.3
         version: 0.7.3(nanostores@0.11.3)(react@18.3.1)
+      '@tailwindcss/typography':
+        specifier: ^0.5.15
+        version: 0.5.15(tailwindcss@3.4.13)
       astro:
         specifier: ^4.15.12
         version: 4.15.12(@types/node@22.7.5)(rollup@4.24.0)(terser@5.34.1)(typescript@5.6.3)
@@ -1182,6 +1185,11 @@ packages:
 
   '@shikijs/vscode-textmate@9.3.0':
     resolution: {integrity: sha512-jn7/7ky30idSkd/O5yDBfAnVt+JJpepofP/POZ1iMOxK59cOfqIgg/Dj0eFsjOTMw+4ycJN0uhZH/Eb0bs/EUA==}
+
+  '@tailwindcss/typography@0.5.15':
+    resolution: {integrity: sha512-AqhlCXl+8grUz8uqExv5OTtgpjuVIwFTSXTrh8y9/pw6q2ek7fJ+Y8ZEVw7EB2DCcuCOtEjf9w3+J3rzts01uA==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || insiders || >=4.0.0-alpha.20'
 
   '@tootallnate/once@1.1.2':
     resolution: {integrity: sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==}
@@ -3121,11 +3129,17 @@ packages:
   lodash.assign@4.2.0:
     resolution: {integrity: sha512-hFuH8TY+Yji7Eja3mGiuAxBqLagejScbG8GbG0j6o9vzn0YL14My+ktnqtZgFTosKymC9/44wP6s7xyuLfnClw==}
 
+  lodash.castarray@4.4.0:
+    resolution: {integrity: sha512-aVx8ztPv7/2ULbArGJ2Y42bG1mEQ5mGjpdvrbJcJFU3TbYybe+QlLS4pst9zV52ymy2in1KpFPiZnAOATxD4+Q==}
+
   lodash.clone@4.5.0:
     resolution: {integrity: sha512-GhrVeweiTD6uTmmn5hV/lzgCQhccwReIVRLHp7LT4SopOjqEZ5BbX8b5WWEtAKasjmy8hR7ZPwsYlxRCku5odg==}
 
   lodash.defaults@4.2.0:
     resolution: {integrity: sha512-qjxPLHd3r5DnsdGacqOMU6pb/avJzdh9tFX2ymgoZE27BmjXrNy/y4LoaiTeAb+O3gL8AfpJGtqfX/ae2leYYQ==}
+
+  lodash.isplainobject@4.0.6:
+    resolution: {integrity: sha512-oSXzaWypCMHkPC3NvBEaPHf0KsA5mvPrOPgQWDsbg8n7orZ290M0BmC/jgRZ4vcJ6DTAhjrsSYgdsW/F+MFOBA==}
 
   lodash.memoize@4.1.2:
     resolution: {integrity: sha512-t7j+NzmgnQzTAYXcsHYLgimltOV1MXHtlOWf6GjL9Kj8GK5FInw5JotxvbOs+IvV1/Dzo04/fCGfLVs7aXb4Ag==}
@@ -3951,6 +3965,10 @@ packages:
     engines: {node: '>=12.0'}
     peerDependencies:
       postcss: ^8.4.29
+
+  postcss-selector-parser@6.0.10:
+    resolution: {integrity: sha512-IQ7TZdoaqbT+LCpShg46jnZVlhWD2w6iQYAcYXfHARZ7X1t/UGhhceQDs5X0cGqKvYlHNOuv7Oa1xmb0oQuA3w==}
+    engines: {node: '>=4'}
 
   postcss-selector-parser@6.1.2:
     resolution: {integrity: sha512-Q8qQfPiZ+THO/3ZrOrO0cJJKfpYCagtMUkXbnEfmgUjwXg6z/WBeOyS9APBBPCTSiDV+s4SwQGu8yFsiMRIudg==}
@@ -6175,6 +6193,14 @@ snapshots:
       '@types/hast': 3.0.4
 
   '@shikijs/vscode-textmate@9.3.0': {}
+
+  '@tailwindcss/typography@0.5.15(tailwindcss@3.4.13)':
+    dependencies:
+      lodash.castarray: 4.4.0
+      lodash.isplainobject: 4.0.6
+      lodash.merge: 4.6.2
+      postcss-selector-parser: 6.0.10
+      tailwindcss: 3.4.13
 
   '@tootallnate/once@1.1.2': {}
 
@@ -8565,9 +8591,13 @@ snapshots:
 
   lodash.assign@4.2.0: {}
 
+  lodash.castarray@4.4.0: {}
+
   lodash.clone@4.5.0: {}
 
   lodash.defaults@4.2.0: {}
+
+  lodash.isplainobject@4.0.6: {}
 
   lodash.memoize@4.1.2: {}
 
@@ -9621,6 +9651,11 @@ snapshots:
   postcss-scss@4.0.9(postcss@8.4.47):
     dependencies:
       postcss: 8.4.47
+
+  postcss-selector-parser@6.0.10:
+    dependencies:
+      cssesc: 3.0.0
+      util-deprecate: 1.0.2
 
   postcss-selector-parser@6.1.2:
     dependencies:

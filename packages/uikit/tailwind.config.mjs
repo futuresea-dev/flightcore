@@ -1,3 +1,4 @@
+import typography from '@tailwindcss/typography'
 import daisyui from 'daisyui'
 
 /** @type {import('tailwindcss').Config} */
@@ -9,11 +10,7 @@ export default {
       screens: {
         sm: '640px',
         md: '768px',
-        // lg: "1024px",
-        // lg: 'min(100vw, 1252px)',
         lg: '1252px',
-        // xl: "1280px",
-        // "2xl": "1536px",
       },
     },
     extend: {
@@ -117,5 +114,5 @@ export default {
       },
     },
   },
-  plugins: [daisyui],
+  plugins: [typography, daisyui],
 }
