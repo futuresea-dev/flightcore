@@ -3,6 +3,8 @@
   "name": "@flightcore/uikit",
   "type": "module",
   "version": "0.0.1",
+  "main": "src/index.ts",
+  "module": "src/index.ts",
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint"
@@ -19,13 +21,18 @@
     "embla-carousel-class-names": "^8.3.0",
     "embla-carousel-fade": "^8.3.0",
     "embla-carousel-react": "^8.3.0",
+    "google-libphonenumber": "^3.2.38",
     "nanostores": "^0.11.3",
     "react-dom": "^18.3.1",
+    "react-google-recaptcha": "^3.1.0",
+    "react-international-phone": "^4.3.0",
     "tailwindcss": "^3.4.13"
   },
   "devDependencies": {
+    "@types/google-libphonenumber": "^7.4.30",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0",
+    "@types/react-google-recaptcha": "^2.1.9",
     "typescript": "^5.6.3"
   },
   "peerDependencies": {

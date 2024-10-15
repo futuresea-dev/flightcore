@@ -1,28 +1,35 @@
-import clsx from 'clsx'
-import { type FC, type PropsWithChildren } from 'react'
+import clsx from 'clsx';
+import { type FC, type PropsWithChildren } from 'react';
 
-type ButtonSize = 'large' | 'small'
-type ButtonColor = 'yellow' | 'green' | 'dark-blue'
-type ButtonVariant = 'filled' | 'outline'
+type ButtonSize = 'large' | 'small';
+type ButtonColor = 'yellow' | 'green' | 'dark-blue';
+type ButtonVariant = 'filled' | 'outline';
 
 type ButtonPropsBase = {
-  size?: ButtonSize
-  color?: ButtonColor
-  variant?: ButtonVariant
-  style?: string
-  disabled?: boolean
-  className?: string
-}
+  size?: ButtonSize;
+  color?: ButtonColor;
+  variant?: ButtonVariant;
+  style?: string;
+  disabled?: boolean;
+  className?: string;
+  isFormValid?: boolean;
+  checkValidation?: boolean;
+};
 
-export type NativeButtonPropsType = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
+export type NativeButtonPropsType = React.DetailedHTMLProps<
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+>;
 
-export type ButtonPropsType = PropsWithChildren<ButtonPropsBase> & NativeButtonPropsType
+export type ButtonPropsType = PropsWithChildren & NativeButtonPropsType & ButtonPropsBase;
 
 export const Button: FC<ButtonPropsType> = ({
   size = 'large',
   color = 'yellow',
   variant = 'filled',
   disabled,
+  isFormValid = true,
+  checkValidation = false,
   children,
   className,
   ...props
@@ -30,45 +37,49 @@ export const Button: FC<ButtonPropsType> = ({
   const radiusClassName = {
     large: 'rounded-[32px]',
     small: 'rounded-[20px]',
-  }[size]
+  }[size];
 
   const spacingClassName = {
     large: 'px-[52px] py-[14px]',
     small: 'px-[36px] py-[10px]',
-  }[size]
+  }[size];
 
   const typographyClassName = {
     large: 'text-blue-dark text-button',
     small: 'text-blue-dark text-body3',
-  }[size]
+  }[size];
 
-  const colorsClassName = {
-    filled: {
-      yellow: 'hover:bg-yellow-accent bg-yellow',
-      green: 'bg-green hover:bg-green-accent',
-      'dark-blue': 'bg-blue-dark hover:bg-blue-medium',
-    },
-    outline: {
+  const getColorClassName = () => {
+    if (checkValidation && !isFormValid) {
+      return 'bg-blue-lightest text-blue-medium cursor-not-allowed';
+    }
+    if (variant === 'filled') {
+      return {
+        yellow: 'bg-yellow hover:bg-yellow-accent',
+        green: 'bg-green hover:bg-green-accent',
+        'dark-blue': 'bg-blue-dark hover:bg-blue-medium',
+      }[color];
+    }
+    return {
       yellow: 'border-2 border-yellow hover:border-yellow-accent text-yellow hover:text-yellow-accent',
       green: 'border-2 border-green hover:border-green-accent text-green hover:text-green-accent',
       'dark-blue': 'border-2 border-blue-dark hover:border-blue-medium text-blue-dark hover:text-blue-medium',
-    },
-  }[variant][color]
+    }[color];
+  };
 
   return (
     <button
-      {...props}
-      disabled={disabled}
       className={clsx(
-        'transition-colors overflow-hidden',
-        spacingClassName,
         radiusClassName,
+        spacingClassName,
         typographyClassName,
-        colorsClassName,
-        disabled && 'bg-blue-lightest',
-        className,
-      )}>
+        getColorClassName(),
+        className
+      )}
+      disabled={checkValidation ? !isFormValid : disabled}
+      {...props}
+    >
       {children}
     </button>
-  )
-}
+  );
+};

@@ -114,5 +114,24 @@ export default {
       },
     },
   },
-  plugins: [typography, daisyui],
+  plugins: [
+    typography,
+    daisyui,
+    function ({ addBase, theme }) {
+      const colors = theme('colors')
+      const colorVars = {}
+
+      // Konwertuj kolory na zmienne CSS
+      Object.keys(colors).forEach((key) => {
+        if (typeof colors[key] === 'string') {
+          colorVars[`--color-${key}`] = colors[key]
+        }
+      })
+
+      // Dodaj zmienne CSS do :root
+      addBase({
+        ':root': colorVars
+      })
+    },
+  ],
 }

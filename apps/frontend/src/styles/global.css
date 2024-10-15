@@ -7,11 +7,8 @@ body {
   @apply relative font-sans;
 }
 
-/* Hide scrollbar for loader overlay */
 html:has(#overlay:not(.hidden)),
-/* Hide scrollbar for dialogs */
 html:has(dialog),
-/* Hide scrollbar for all elements with data-hide-scrollbar attribute */
 html:has(*[data-hide-scrollbar]) {
   overflow: hidden;
 }

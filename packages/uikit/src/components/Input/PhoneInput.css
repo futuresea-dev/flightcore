@@ -1,0 +1,88 @@
+:root {
+  --react-international-phone-background-color: transparent;
+  --react-international-phone-text-color: var(--color-blue-lightest);
+  --react-international-phone-border-color: none;
+  --react-international-phone-height: 58px;
+  --react-international-phone-font-size: 1.125rem;
+}
+
+.react-international-phone-country-selector-dropdown {
+  background-color: #1B2634 !important;
+  color: #BACBDA !important;
+}
+
+.react-international-phone-country-selector-dropdown__list-item:hover {
+  background-color: #243447 !important;
+  color: #BACBDA !important;
+}
+
+.react-international-phone-country-selector-dropdown__list-item--selected,
+.react-international-phone-country-selector-dropdown__list-item--selected:hover {
+  background-color: #005ed1 !important;
+  color: #ffffff !important;
+}
+
+.react-international-phone-country-selector-dropdown__list-item-country-flag {
+  background-color: transparent !important;
+}
+
+.react-international-phone-country-selector-dropdown__list-item-country-name,
+.react-international-phone-country-selector-dropdown__list-item-country-dial-code {
+  color: #BACBDA !important;
+}
+
+.react-international-phone-country-selector-button:hover {
+  background-color: transparent !important;
+}
+
+.react-international-phone-country-selector-button {
+  position: absolute;
+  left: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.react-international-phone-input {
+  padding-left: 3rem !important;
+  font-size: 1rem;
+  color: #DBE2E6;
+  transition: padding-top 0.2s ease-out;
+}
+
+.react-international-phone-country-selector-button {
+  position: absolute;
+  left: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.react-international-phone-dial-code-preview {
+  position: absolute;
+  left: 2.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  color: #DBE2E6;
+  z-index: 1;
+  transition: top 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.input-active .react-international-phone-input {
+  padding-top: 1rem !important;
+}
+
+.input-active .react-international-phone-dial-code-preview {
+  top: calc(50% + 0.5rem);
+}
+
+
+.input-active input {
+  padding-top: 1rem !important;
+}
+
+
+.react-international-phone {
+  padding-left: 4.5rem !important;
+}
