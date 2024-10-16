@@ -34,7 +34,7 @@ export default defineConfig({
     defaultStrategy: 'viewport',
   },
   adapter: node({
-    mode: 'standalone'
+    mode: 'standalone',
   }),
   integrations: [
     react(),

@@ -130,7 +130,7 @@ export default {
 
       // Dodaj zmienne CSS do :root
       addBase({
-        ':root': colorVars
+        ':root': colorVars,
       })
     },
   ],

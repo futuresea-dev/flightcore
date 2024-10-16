@@ -7,13 +7,13 @@
 }
 
 .react-international-phone-country-selector-dropdown {
-  background-color: #1B2634 !important;
-  color: #BACBDA !important;
+  background-color: #1b2634 !important;
+  color: #bacbda !important;
 }
 
 .react-international-phone-country-selector-dropdown__list-item:hover {
   background-color: #243447 !important;
-  color: #BACBDA !important;
+  color: #bacbda !important;
 }
 
 .react-international-phone-country-selector-dropdown__list-item--selected,
@@ -28,7 +28,7 @@
 
 .react-international-phone-country-selector-dropdown__list-item-country-name,
 .react-international-phone-country-selector-dropdown__list-item-country-dial-code {
-  color: #BACBDA !important;
+  color: #bacbda !important;
 }
 
 .react-international-phone-country-selector-button:hover {
@@ -46,7 +46,7 @@
 .react-international-phone-input {
   padding-left: 3rem !important;
   font-size: 1rem;
-  color: #DBE2E6;
+  color: #dbe2e6;
   transition: padding-top 0.2s ease-out;
 }
 
@@ -64,9 +64,11 @@
   top: 50%;
   transform: translateY(-50%);
   font-size: 1rem;
-  color: #DBE2E6;
+  color: #dbe2e6;
   z-index: 1;
-  transition: top 0.2s ease-out, transform 0.2s ease-out;
+  transition:
+    top 0.2s ease-out,
+    transform 0.2s ease-out;
 }
 
 .input-active .react-international-phone-input {
@@ -77,11 +79,9 @@
   top: calc(50% + 0.5rem);
 }
 
-
 .input-active input {
   padding-top: 1rem !important;
 }
-
 
 .react-international-phone {
   padding-left: 4.5rem !important;

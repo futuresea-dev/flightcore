@@ -6,10 +6,10 @@ pgadmin-data/**
 db-data
 db-data/**
 
-/**/*.jpg
-/**/*.png
-/**/*.webp
-/**/*.svg
+.jpg
+.png
+.webp
+.svg
 
 .vscode
 

@@ -1,61 +1,64 @@
-import clsx from 'clsx';
-import { forwardRef, useState, useEffect, useCallback, type TextareaHTMLAttributes } from 'react';
+import clsx from 'clsx'
+import { forwardRef, useCallback, useEffect, useState, type TextareaHTMLAttributes } from 'react'
 
 export type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
-  label?: string;
-  error?: boolean;
-  validate?: (value: string) => boolean;
-  onValidationChange?: (isValid: boolean) => void;
-};
+  label?: string
+  error?: boolean
+  validate?: (value: string) => boolean
+  onValidationChange?: (isValid: boolean) => void
+}
 
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ className, label, validate, onValidationChange, onChange, value: propValue, ...props }, ref) => {
-    const [value, setValue] = useState(propValue as string || '');
-    const [isFocused, setIsFocused] = useState(false);
-    const [error, setError] = useState(false);
-    const [touched, setTouched] = useState(false);
-    const [isValid, setIsValid] = useState(true);
+    const [value, setValue] = useState((propValue as string) || '')
+    const [isFocused, setIsFocused] = useState(false)
+    const [error, setError] = useState(false)
+    const [touched, setTouched] = useState(false)
+    const [isValid, setIsValid] = useState(true)
 
-    const validateTextarea = useCallback((inputValue: string) => {
-      if (validate) {
-        return validate(inputValue);
-      }
-      return inputValue.trim() !== '';
-    }, [validate]);
+    const validateTextarea = useCallback(
+      (inputValue: string) => {
+        if (validate) {
+          return validate(inputValue)
+        }
+        return inputValue.trim() !== ''
+      },
+      [validate],
+    )
 
     useEffect(() => {
-      const validationResult = validateTextarea(value);
-      setIsValid(validationResult);
+      const validationResult = validateTextarea(value)
+      setIsValid(validationResult)
       if (onValidationChange) {
-        onValidationChange(validationResult);
+        onValidationChange(validationResult)
       }
-    }, [value, validateTextarea, onValidationChange]);
+    }, [value, validateTextarea, onValidationChange])
 
     useEffect(() => {
-      setValue(propValue as string || '');
-    }, [propValue]);
+      setValue((propValue as string) || '')
+    }, [propValue])
 
-    const handleFocus = () => setIsFocused(true);
+    const handleFocus = () => setIsFocused(true)
     const handleBlur = () => {
-      setIsFocused(false);
-      setTouched(true);
-      const validationResult = validateTextarea(value);
-      setError(!validationResult);
-      setIsValid(validationResult);
-    };
+      setIsFocused(false)
+      setTouched(true)
+      const validationResult = validateTextarea(value)
+      setError(!validationResult)
+      setIsValid(validationResult)
+    }
 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-      const newValue = e.target.value;
-      setValue(newValue);
+      const newValue = e.target.value
+      setValue(newValue)
       if (touched) {
-        const validationResult = validateTextarea(newValue);
-        setError(!validationResult);
-        setIsValid(validationResult);
+        const validationResult = validateTextarea(newValue)
+        setError(!validationResult)
+        setIsValid(validationResult)
       }
       if (onChange) {
-        onChange(e);
+        onChange(e)
       }
-    };
+    }
 
     return (
       <div className="relative">
@@ -69,7 +72,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
               'border-error': touched && error,
               'border-green': !error && touched && isValid,
             },
-            className
+            className,
           )}
           ref={ref}
           onFocus={handleFocus}
@@ -86,17 +89,16 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
               {
                 'top-4': !isFocused && !value,
                 'top-[8px] left-2 text-xs': isFocused || value,
-              }
-            )}
-          >
+              },
+            )}>
             {label}
           </label>
         )}
       </div>
-    );
-  }
-);
+    )
+  },
+)
 
-Textarea.displayName = 'Textarea';
+Textarea.displayName = 'Textarea'
 
-export { Textarea };
+export { Textarea }

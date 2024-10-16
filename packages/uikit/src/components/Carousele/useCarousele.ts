@@ -12,14 +12,6 @@ export const useCarousele = (emblaApi: EmblaCarouselType | undefined): UseCarous
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
 
-  const onDotButtonClick = useCallback(
-    (index: number) => {
-      if (!emblaApi) return
-      emblaApi.scrollTo(index)
-    },
-    [emblaApi],
-  )
-
   const onInit = useCallback((emblaApi: EmblaCarouselType) => {
     setScrollSnaps(emblaApi.scrollSnapList())
   }, [])
@@ -38,6 +30,12 @@ export const useCarousele = (emblaApi: EmblaCarouselType | undefined): UseCarous
   return {
     selectedIndex,
     scrollSnaps,
-    onDotButtonClick,
+    onDotButtonClick: useCallback(
+      (index: number) => {
+        if (!emblaApi) return
+        emblaApi.scrollTo(index)
+      },
+      [emblaApi],
+    ),
   }
 }

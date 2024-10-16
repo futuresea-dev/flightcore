@@ -1,4 +1,4 @@
-export { Input } from './Input';
-export { PhoneInput } from './PhoneInput';
-export { EmailInput } from './EmailInput';
-export { Checkbox } from './Checkbox';
+export { Checkbox } from './Checkbox'
+export { EmailInput } from './EmailInput'
+export { Input } from './Input'
+export { PhoneInput } from './PhoneInput'

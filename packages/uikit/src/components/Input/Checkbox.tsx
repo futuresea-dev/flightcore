@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
-import clsx from 'clsx';
-import styles from './Checkbox.module.css';
+import clsx from 'clsx'
+import React, { useState } from 'react'
+import styles from './Checkbox.module.css'
 
 export type CheckboxProps = {
-  label: string;
-  onChange?: (checked: boolean) => void;
-  required?: boolean;
-};
+  label: string
+  onChange?: (checked: boolean) => void
+  required?: boolean
+}
 
 export const Checkbox: React.FC<CheckboxProps> = ({ label, onChange, required }) => {
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(false)
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsChecked(e.target.checked);
+    setIsChecked(e.target.checked)
     if (onChange) {
-      onChange(e.target.checked);
+      onChange(e.target.checked)
     }
-  };
+  }
 
   return (
     <div className={styles.checkboxWrapper}>
@@ -32,5 +32,5 @@ export const Checkbox: React.FC<CheckboxProps> = ({ label, onChange, required })
         {label}
       </label>
     </div>
-  );
-};
+  )
+}
