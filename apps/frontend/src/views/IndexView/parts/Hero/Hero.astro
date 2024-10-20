@@ -1,15 +1,28 @@
 ---
-import { Button } from '@flightcore/uikit'
+import { Button, VideoSource } from '@flightcore/uikit'
 import { Icon } from 'astro-icon/components'
-import { Picture } from 'astro:assets'
+import { getImage } from 'astro:assets'
+
 import heroImage from '/public/assets/images/showreel/Showreel@3x.jpg'
+
+const image = await getImage({
+  src: heroImage,
+  format: 'webp',
+})
+
+const videoSource = {
+  sm: '/assets/videos/hero_360p.mp4',
+  md: '/assets/videos/hero_480p.mp4',
+  lg: '/assets/videos/hero_720p.mp4',
+  xl: '/assets/videos/hero_1080p.mp4',
+}
 ---
 
 <section id="hero" transition:name="index-hero" aria-labelledby="hero-title">
   <div class="hero-container">
     <!-- 1220 / 720 -->
     <div class="hero-matrix">
-      <Picture
+      <!-- <Picture
         src={heroImage}
         alt="A description of my image."
         pictureAttributes={{ class: 'w-full h-full' }}
@@ -22,7 +35,17 @@ import heroImage from '/public/assets/images/showreel/Showreel@3x.jpg'
         quality={100}
         width={1220}
         height={720}
-      />
+      /> -->
+      <video
+        preload="auto"
+        id="home-hero-video"
+        class="w-full h-full object-cover object-center pointer-events-none"
+        autoplay
+        loop
+        muted
+        poster={image.src}>
+        <VideoSource source={videoSource} />
+      </video>
       <div class="hero-content">
         <h1 id="hero-title" class="hero-content__title">
           <span>FLIGHT TO</span>

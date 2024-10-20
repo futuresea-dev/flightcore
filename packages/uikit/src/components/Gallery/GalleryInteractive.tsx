@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useRef, type FC } from 'react'
+import { useCallback, type FC } from 'react'
 
 import type { EmblaOptionsType } from 'embla-carousel'
 import AutoScroll from 'embla-carousel-auto-scroll'
 import useEmblaCarousel from 'embla-carousel-react'
-import PhotoSwipeLightbox from 'photoswipe/lightbox'
 
 import 'photoswipe/style.css'
+import { usePhotoSwipe } from './usePhotoSwipe'
 
 const defaultEmblaOpts: EmblaOptionsType = {
   active: true,
@@ -16,7 +16,7 @@ const defaultEmblaOpts: EmblaOptionsType = {
   },
 }
 
-export const Gallery: FC<GalleryPropsType> = ({ items }) => {
+export const GalleryInteractive: FC<GalleryInteractivePropsType> = ({ items }) => {
   const [emblaRef] = useEmblaCarousel(defaultEmblaOpts, [AutoScroll({})])
   const [photoswipeSDK] = usePhotoSwipe(items)
 
@@ -36,7 +36,7 @@ export const Gallery: FC<GalleryPropsType> = ({ items }) => {
   )
 }
 
-export type GalleryPropsType = {
+export type GalleryInteractivePropsType = {
   items: GalleryItemType[]
 }
 
@@ -58,27 +58,4 @@ export type GalleryItemType = {
   src: string
   title: string
   className?: string
-}
-
-export const usePhotoSwipe = (items: GalleryItemType[], opts?: { canInit?: boolean }): [PhotoSwipeLightbox | null] => {
-  const sdk = useRef<PhotoSwipeLightbox | null>(null)
-
-  if (typeof window !== 'undefined')
-    if (sdk.current === null)
-      sdk.current = new PhotoSwipeLightbox({
-        pswpModule: () => import('photoswipe'),
-        dataSource: items.map((item) => ({
-          src: item.src,
-          title: item.title,
-          className: item.className,
-        })),
-      })
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-    if (sdk.current === null || opts?.canInit === false) return
-    sdk.current.init()
-  }, [])
-
-  return [sdk.current]
 }

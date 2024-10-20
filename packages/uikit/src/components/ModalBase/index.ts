@@ -1,2 +1,2 @@
-export * from './ModalBase'
-export * from './ModalController.factory'
+export * from './ModalBase';
+export * from './ModalController.factory';
