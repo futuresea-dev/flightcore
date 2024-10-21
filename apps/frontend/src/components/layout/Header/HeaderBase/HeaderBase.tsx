@@ -1,5 +1,5 @@
-import { useTransition } from '@flightcore/uikit'
-import { useMemo, useState, type FC, type PropsWithChildren, type ReactNode } from 'react'
+import { useScroll, useScrollDirection, useTransition } from '@flightcore/uikit'
+import { useCallback, useMemo, useState, type FC, type PropsWithChildren, type ReactNode } from 'react'
 
 import clsx from 'clsx'
 import styles from './HeaderBase.module.css'
@@ -8,37 +8,50 @@ type HeaderBasePropsType = {
   brand?: ReactNode
 }
 
-type HeaderBaseState = {
-  mode: 'absolute' | 'sticky'
-  variant: 'white' | 'transparent'
-  slideIn: boolean
-}
+const SCROLL_BREAKPOINT = 720
 
 export const HeaderBase: FC<PropsWithChildren<HeaderBasePropsType>> = ({ brand, children }) => {
-  // const scrollDirection = useScrollDirection()
+  const scrollDirection = useScrollDirection()
 
-  // useScroll(
-  //   useCallback(() => {
-  //     const scrollValue = document.documentElement.scrollTop
-  //     console.log({ scrollValue })
-  //   }, []),
-  // )
-
-  // State to manage header mode and slide-in effect
-  const [{ slideIn }] = useState<HeaderBaseState>({
-    mode: 'sticky',
-    variant: 'transparent',
-    slideIn: true,
+  const [{ slideIn, behaviour }, setState] = useState<{
+    slideIn: boolean
+    behaviour: 'absolute' | 'fixed'
+  }>({
+    behaviour: 'absolute',
+    slideIn: false,
   })
 
-  // Transition state for header animations
+  useScroll(
+    useCallback(() => {
+      const scrollValue = document.documentElement.scrollTop
+
+      if (scrollValue > SCROLL_BREAKPOINT) {
+        setState({ slideIn: scrollDirection === 'up', behaviour: 'fixed' })
+        return
+      }
+
+      if (scrollValue < SCROLL_BREAKPOINT) {
+        if (slideIn) {
+          if (scrollValue <= 0) {
+            setState((s) => ({ ...s, slideIn: false, behaviour: 'absolute' }))
+            return
+          }
+          if (scrollDirection === 'up') setState((s) => ({ ...s, slideIn: true, behaviour: 'fixed' }))
+        } else {
+          setState({ slideIn: false, behaviour: 'absolute' })
+        }
+      }
+    }, [slideIn, scrollDirection]),
+  )
+
   const { transitionState } = useTransition({
     transitionIn: slideIn,
     transitionOnMount: false,
-    duration: 130,
+    duration: 180,
   })
 
-  // Map transition states to CSS class names
+  const behaviourClassName = behaviour === 'absolute' ? styles['header--absolute'] : styles['header--fixed']
+
   const transitionClassName = useMemo(
     () =>
       ({
@@ -50,8 +63,16 @@ export const HeaderBase: FC<PropsWithChildren<HeaderBasePropsType>> = ({ brand, 
     [transitionState],
   )
 
+  const useTransitionClassName = behaviour === 'fixed'
+
   return (
-    <div className={clsx(styles.header, transitionClassName)}>
+    <div
+      className={clsx(
+        styles.header,
+        behaviourClassName,
+        transitionState !== 'exited' && styles['header--accent'],
+        useTransitionClassName && transitionClassName,
+      )}>
       <div className={styles['header-container']}>
         <a className={styles.brand} href="/">
           {brand}

@@ -1,9 +1,18 @@
 .header {
-  @apply absolute top-0 left-0 right-0 z-10 border-b-[1px] border-transparent;
+  @apply absolute top-0 left-0 right-0 z-10;
+  @apply border-b-[1px] border-transparent transition duration-[180ms];
 }
 
-.header--sticky {
-  @apply fixed bg-blue-dark border-blue-medium;
+.header--accent {
+  @apply bg-blue-dark border-blue-medium;
+}
+
+.header--absolute {
+  @apply absolute;
+}
+
+.header--fixed {
+  @apply fixed;
 }
 
 .header-container {
@@ -15,17 +24,17 @@
 }
 
 .header--exited {
-  @apply -translate-y-full;
+  @apply -translate-y-1/2 invisible opacity-0;
 }
 
 .header--exiting {
-  @apply -translate-y-full transition-[transform] duration-[130ms] ease-linear;
+  @apply -translate-y-1/2 opacity-0;
 }
 
 .header--entered {
-  @apply translate-y-0;
+  @apply translate-y-0 visible opacity-100;
 }
 
 .header--entering {
-  @apply translate-y-0 transition-[transform] duration-[130ms] ease-linear;
+  @apply translate-y-0 visible opacity-100;
 }

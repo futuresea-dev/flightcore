@@ -41,6 +41,7 @@
   @apply absolute inset-0 flex items-center justify-center text-green text-body1 font-bold opacity-0 bg-blue-medium transition duration-100;
 }
 
+.studio-item--mark .overlay,
 .studio-item:hover .overlay {
   @apply opacity-[0.7];
 }

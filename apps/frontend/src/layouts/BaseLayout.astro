@@ -5,8 +5,6 @@ import { BookingModal } from '@flightcore/booking'
 
 import { LoaderOverlay } from '@flightcore/uikit'
 
-import AOS from '../lib/aos.astro'
-
 import '../styles/fonts.css'
 import '../styles/global.css'
 
@@ -43,13 +41,22 @@ const { metaTitle, metaDesc, metaUrl } = Astro.props
     <div id="portal"></div>
     <BookingModal transition:persist client:only="react" />
     <LoaderOverlay transition:persist />
-    <AOS transition:persist />
   </body>
 </html>
 
 <script>
+  import AOS from 'aos'
+  import 'aos/dist/aos.css'
+  function AOSInit() {
+    AOS.init({
+      once: true,
+    })
+  }
+  AOSInit()
+  document.addEventListener('astro:after-swap', AOSInit)
+</script>
+
+<script>
   import { handleBookingDataAttributeNodes } from '@flightcore/booking'
-  document.addEventListener('astro:page-load', () => {
-    handleBookingDataAttributeNodes()
-  })
+  document.addEventListener('astro:after-swap', handleBookingDataAttributeNodes)
 </script>

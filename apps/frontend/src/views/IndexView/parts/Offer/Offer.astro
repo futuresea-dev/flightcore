@@ -33,13 +33,13 @@ const tilesMiddleIndex = Math.floor(tiles.length / 2)
 
 function indexToDelay(index: number) {
   const distanceToMiddle = Math.abs(index - tilesMiddleIndex)
-  return distanceToMiddle * 200
+  return distanceToMiddle * 300
 }
 ---
 
 <section class="offer" transition:name="index-offer">
   <div class="container">
-    <h3 class="offer__title" data-aos="fade" data-aos-anchor-placement="center-center">
+    <h3 id="offer-section-title" class="offer__title" data-aos="fade" data-aos-anchor-placement="top-bottom">
       {`Team Flightcore wesprze Twoją twórczość na każdym etapie`}
     </h3>
     <div class="offer__tiles">
@@ -47,7 +47,8 @@ function indexToDelay(index: number) {
         tiles.map((tile, index) => (
           <OfferTile
             data-aos={index === tilesMiddleIndex ? 'fade' : index > tilesMiddleIndex ? 'zoom-out-left' : 'zoom-out-right'}
-            data-aos-anchor-placement="center-center"
+            data-aos-anchor-placement="bottom-center"
+            data-aos-anchor="#offer-section-title"
             data-aos-delay={indexToDelay(index)}
             icon={tile.icon}
             title={tile.title}

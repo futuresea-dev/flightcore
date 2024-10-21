@@ -34,17 +34,23 @@ const middleIndex = Math.floor(optimizedStudioCollection.length / 2)
 
 <section class="studios" transition:name="index-studios">
   <div class="container mb-[76px]">
-    <h3 class="studios__title" data-aos="fade" data-aos-anchor-placement="center-center">Witamy na stronie Flightcore</h3>
-    <p class="studios__text" data-aos="fade" data-aos-anchor-placement="center-center" data-aos-delay="300">
+    <h3 id="studios-title" class="studios__title" data-aos="fade" data-aos-anchor-placement="center-bottom">
+      Witamy na stronie Flightcore
+    </h3>
+    <p
+      id="studios-text"
+      class="studios__text"
+      data-aos="fade"
+      data-aos-anchor="#studios-title"
+      data-aos-anchor-placement="center-center">
       Zespołu trzech studiów nagraniowych na Żoliborzu. Na początku mieliśmy tylko marzenia dziś pomagamy je spełniać również
       innym. Nasze studia wyróżnia niepowtarzalna atmosfera, wykwalifikowany personel oraz światowy tor audio, o czym czym
       przekonały się już tysiące artystów. <span
         >Dołącz do ich grona - <MarkText
           data-aos="fade-down"
+          data-aos-anchor="#studios-text"
           data-aos-anchor-placement="center-center"
           text="wesprzemy Cię przy procesie twórczym od A do Z."
-          data-aos-delay="600"
-          data-aos-duration="600"
         /></span
       >
     </p>
@@ -53,21 +59,19 @@ const middleIndex = Math.floor(optimizedStudioCollection.length / 2)
     <h6
       class="text-green-darker text-subtitle mb-[24px]"
       data-aos="fade"
-      data-aos-anchor-placement="center-center"
-      data-aos-duration="300"
-      data-aos-delay="300"
-      data-aos-offset="150">
+      data-aos-anchor="#studios-title"
+      data-aos-anchor-placement="top-top">
       Warszawa, ul. Mickiewicza 9
     </h6>
-    <div class="flex gap-[25px]">
+    <div id="studio-collection-row" class="flex gap-[25px]">
       {
         optimizedStudioCollection.map((entry, index) => (
           <div
-            data-aos-offset="-150"
-            data-aos-anchor-placement="center-center"
-            data-aos={index === middleIndex ? 'fade' : index > middleIndex ? 'fade-right' : 'fade-left'}
-            data-aos-delay="300">
-            <StudioCard client:idle studio={entry} />
+            data-aos-offset="0"
+            data-aos-anchor="#studios-title"
+            data-aos-anchor-placement="top-top"
+            data-aos={index === middleIndex ? 'fade' : index > middleIndex ? 'fade-right' : 'fade-left'}>
+            <StudioCard client:idle mark={index === 0} studio={entry} />
           </div>
         ))
       }
