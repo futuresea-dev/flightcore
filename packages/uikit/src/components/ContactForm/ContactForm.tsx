@@ -1,6 +1,11 @@
 import type { ChangeEvent } from 'react'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import { Button, Checkbox, EmailInput, Input, PhoneInput, Textarea } from '../index'
+import { Button } from '../Button/Button'
+import { Checkbox } from '../Input/Checkbox'
+import { EmailInput } from '../Input/EmailInput'
+import { Input } from '../Input/Input'
+import { PhoneInput } from '../Input/PhoneInput'
+import { Textarea } from '../Textarea/Textarea'
 
 export interface ContactFormProps {
   onSubmit?: (formData: any) => void

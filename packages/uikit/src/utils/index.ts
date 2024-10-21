@@ -1,2 +1,2 @@
-export * from './generateShortUUID';
-export * from './setTimeoutByRAF';
+export * from './generateShortUUID'
+export * from './setTimeoutByRAF'

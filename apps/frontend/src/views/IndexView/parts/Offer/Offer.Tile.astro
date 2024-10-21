@@ -2,16 +2,16 @@
 import { Card } from '@flightcore/uikit'
 import { Icon } from 'astro-icon/components'
 
-type Props = {
+type Props = astroHTML.JSX.HTMLAttributes & {
   icon: string
   title: string
   desc: string
 }
 
-const { icon, title, desc } = Astro.props
+const { icon, title, desc, ...rest } = Astro.props
 ---
 
-<div class="offer-tile">
+<div class="offer-tile" {...rest}>
   <Card className="offer-tile__card" innerClassName="offer-tile__card-inner">
     <Icon class="offer-tile__svg" width={undefined} height={undefined} name={icon} />
   </Card>

@@ -11,22 +11,20 @@ export type StudioCardPropsType = {
 export const StudioCard: FC<StudioCardPropsType> = ({ studio }) => {
   const { poster, title } = studio
   return (
-    <>
-      <div tabIndex={0} onClick={() => studioDialogController.show(studio)} className={styles['studio-item']}>
-        <div className={styles['inner-container']}>
-          <img
-            src={poster.src}
-            srcSet={poster.srcSet.attribute}
-            className={styles['studio-item__poster']}
-            loading={poster.attributes.loading || 'lazy'}
-            decoding={poster.attributes.decoding || 'async'}
-          />
-          <p className={styles['studio-item__title']}>{title}</p>
-        </div>
-        <div className={styles['overlay']}>
-          <span>Pokaż szczegóły</span>
-        </div>
+    <div tabIndex={0} onClick={() => studioDialogController.show(studio)} className={styles['studio-item']}>
+      <div className={styles['inner-container']}>
+        <img
+          src={poster.src}
+          srcSet={poster.srcSet.attribute}
+          className={styles['studio-item__poster']}
+          loading={poster.attributes.loading || 'lazy'}
+          decoding={poster.attributes.decoding || 'async'}
+        />
+        <p className={styles['studio-item__title']}>{title}</p>
       </div>
-    </>
+      <div className={styles['overlay']}>
+        <span>Pokaż szczegóły</span>
+      </div>
+    </div>
   )
 }

@@ -15,6 +15,15 @@ type HeaderBaseState = {
 }
 
 export const HeaderBase: FC<PropsWithChildren<HeaderBasePropsType>> = ({ brand, children }) => {
+  // const scrollDirection = useScrollDirection()
+
+  // useScroll(
+  //   useCallback(() => {
+  //     const scrollValue = document.documentElement.scrollTop
+  //     console.log({ scrollValue })
+  //   }, []),
+  // )
+
   // State to manage header mode and slide-in effect
   const [{ slideIn }] = useState<HeaderBaseState>({
     mode: 'sticky',

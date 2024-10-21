@@ -1,1 +1,1 @@
-export * from './GalleryInteractive';
+export * from './GalleryInteractive'

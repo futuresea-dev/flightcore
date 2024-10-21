@@ -10,13 +10,14 @@ import { defineConfig } from 'astro/config'
 // https://astro.build/config
 export default defineConfig({
   site: 'https://flightcore.raqz.link',
+  experimental: {},
   i18n: {
     defaultLocale: 'pl',
     locales: ['pl', 'en'],
   },
   output: 'server',
   outDir: 'dist',
-  inlineStylesheets: 'never',
+
   i18n: {
     defaultLocale: 'pl',
     locales: ['pl', 'en'],

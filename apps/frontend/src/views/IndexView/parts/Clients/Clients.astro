@@ -20,13 +20,13 @@ const clientLogos = await Promise.all(
 <section class="clients" transition:name="index-clients">
   <h3 class="clients__title">Tworzyliśmy projekty z...</h3>
   <div class="clients__content">
-    <ClientsCarousele client:only="react" clientLogos={clientLogos} />
+    <ClientsCarousele client:load clientLogos={clientLogos} />
   </div>
 </section>
 
 <style>
   .clients {
-    @apply py-[48px];
+    @apply py-[48px] overflow-hidden;
   }
   .clients__title {
     @apply text-center text-heading3 mb-[40px];

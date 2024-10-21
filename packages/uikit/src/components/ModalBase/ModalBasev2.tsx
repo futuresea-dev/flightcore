@@ -14,6 +14,6 @@ export const ModalBaseV2: FC<PropsWithChildren> = ({ children }) => {
 
 export type ModalBaseV2PropsType = {
   modalId?: string
-  onRequestOpen?: () => void  
+  onRequestOpen?: () => void
   onRequestClose?: () => void
 }

@@ -3,24 +3,41 @@ import { HeaderBase } from './HeaderBase/HeaderBase'
 import SocialsFields from '../Socials/Socials.astro'
 import Navigation from '../Navigation//Navigation.astro'
 import { Icon } from 'astro-icon/components'
+import { HeaderMobileOverlay } from './HeaderMobileOverlay'
 ---
 
 <HeaderBase transition:name="header-base" client:load>
   <Icon slot="brand" class="brand-icon" width={undefined} height={undefined} name="brand/wide/medium" />
-  <div class="nav">
+  <div class="hidden lg:flex gap-[32px]">
     <Navigation />
-    <nav class="nav-social">
+    <nav class="flex gap-[12px] text-green">
       <SocialsFields />
     </nav>
   </div>
+  <button id="hamburger" role="button" class="block lg:hidden">
+    <Icon name="hamburger" width={24} height={24} class="block" />
+  </button>
+  <script>
+    import { toggleMobileMenuOverlay } from './HeaderStore'
+
+    document.getElementById('hamburger')?.addEventListener('click', toggleMobileMenuOverlay)
+  </script>
 </HeaderBase>
 
-<style>
-  .nav {
-    @apply flex gap-[32px];
-  }
+<HeaderMobileOverlay client:load>
+  <div class="flex flex-col gap-[32px] items-center justify-center w-full h-full">
+    <Navigation class="mobile-navigation" />
+    <nav class="flex gap-[12px] text-green">
+      <SocialsFields />
+    </nav>
+  </div>
+</HeaderMobileOverlay>
 
-  .nav-social {
-    @apply flex gap-[12px] text-green;
+<style>
+  :global(.mobile-navigation) {
+    @apply flex-col gap-[24px] mt-[32px];
+  }
+  :global(.mobile-navigation a) {
+    @apply font-semibold text-lg text-center;
   }
 </style>
