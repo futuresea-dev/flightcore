@@ -7,4 +7,8 @@ export function toggleMobileMenuOverlay() {
   $showMobileMenuOverlay.set(!$showMobileMenuOverlay.get())
 }
 
+export function hideMobileMenuOverlay() {
+  $showMobileMenuOverlay.set(false)
+}
+
 export const useShowMobileMenuOverlay = () => useStore($showMobileMenuOverlay)

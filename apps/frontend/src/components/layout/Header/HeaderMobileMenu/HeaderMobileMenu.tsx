@@ -1,37 +1,33 @@
 import { CloseSVG, useTransition } from '@flightcore/uikit'
 import clsx from 'clsx'
 import { useMemo, type FC, type PropsWithChildren } from 'react'
-import { toggleMobileMenuOverlay, useShowMobileMenuOverlay } from './HeaderStore'
+import { toggleMobileMenuOverlay, useShowMobileMenuOverlay } from '../HeaderStore'
 
-export const HeaderMobileOverlay: FC<PropsWithChildren> = ({ children }) => {
+import styles from './HeaderMobileMenu.module.css'
+
+export const HeaderMobileMenu: FC<PropsWithChildren> = ({ children }) => {
   const showMobileMenuOverlay = useShowMobileMenuOverlay()
 
   const { transitionState } = useTransition({
     transitionIn: showMobileMenuOverlay,
-    duration: 110,
+    duration: 100,
   })
 
-  const transitionBaseClassName = 'transition duration-[110ms]'
   const transitionClassName = useMemo(
     () =>
       ({
-        entered: 'visible opacity-1',
-        entering: 'opacity-0',
-        exited: 'hidden opacity-0',
-        exiting: 'opacity-0',
+        entered: styles['root--entered'],
+        entering: styles['root--entering'],
+        exited: styles['root--exited'],
+        exiting: styles['root--exiting'],
       })[transitionState],
     [transitionState],
   )
 
+  if (showMobileMenuOverlay === false && transitionState === 'exited') return null
+
   return (
-    <div
-      id="mobile-meu-overlay"
-      className={clsx(
-        'fixed inset-0 backdrop-blur-sm bg-blue-dark bg-opacity-75 z-50',
-        transitionBaseClassName,
-        transitionClassName,
-      )}
-      onClick={() => {}}>
+    <div id="mobile-meu-overlay" className={clsx(styles.root, transitionClassName)}>
       <button role="button" onClick={toggleMobileMenuOverlay} className="absolute top-0 right-0 p-4 text-green">
         <CloseSVG />
       </button>

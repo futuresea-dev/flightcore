@@ -1,6 +1,6 @@
 .header {
-  @apply absolute top-0 left-0 right-0 z-10;
-  @apply border-b-[1px] border-transparent transition duration-[180ms];
+  @apply absolute top-0 w-full z-50;
+  @apply border-b-[1px] border-transparent transition-colors;
 }
 
 .header--accent {
@@ -20,7 +20,9 @@
 }
 
 .brand {
-  @apply w-full max-w-[280px] text-green;
+  @apply w-full text-green;
+  @apply max-w-[142px];
+  @apply lg:max-w-[280px];
 }
 
 .header--exited {
@@ -28,7 +30,7 @@
 }
 
 .header--exiting {
-  @apply -translate-y-1/2 opacity-0;
+  @apply -translate-y-1/2 opacity-0 transition;
 }
 
 .header--entered {
@@ -36,5 +38,5 @@
 }
 
 .header--entering {
-  @apply translate-y-0 visible opacity-100;
+  @apply translate-y-0 visible opacity-100 transition;
 }

@@ -1,13 +1,21 @@
 ---
 export type Props = {
   showPriceListRoute?: boolean
+  showIndexRoute?: boolean
   class?: string
 }
 
-const { showPriceListRoute = true, class: className } = Astro.props
+const { showPriceListRoute = true, showIndexRoute = false, class: className } = Astro.props
 ---
 
 <nav class:list={['flex gap-[32px]', className]}>
+  {
+    showIndexRoute && (
+      <a tabindex={0} href="/">
+        Strona główna{' '}
+      </a>
+    )
+  }
   {
     showPriceListRoute && (
       <a tabindex={0} href="/prices">

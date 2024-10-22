@@ -7,7 +7,7 @@ export const useScrollDirection = () => {
 
   const handleScroll = useCallback(() => {
     const { scrollTop } = document.documentElement
-    const scrollDirection = scrollTopRef.current > scrollTop ? 'up' : 'down'
+    const scrollDirection = scrollTopRef.current >= scrollTop ? 'up' : 'down'
     setScrollDirection(scrollDirection)
     scrollTopRef.current = scrollTop
   }, [])

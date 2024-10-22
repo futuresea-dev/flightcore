@@ -19,5 +19,5 @@ export const useEvent = <T extends Event>(
     return () => {
       element.removeEventListener(eventName, eventListener)
     }
-  }, [eventName, handler, element, registerCallback])
+  }, [eventName, handler, registerCallback])
 }

@@ -14,11 +14,11 @@ const { metaTitle = 'flightcore.pl', metaDesc = 'Hello from flightcore.pl', meta
 ---
 
 <BaseLayout metaTitle={metaTitle} metaDesc={metaDesc} metaUrl={metaUrl}>
-  <Header />
+  <Header transition:persist />
   <main>
     <slot />
   </main>
-  <Footer />
+  <Footer transition:persist />
 </BaseLayout>
 
 <style>

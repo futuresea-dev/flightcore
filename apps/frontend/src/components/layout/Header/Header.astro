@@ -3,7 +3,7 @@ import { HeaderBase } from './HeaderBase/HeaderBase'
 import SocialsFields from '../Socials/Socials.astro'
 import Navigation from '../Navigation//Navigation.astro'
 import { Icon } from 'astro-icon/components'
-import { HeaderMobileOverlay } from './HeaderMobileOverlay'
+import { HeaderMobileMenu } from './HeaderMobileMenu/HeaderMobileMenu'
 ---
 
 <HeaderBase transition:name="header-base" client:load>
@@ -24,14 +24,19 @@ import { HeaderMobileOverlay } from './HeaderMobileOverlay'
   </script>
 </HeaderBase>
 
-<HeaderMobileOverlay client:load>
+<HeaderMobileMenu transition:name="header-mobile" client:load>
   <div class="flex flex-col gap-[32px] items-center justify-center w-full h-full">
-    <Navigation class="mobile-navigation" />
+    <Navigation showIndexRoute class="mobile-navigation" />
     <nav class="flex gap-[12px] text-green">
       <SocialsFields />
     </nav>
   </div>
-</HeaderMobileOverlay>
+</HeaderMobileMenu>
+
+<script>
+  import { hideMobileMenuOverlay } from './HeaderStore'
+  document.addEventListener('astro:before-swap', hideMobileMenuOverlay)
+</script>
 
 <style>
   :global(.mobile-navigation) {

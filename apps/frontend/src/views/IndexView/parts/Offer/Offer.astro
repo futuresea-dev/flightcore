@@ -39,7 +39,7 @@ function indexToDelay(index: number) {
 
 <section class="offer" transition:name="index-offer">
   <div class="container">
-    <h3 id="offer-section-title" class="offer__title" data-aos="fade" data-aos-anchor-placement="top-bottom">
+    <h3 id="offer-section-title" class="offer__title" data-aos="fade" data-aos-anchor-placement="top-center">
       {`Team Flightcore wesprze Twoją twórczość na każdym etapie`}
     </h3>
     <div class="offer__tiles">
@@ -47,7 +47,7 @@ function indexToDelay(index: number) {
         tiles.map((tile, index) => (
           <OfferTile
             data-aos={index === tilesMiddleIndex ? 'fade' : index > tilesMiddleIndex ? 'zoom-out-left' : 'zoom-out-right'}
-            data-aos-anchor-placement="bottom-center"
+            data-aos-anchor-placement="top-center"
             data-aos-anchor="#offer-section-title"
             data-aos-delay={indexToDelay(index)}
             icon={tile.icon}
@@ -62,12 +62,13 @@ function indexToDelay(index: number) {
 
 <style>
   .offer {
-    @apply py-[80px];
+    @apply lg:py-[80px];
   }
   .offer__title {
-    @apply text-center text-heading3 px-[180px] mb-[64px];
+    @apply text-center text-heading3 lg:px-[180px] lg:mb-[64px];
+    @apply mb-[64px];
   }
   .offer__tiles {
-    @apply flex items-start justify-between gap-[25px];
+    @apply flex flex-col lg:flex-row lg:items-start lg:justify-between gap-[25px];
   }
 </style>

@@ -73,9 +73,8 @@ export const BookingModalInner = ({ onRequestsClose }: { onRequestsClose: () => 
         <iframe
           ref={iframeRef}
           src={import.meta.env.PUBLIC_BOOKING_IFRAME_SRC}
-          className={'relative z-10'}
+          className={clsx('relative z-10 w-full')}
           style={{
-            width: '100%',
             maxWidth: `min(var(--frame-width, 900px), 100%)`,
             height: `var(--frame-height, 600px)`,
             minHeight: ` (--frame-height, 600px)`,

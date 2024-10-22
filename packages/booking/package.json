@@ -5,20 +5,21 @@
   "main": "index.ts",
   "version": "1.0.0",
   "scripts": {},
+  "dependencies": {
+    "react": "^18.3.1"
+  },
   "devDependencies": {
     "@types/react": "^18.3.11",
     "typescript": "5.5.4"
   },
   "peerDependencies": {
+    "clsx": "^2.1.1",
+    "nanostores": "^0.11.3",
+    "@nanostores/react": "^0.7.3",
     "@flightcore/uikit": "workspace:*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tailwindcss": "^3.4.7"
   },
-  "license": "MIT",
-  "dependencies": {
-    "@nanostores/react": "^0.7.3",
-    "clsx": "^2.1.1",
-    "nanostores": "^0.11.3"
-  }
+  "license": "MIT"
 }

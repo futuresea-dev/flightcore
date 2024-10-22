@@ -51,6 +51,7 @@ const middleIndex = Math.floor(optimizedStudioCollection.length / 2)
           data-aos-anchor="#studios-text"
           data-aos-anchor-placement="center-center"
           text="wesprzemy Cię przy procesie twórczym od A do Z."
+          className="font-medium"
         /></span
       >
     </p>
@@ -60,16 +61,16 @@ const middleIndex = Math.floor(optimizedStudioCollection.length / 2)
       class="text-green-darker text-subtitle mb-[24px]"
       data-aos="fade"
       data-aos-anchor="#studios-title"
-      data-aos-anchor-placement="top-top">
+      data-aos-anchor-placement="top-center">
       Warszawa, ul. Mickiewicza 9
     </h6>
-    <div id="studio-collection-row" class="flex gap-[25px]">
+    <div id="studio-collection-row" class="lg:flex lg:gap-[25px]">
       {
         optimizedStudioCollection.map((entry, index) => (
           <div
             data-aos-offset="0"
             data-aos-anchor="#studios-title"
-            data-aos-anchor-placement="top-top"
+            data-aos-anchor-placement="top-center"
             data-aos={index === middleIndex ? 'fade' : index > middleIndex ? 'fade-right' : 'fade-left'}>
             <StudioCard client:idle mark={index === 0} studio={entry} />
           </div>
@@ -91,10 +92,11 @@ const middleIndex = Math.floor(optimizedStudioCollection.length / 2)
     @apply text-center text-heading3 mb-[40px];
   }
   .studios__text {
-    @apply text-body1 px-[100px];
+    @apply text-center text-body1 lg:px-[100px];
   }
   .bg-icon {
-    @apply absolute z-[-1] text-extra-dark;
+    @apply absolute z-0 text-extra-dark;
+    color: '#fff';
     width: min(32.9vw, 474px);
     top: -76px;
     right: calc(-1 * calc(min(32.9vw, 474px) / 2));

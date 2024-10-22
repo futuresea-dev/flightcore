@@ -1,5 +1,5 @@
 .studio-item {
-  @apply relative w-[390px] h-[440px] cursor-pointer p-[4px];
+  @apply relative aspect-[390/440]  lg:w-[390px] cursor-pointer p-[4px];
   background: linear-gradient(180deg, rgba(0, 0, 0, 0), #243447);
 }
 
