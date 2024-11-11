@@ -17,11 +17,6 @@ export default defineConfig({
   },
   output: 'server',
   outDir: 'dist',
-
-  i18n: {
-    defaultLocale: 'pl',
-    locales: ['pl', 'en'],
-  },
   security: {
     checkOrigin: true,
   },
