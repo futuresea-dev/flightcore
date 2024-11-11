@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon/components'
 import { ContactForm } from '@flightcore/uikit'
 ---
 
@@ -11,16 +12,19 @@ import { ContactForm } from '@flightcore/uikit'
       </p>
       <div class="flex flex-col items-center space-y-4 pt-10 md:items-start">
         <div class="flex flex-row items-center space-x-[10px]">
-          <a href="mailto:flightcore.studios@gmail.com">
+          <Icon name="contact/mail" class="w-6 h-6" />
+          <a href="mailto:flightcore.studios@gmail.com" class="text-green">
             <p class="text-body1">flightcore.studios@gmail.com</p>
           </a>
         </div>
         <div class="flex flex-row items-center space-x-[10px]">
+          <Icon name="contact/phone" class="w-6 h-6" />
           <a href="tel:+48791730204">
-            <p class="text-body1 text-flightcore-green">+48 791 730 204</p>
+            <p class="text-body1 text-green">+48 791 730 204</p>
           </a>
         </div>
         <div class="flex flex-row items-start space-x-[10px]">
+          <Icon name="contact/location" class="w-6 h-6" />
           <p class="text-body1">
             Flightcore Studios Sp. z o.o.
             <br />
