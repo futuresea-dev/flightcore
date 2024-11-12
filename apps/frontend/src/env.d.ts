@@ -5,3 +5,5 @@ import type { Aos } from 'aos'
 interface Window {
   ___aos: Aos
 }
+
+type MetaProps = {}

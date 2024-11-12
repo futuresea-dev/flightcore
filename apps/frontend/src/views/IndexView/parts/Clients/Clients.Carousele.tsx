@@ -13,15 +13,17 @@ const options: EmblaOptionsType = {
   watchDrag: false,
 }
 
+const plugins = [
+  AutoScroll({
+    playOnInit: true,
+    startDelay: 0,
+    speed: 1,
+    stopOnInteraction: false,
+  }),
+]
+
 export const ClientsCarousele: React.FC<ClientsCarouselePropsType> = ({ clientLogos }) => {
-  const [emblaRef, emblaApi] = useEmblaCarousel(options, [
-    AutoScroll({
-      playOnInit: true,
-      startDelay: 0,
-      speed: 1,
-      stopOnInteraction: false,
-    }),
-  ])
+  const [emblaRef, emblaApi] = useEmblaCarousel(options, plugins)
 
   useEffect(() => {
     const autoScroll = emblaApi?.plugins()?.autoScroll
@@ -35,7 +37,7 @@ export const ClientsCarousele: React.FC<ClientsCarouselePropsType> = ({ clientLo
       <div className={'flex items-center gap-[80px]'}>
         {[...clientLogos, ...clientLogos, ...clientLogos, ...clientLogos, ...clientLogos].map((logo, index) => (
           <div className={'relative shrink-0 grow-0 max-w-full'} key={index}>
-            <img src={logo} loading="lazy" decoding="async" className="select-none pointer-events-none" />
+            <img src={logo} loading="lazy" className="select-none pointer-events-none" />
           </div>
         ))}
       </div>

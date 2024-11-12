@@ -4,16 +4,15 @@ import BaseLayout from './BaseLayout.astro'
 import Footer from '../components/layout/Footer/Footer.astro'
 import Header from '../components/layout/Header/Header.astro'
 
-type Props = {
-  metaTitle?: string
-  metaDesc?: string
-  metaUrl?: string
+export type Props = {
+  meta?: MetaProps
 }
 
-const { metaTitle = 'flightcore.pl', metaDesc = 'Hello from flightcore.pl', metaUrl = Astro.url.pathname } = Astro.props
+const { meta } = Astro.props
 ---
 
-<BaseLayout metaTitle={metaTitle} metaDesc={metaDesc} metaUrl={metaUrl}>
+<BaseLayout meta={meta}>
+  <slot name="head" slot="head" />
   <Header transition:persist />
   <main>
     <slot />

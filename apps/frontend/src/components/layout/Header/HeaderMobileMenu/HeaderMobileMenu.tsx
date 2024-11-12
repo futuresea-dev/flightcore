@@ -1,4 +1,4 @@
-import { CloseSVG, useTransition } from '@flightcore/uikit'
+import { CloseSVG, useDevice, useTransition } from '@flightcore/uikit'
 import clsx from 'clsx'
 import { useMemo, type FC, type PropsWithChildren } from 'react'
 import { toggleMobileMenuOverlay, useShowMobileMenuOverlay } from '../HeaderStore'
@@ -8,9 +8,13 @@ import styles from './HeaderMobileMenu.module.css'
 export const HeaderMobileMenu: FC<PropsWithChildren> = ({ children }) => {
   const showMobileMenuOverlay = useShowMobileMenuOverlay()
 
+  const { isDesktop } = useDevice()
+
+  const transitionIn = useMemo(() => showMobileMenuOverlay && isDesktop === false, [showMobileMenuOverlay, isDesktop])
+
   const { transitionState } = useTransition({
-    transitionIn: showMobileMenuOverlay,
-    duration: 100,
+    transitionIn,
+    duration: 150,
   })
 
   const transitionClassName = useMemo(
@@ -24,10 +28,8 @@ export const HeaderMobileMenu: FC<PropsWithChildren> = ({ children }) => {
     [transitionState],
   )
 
-  if (showMobileMenuOverlay === false && transitionState === 'exited') return null
-
   return (
-    <div id="mobile-meu-overlay" className={clsx(styles.root, transitionClassName)}>
+    <div id="mobile-menu-overlay" data-hidden={!transitionIn} className={clsx(styles.root, transitionClassName)}>
       <button role="button" onClick={toggleMobileMenuOverlay} className="absolute top-0 right-0 p-4 text-green">
         <CloseSVG />
       </button>

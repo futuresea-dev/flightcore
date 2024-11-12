@@ -1,8 +1,35 @@
-import { clientCollection, pricesCollection, quotesCollection, studioCollection } from '../collections'
+import { defineCollection } from 'astro:content'
+import { clientScehma, offerSchema, pricesSchema, studioSchema, voucherSchema } from '../schemas'
+
+const studioCollection = defineCollection({
+  type: 'data',
+  schema: studioSchema,
+})
+
+const clientCollection = defineCollection({
+  type: 'data',
+  schema: clientScehma,
+})
+
+const pricesCollection = defineCollection({
+  type: 'data',
+  schema: pricesSchema,
+})
+
+const voucherCollection = defineCollection({
+  type: 'data',
+  schema: voucherSchema,
+})
+
+const offerCollection = defineCollection({
+  type: 'content',
+  schema: offerSchema,
+})
 
 export const collections = {
   studio: studioCollection,
-  client: clientCollection,
-  quotes: quotesCollection,
+  clients: clientCollection,
   prices: pricesCollection,
+  vouchers: voucherCollection,
+  offers: offerCollection,
 }

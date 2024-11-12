@@ -1,0 +1,21 @@
+---
+import BaseLayout from './BaseLayout.astro'
+
+import Footer from '../components/layout/Footer/Footer.astro'
+import Header from '../components/layout/Header/Header.astro'
+---
+
+<BaseLayout>
+  <Header transition:persist />
+  <main>
+    <slot />
+    <!-- TODO: Display Contact Form -->
+  </main>
+  <Footer transition:persist />
+</BaseLayout>
+
+<style>
+  main {
+    @apply text-blue-lightest overflow-x-hidden overflow-y-auto;
+  }
+</style>

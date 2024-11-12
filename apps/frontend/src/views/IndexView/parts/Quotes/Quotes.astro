@@ -10,7 +10,7 @@ const { data: quotes } = await getEntry('quotes', 'pl/index')
     <h3 class="title">Rekomendują</h3>
     <p class="subtitle">Wiemy, że nie czytasz, ale poniżej kilka opinii ludzi, którzy skorzystali...</p>
   </div>
-  <QuotesCarousele quotes={quotes} client:idle />
+  <QuotesCarousele quotes={quotes} client:only="react" />
 </section>
 
 <style>

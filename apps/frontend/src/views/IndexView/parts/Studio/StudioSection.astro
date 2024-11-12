@@ -1,0 +1,102 @@
+---
+import { getCollection } from 'astro:content'
+import { MarkText } from '@flightcore/uikit'
+
+import { StudioCard } from './StudioCard/StudioCard'
+import { StudioDialog } from './StudioDialog/StudioDialog'
+import { getImage } from 'astro:assets'
+
+const studiosCollection = await getCollection('studio')
+const studiosAssets = import.meta.glob<ImageMetadata>(`/src/assets/studio/**/*`, { eager: true, import: 'default' })
+
+async function optimizeStudioImage(source: string, widths = [320, 720, 1280, 720]) {
+  const glob = studiosAssets[source]
+  if (!glob) throw new Error(`Invalid ${source} glob source`)
+  const optimizedImage = await getImage({
+    src: glob,
+    width: 320,
+    widths,
+  })
+  return optimizedImage
+}
+
+const optimizedStudioCollection = await Promise.all(
+  studiosCollection.map(async (entry) => ({
+    ...entry.data,
+    photos: await Promise.all(entry.data.photos.map((source) => optimizeStudioImage(source, [320, 720]))),
+    poster: await optimizeStudioImage(entry.data.poster),
+  })),
+)
+
+const middleIndex = Math.floor(optimizedStudioCollection.length / 2)
+---
+
+<section class="studios" transition:name="index-studios">
+  <div class="container mb-[76px]">
+    <h3 id="studios-title" class="studios__title" data-aos="fade" data-aos-anchor-placement="center-bottom">
+      Witamy na stronie Flightcore
+    </h3>
+    <p
+      id="studios-text"
+      class="studios__text"
+      data-aos="fade"
+      data-aos-anchor="#studios-title"
+      data-aos-anchor-placement="center-center">
+      Zespołu trzech studiów nagraniowych na Żoliborzu. Na początku mieliśmy tylko marzenia dziś pomagamy je spełniać również
+      innym. Nasze studia wyróżnia niepowtarzalna atmosfera, wykwalifikowany personel oraz światowy tor audio, o czym czym
+      przekonały się już tysiące artystów. <span
+        >Dołącz do ich grona - <MarkText
+          data-aos="fade-down"
+          data-aos-anchor="#studios-text"
+          data-aos-anchor-placement="center-center"
+          text="wesprzemy Cię przy procesie twórczym od A do Z."
+          className="font-medium"
+        /></span
+      >
+    </p>
+  </div>
+  <div class="container">
+    <h6
+      class="text-green-darker text-subtitle mb-[24px]"
+      data-aos="fade"
+      data-aos-anchor="#studios-title"
+      data-aos-anchor-placement="top-center">
+      Warszawa, ul. Mickiewicza 9
+    </h6>
+    <div id="studio-collection-row" class="lg:flex lg:gap-[25px]">
+      {
+        optimizedStudioCollection.map((entry, index) => (
+          <div
+            data-aos-offset="0"
+            data-aos-anchor="#studios-title"
+            data-aos-anchor-placement="top-center"
+            data-aos={index === middleIndex ? 'fade' : index > middleIndex ? 'fade-right' : 'fade-left'}>
+            <StudioCard mark={index === 0} studioCollectionEntry={entry} />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<StudioDialog client:only="react" />
+
+<style>
+  .studios {
+    @apply relative;
+    @apply py-[80px];
+  }
+  .studios__title {
+    @apply text-center text-heading3 mb-[40px];
+  }
+  .studios__text {
+    @apply text-center text-body1 lg:px-[100px];
+  }
+  .bg-icon {
+    @apply absolute z-0 text-extra-dark;
+    color: '#fff';
+    width: min(32.9vw, 474px);
+    top: -76px;
+    right: calc(-1 * calc(min(32.9vw, 474px) / 2));
+  }
+</style>

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://frontmatter.codes/frontmatter.schema.json",
+  "frontMatter.content.pageFolders": [
+    {
+      "title": "content",
+      "path": "[[workspace]]/apps/frontend/src/content"
+    }
+  ],
+  "frontMatter.content.publicFolder": "public",
+  "frontMatter.framework.id": "astro",
+  "frontMatter.preview.host": "http://localhost:4321"
+}

@@ -1,17 +1,16 @@
 ---
-import { getEntry } from 'astro:content'
-
 import { ClientsCarousele } from './Clients.Carousele'
 import { getImage } from 'astro:assets'
+import { getCollection } from 'astro:content'
 
-const clientsCollection = await getEntry('client', 'pl/index')
+const LANG_CODE = 'pl' // TODO: i18n
 
-const clientsLogosGlobs = import.meta.glob<ImageMetadata>('/src/assets/clients/**', { eager: true, import: 'default' })
+const clientsCollection = await getCollection('clients').then((c) => c.filter((e) => e.id.startsWith(LANG_CODE)))
+const clientsAssets = import.meta.glob<ImageMetadata>('/src/assets/clients/**', { eager: true, import: 'default' })
 
-const clientLogos = await Promise.all(
-  clientsCollection.data.map(async (entry) => {
-    const { logo } = entry
-    const optimizedImage = await getImage({ src: clientsLogosGlobs[logo] })
+const clientLogoList = await Promise.all(
+  clientsCollection.map(async ({ data: { logo } }) => {
+    const optimizedImage = await getImage({ src: clientsAssets[logo] })
     return optimizedImage.src
   }),
 )
@@ -20,7 +19,7 @@ const clientLogos = await Promise.all(
 <section class="clients" transition:name="index-clients">
   <h3 class="clients__title">Tworzyliśmy projekty z...</h3>
   <div class="clients__content">
-    <ClientsCarousele client:load clientLogos={clientLogos} />
+    <ClientsCarousele client:load clientLogos={clientLogoList} />
   </div>
 </section>
 

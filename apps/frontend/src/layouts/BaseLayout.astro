@@ -7,12 +7,17 @@ import '../styles/fonts.css'
 import '../styles/global.css'
 
 interface Props {
-  metaTitle: string
-  metaDesc: string
-  metaUrl: string
+  meta?: MetaProps
 }
 
-const { metaTitle, metaDesc, metaUrl } = Astro.props
+const {
+  meta = {
+    title: 'flightcore.pl',
+    description: '',
+    url: Astro.url.pathname,
+    image: '/brand-banner.jpg',
+  },
+} = Astro.props
 ---
 
 <!doctype html>
@@ -20,22 +25,25 @@ const { metaTitle, metaDesc, metaUrl } = Astro.props
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="description" content={metaDesc} />
-    <meta property="og:title" content={metaTitle} />
-    <meta property="og:description" content={metaDesc} />
+    <meta name="description" content={meta.description} />
+    <meta property="og:title" content={meta.title} />
+    <meta property="og:description" content={meta.description} />
     <meta property="og:image" content="/brand-banner.jpg" />
-    <meta property="og:url" content={metaUrl} />
+    <meta property="og:url" content={meta.url} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="YourSiteName" />
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="robots" content="noindex,follow" />
-    <title>{metaTitle}</title>
+    <title>{meta.title}</title>
     <link rel="preconnect" href="https://flightcore.pl/booking" />
     <link rel="icon" href="/favicon.png" sizes="192x192" />
+    <slot name="head" />
     <ViewTransitions />
   </head>
   <body class="bg-blue-dark">
-    <div id="viewport"><slot /></div>
+    <div id="viewport">
+      <slot />
+    </div>
     <div id="portal"></div>
     <BookingModal transition:persist client:only="react" />
     <div id="overlay" class="hidden">

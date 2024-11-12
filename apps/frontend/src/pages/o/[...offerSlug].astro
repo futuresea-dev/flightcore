@@ -1,0 +1,37 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content'
+import OfferLayout from '../../layouts/OfferLayout.astro'
+import { Image } from 'astro:assets'
+
+export const prerender = true
+
+export async function getStaticPaths() {
+  const LANG_CODE = 'pl' // TODO: i18n
+
+  return getCollection('offers').then((data) =>
+    data
+      .filter(({ id }) => id.startsWith(LANG_CODE))
+      .map((offer) => ({
+        params: {
+          offerSlug: offer.slug,
+        },
+        props: {
+          offerEntry: offer,
+        },
+      })),
+  )
+}
+
+export type Props = {
+  offerEntry: CollectionEntry<'offers'>
+}
+
+const { offerEntry } = Astro.props
+
+const { Content } = await offerEntry.render()
+---
+
+<OfferLayout>
+  <Image src={offerEntry.data.imageLarge} alt="" />
+  <Content />
+</OfferLayout>

@@ -18,9 +18,12 @@ import { HeaderMobileMenu } from './HeaderMobileMenu/HeaderMobileMenu'
     <Icon name="hamburger" width={24} height={24} class="block" />
   </button>
   <script>
+    import { hideMobileMenuOverlay } from './HeaderStore'
     import { toggleMobileMenuOverlay } from './HeaderStore'
-
-    document.getElementById('hamburger')?.addEventListener('click', toggleMobileMenuOverlay)
+    document.addEventListener('astro:before-swap', hideMobileMenuOverlay)
+    document.addEventListener('astro:page-load', function () {
+      document.getElementById('hamburger')?.addEventListener('click', toggleMobileMenuOverlay)
+    })
   </script>
 </HeaderBase>
 
@@ -32,11 +35,6 @@ import { HeaderMobileMenu } from './HeaderMobileMenu/HeaderMobileMenu'
     </nav>
   </div>
 </HeaderMobileMenu>
-
-<script>
-  import { hideMobileMenuOverlay } from './HeaderStore'
-  document.addEventListener('astro:before-swap', hideMobileMenuOverlay)
-</script>
 
 <style>
   :global(.mobile-navigation) {

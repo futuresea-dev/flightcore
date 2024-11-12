@@ -5,6 +5,8 @@
     "jsxImportSource": "react",
     "moduleResolution": "Bundler",
     "allowJs": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "verbatimModuleSyntax": true,
+    "typeRoots": ["./src/typescript"]
   }
 }

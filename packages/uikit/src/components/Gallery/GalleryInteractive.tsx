@@ -48,8 +48,14 @@ export const GalleryItem: FC<{ index: number; item: GalleryItemType; onClick: ()
     <div
       tabIndex={0}
       onClick={onClick}
-      className={'relative w-[242px] h-[240px] ratio-[242/240] shrink-0 grow-0 max-w-full ' + className}>
-      <img src={src} loading="lazy" decoding="async" className="select-none pointer-events-none" alt={title} />
+      className={'cursor-pointer relative w-[242px] h-[240px] ratio-[242/240] shrink-0 grow-0 max-w-full ' + className}>
+      <img
+        src={src}
+        loading="lazy"
+        decoding="async"
+        className="object-cover w-full h-full select-none pointer-events-none"
+        alt={title}
+      />
     </div>
   )
 }

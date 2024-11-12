@@ -1,4 +1,3 @@
-import type { CollectionEntry } from 'astro:content'
 import type { EmblaCarouselType, EmblaEventType, EmblaOptionsType } from 'embla-carousel'
 import EmblaClassNames from 'embla-carousel-class-names'
 import useEmblaCarousel from 'embla-carousel-react'
@@ -9,7 +8,7 @@ import { QuoteCard } from '../QuoteCard/QuoteCard'
 import styles from './QuotesCarousele.module.css'
 
 type QuotesCarouselePropsType = {
-  quotes: CollectionEntry<'quotes'>['data']
+  quotes: { text: string; author: string }[]
 }
 
 const options: EmblaOptionsType = {

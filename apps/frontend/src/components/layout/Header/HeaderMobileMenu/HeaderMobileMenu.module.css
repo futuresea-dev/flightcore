@@ -1,17 +1,21 @@
 .root {
   @apply fixed inset-0 backdrop-blur-sm bg-blue-dark bg-opacity-75 z-50;
-  @apply transition duration-[100ms];
+  @apply transition duration-[150ms];
+  @apply lg:hidden;
 }
 
 .root--entered {
   @apply opacity-100;
 }
+
 .root--entering {
   @apply opacity-100;
 }
+
 .root--exited {
-  @apply opacity-0;
+  @apply opacity-0 hidden;
 }
+
 .root--exiting {
   @apply opacity-0;
 }

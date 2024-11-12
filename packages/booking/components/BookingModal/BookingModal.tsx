@@ -63,7 +63,7 @@ export const BookingModalInner = ({ onRequestsClose }: { onRequestsClose: () => 
     <div className="w-full h-full overflow-auto">
       <div
         onClick={onRequestsClose}
-        className={clsx('flex justify-center items-center min-h-full', transitionClassName)}
+        className={clsx('flex justify-center items-center w-full h-full', transitionClassName)}
         style={
           {
             ...(width && { '--frame-width': `${width}px` }),
@@ -73,11 +73,10 @@ export const BookingModalInner = ({ onRequestsClose }: { onRequestsClose: () => 
         <iframe
           ref={iframeRef}
           src={import.meta.env.PUBLIC_BOOKING_IFRAME_SRC}
-          className={clsx('relative z-10 w-full')}
+          className={clsx('relative z-10')}
           style={{
-            maxWidth: `min(var(--frame-width, 900px), 100%)`,
+            width: `min(var(--frame-width, 900px), 100%)`,
             height: `var(--frame-height, 600px)`,
-            minHeight: ` (--frame-height, 600px)`,
             visibility: showFrame ? 'visible' : 'hidden',
           }}
           onClick={(e) => e.stopPropagation()}
