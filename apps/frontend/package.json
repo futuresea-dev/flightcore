@@ -4,16 +4,20 @@
   "type": "module",
   "scripts": {
     "astro": "astro",
-    "dev": "astro dev",
     "start": "astro start",
     "check": "astro check",
-    "build": "astro build && pnpm optimize:fonts",
-    "preview": "astro preview",
-    "optimize:fonts": "subfont -ir --root dist",
+    "dev": "dotenvx run -f .env.development -- astro dev",
+    "build": "dotenvx run --verbose -- astro build",
+    "build:production": "dotenvx run -f .env.production --verbose -- astro build",
+    "build:prerelease": "dotenvx run -f .env.prerelease --verbose -- astro build",
+    "build:development": "dotenvx run -f .env.development --verbose -- astro build",
+    "preview": "node dist/server/entry.mjs",
+    "optimize:fonts": "subfont -ir",
     "format": "prettier --write .",
     "make:env": "sh make-dot-env.sh",
     "inject:env": "dotenvx run",
-    "lint": "eslint"
+    "lint": "eslint",
+    "postinstall": "pnpm make:env"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",

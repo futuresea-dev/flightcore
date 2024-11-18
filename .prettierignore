@@ -6,12 +6,16 @@ pgadmin-data/**
 db-data
 db-data/**
 
-.jpg
-.png
-.webp
-.svg
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.svg
+*.webp
 
 .vscode
 
 .pnpm-store
 .pnpm-lock.yaml
+

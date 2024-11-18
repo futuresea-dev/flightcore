@@ -9,8 +9,7 @@ import { defineConfig } from 'astro/config'
 
 // https://astro.build/config
 export default defineConfig({
-  // site: 'https://flightcore.raqz.link',
-  site: 'https://localhost:4321',
+  site: process.env.BASE_FQDN,
   experimental: {},
   i18n: {
     defaultLocale: 'pl',
