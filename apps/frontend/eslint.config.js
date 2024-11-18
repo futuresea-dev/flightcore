@@ -1,25 +1,43 @@
-import eslintPluginAstro from 'eslint-plugin-astro'
-import * as mdx from 'eslint-plugin-mdx'
-import prettier from 'eslint-plugin-prettier/recommended'
-import configBase from '../../eslint.config.base.mjs'
+import astroPlugin from 'eslint-plugin-astro'
+import * as mdxPlugin from 'eslint-plugin-mdx'
+import reactPlugin from 'eslint-plugin-react'
+import configBase from '../../eslint.config.js'
 
 export default [
   ...configBase,
-  prettier,
-  ...eslintPluginAstro.configs.recommended,
+  ...astroPlugin.configs.recommended,
   {
-    ...mdx.flat,
+    ...reactPlugin.configs.flat.recommended,
+    files: ['**/*.{js,ts,jsx,tsx}'],
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
+    rules: {
+      ...reactPlugin.configs.flat.recommended.rules,
+      'react/react-in-jsx-scope': 'off',
+      'react/jsx-uses-react': 'off',
+      'react/jsx-uses-vars': 'off',
+    },
   },
   {
-    ...mdx.flatCodeBlocks,
+    ...mdxPlugin.flat,
   },
   {
-    ignores: ['dist/*', '.astro/*', 'public/*', 'astro.config.mjs', 'src/env.d.ts', 'src/paraglide'],
+    ...mdxPlugin.flatCodeBlocks,
   },
   {
     files: ['**/*.mdx'],
     rules: {
-      '@typescript-eslint/no-unused-vars': 'off', // Disable the unused vars rule for MDX files
+      ...mdxPlugin.configs.recommended.rules,
+      'react/react-in-jsx-scope': 'off',
+      'react/jsx-uses-react': 'off',
+      'react/jsx-uses-vars': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
     },
+  },
+  {
+    ignores: ['dist/*', '.astro/*', 'public/*', 'src/env.d.ts', 'node_modules/*'],
   },
 ]

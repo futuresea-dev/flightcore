@@ -17,7 +17,7 @@ const pricesCollection = defineCollection({
 })
 
 const voucherCollection = defineCollection({
-  type: 'data',
+  type: 'content',
   schema: voucherSchema,
 })
 

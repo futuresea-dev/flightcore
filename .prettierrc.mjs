@@ -5,7 +5,7 @@ const config = {
   bracketSameLine: true,
   semi: false,
   printWidth: 130,
-  plugins: ["prettier-plugin-organize-imports"]
+  plugins: ['prettier-plugin-organize-imports'],
 }
 
 export default config

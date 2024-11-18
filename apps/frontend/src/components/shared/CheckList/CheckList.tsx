@@ -18,9 +18,9 @@ export const CheckList: React.FC<CheckListPropsType & React.HTMLAttributes<HTMLD
               <path
                 d="M6 12.641L10.7436 17.3845L18.3333 6"
                 stroke="white"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </div>
