@@ -25,19 +25,20 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="description" content={meta.description} />
-    <meta property="og:title" content={meta.title} />
-    <meta property="og:description" content={meta.description} />
-    <meta property="og:image" content="/brand-banner.jpg" />
-    <meta property="og:url" content={meta.url} />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="YourSiteName" />
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="robots" content="noindex,follow" />
-    <title>{meta.title}</title>
-    <link rel="preconnect" href="https://flightcore.pl/booking" />
     <link rel="icon" href="/favicon.png" sizes="192x192" />
-    <slot name="head" />
+    <slot name="meta">
+      <title>{meta.title}</title>
+      <link rel="preconnect" href={import.meta.env.PUBLIC_BOOKING_IFRAME_SRC} />
+      <meta name="description" content={meta.description} />
+      <meta property="og:title" content={meta.title} />
+      <meta property="og:description" content={meta.description} />
+      <meta property="og:image" content="/brand-banner.jpg" />
+      <meta property="og:url" content={meta.url} />
+      <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="YourSiteName" />
+    </slot>
     <ViewTransitions />
   </head>
   <body class="bg-blue-dark">
@@ -55,7 +56,7 @@ const {
           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
         ></path>
       </svg>
-    </div>
+    </div>w
   </body>
 </html>
 
