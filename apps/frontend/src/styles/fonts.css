@@ -1,6 +1,7 @@
 @font-face {
   font-family: 'Tactic Round';
-  src: url('/assets/fonts/Tactic Round Bld.otf') format('opentype');
+  src: url('/assets/fonts/Tactic Round Bld.woff2') format('woff2'),
+       url('/assets/fonts/Tactic Round Bld.otf') format('opentype');
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -8,7 +9,8 @@
 
 @font-face {
   font-family: 'Tactic Round';
-  src: url('/assets/fonts/Tactic Round Blk.otf') format('opentype');
+  src: url('/assets/fonts/Tactic Round Blk.woff2') format('woff2'),
+       url('/assets/fonts/Tactic Round Blk.otf') format('opentype');
   font-weight: 900;
   font-style: normal;
   font-display: swap;
@@ -16,7 +18,8 @@
 
 @font-face {
   font-family: 'Tactic Round';
-  src: url('/assets/fonts/Tactic Round Lgt.otf') format('opentype');
+  src: url('/assets/fonts/Tactic Round Lgt.woff2') format('woff2'),
+       url('/assets/fonts/Tactic Round Lgt.otf') format('opentype');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -24,7 +27,8 @@
 
 @font-face {
   font-family: 'Tactic Round';
-  src: url('/assets/fonts/Tactic Round Med.otf') format('opentype');
+  src: url('/assets/fonts/Tactic Round Med.woff2') format('woff2'),
+       url('/assets/fonts/Tactic Round Med.otf') format('opentype');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -32,7 +36,8 @@
 
 @font-face {
   font-family: 'Tactic Round';
-  src: url('/assets/fonts/Tactic Round Reg.otf') format('opentype');
+  src: url('/assets/fonts/Tactic Round Reg.woff2') format('woff2'),
+       url('/assets/fonts/Tactic Round Reg.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -40,7 +45,8 @@
 
 @font-face {
   font-family: 'Tactic Round';
-  src: url('/assets/fonts/Tactic Round Thn.otf') format('opentype');
+  src: url('/assets/fonts/Tactic Round Thn.woff2') format('woff2'),
+       url('/assets/fonts/Tactic Round Thn.otf') format('opentype');
   font-weight: 100;
   font-style: normal;
   font-display: swap;
@@ -48,7 +54,8 @@
 
 @font-face {
   font-family: 'Tactic Round';
-  src: url('/assets/fonts/Tactic Round Ult.otf') format('opentype');
+  src: url('/assets/fonts/Tactic Round Ult.woff2') format('woff2'),
+       url('/assets/fonts/Tactic Round Ult.otf') format('opentype');
   font-weight: 200;
   font-style: normal;
   font-display: swap;

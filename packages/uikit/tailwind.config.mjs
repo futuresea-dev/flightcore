@@ -97,6 +97,7 @@ export default {
         'blue-medium': '#243447',
         'blue-light': '#BACBDA',
         'blue-lightest': '#DBE2E6',
+        'blue-extra': '#324760',
         green: '#38D430',
         'green-dark': '#2CA926',
         'green-darker': '#217F1C',

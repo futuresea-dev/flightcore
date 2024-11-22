@@ -1,4 +1,3 @@
-export * from './backupInput'
 export * from './Checkbox'
 export * from './EmailInput'
 export * from './Input'

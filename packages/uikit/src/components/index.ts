@@ -1,3 +1,4 @@
+export * from './AudioPlayer'
 export * from './Button'
 export * from './Card'
 export * from './CardModal'
