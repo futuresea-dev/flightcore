@@ -19,4 +19,10 @@ export default [
       'no-irregular-whitespace': 0,
     },
   },
+  {
+    files: ['**/*.cjs'],
+    rules: {
+      '@typescript-eslint/no-require-imports': 0,
+    },
+  },
 ]

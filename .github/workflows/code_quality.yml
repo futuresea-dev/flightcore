@@ -5,22 +5,20 @@ on:
     branches:
       - main
   pull_request:
-    
+
 jobs:
   code_quality:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
         node-version: [20]
-
     steps:
       - uses: actions/checkout@v4
-
       - name: Code Setup
         uses: ./.github/actions/code-setup
-
-      - name: Lint
-        run: pnpm lint
-
-      - name: Build
+      - name: Code Quality
+        run: |
+          pnpm frontend format:check
+          pnpm frontend lint
+      - name: Frontend Build
         run: pnpm frontend build

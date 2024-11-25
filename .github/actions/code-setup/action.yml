@@ -5,24 +5,20 @@ runs:
   using: 'composite'
   steps:
     - uses: actions/checkout@v4
-
     - name: Read Node.js version from .nvmrc
       id: read-node-version
       shell: bash
       if: ${{ inputs.node-version == '' }}
       run: echo "node-version=$(cat .nvmrc)" >> $GITHUB_ENV
-
     - name: Setup Node.js
       id: setup-node
       uses: actions/setup-node@v4
       with:
         node-version: ${{ steps.read-node-version.outputs.node-version }}
-
     - name: Install pnpm
       uses: pnpm/action-setup@v4
       with:
         version: 9
-
     - name: Cache node_modules directory
       uses: actions/cache@v2
       with:
@@ -32,7 +28,6 @@ runs:
         key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
         restore-keys: |
           ${{ runner.os }}-node-modules
-
     - name: Install Dependencies
       shell: bash
       run: |

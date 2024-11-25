@@ -14,6 +14,7 @@
     "preview": "node dist/server/entry.mjs",
     "optimize:fonts": "subfont -ir",
     "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "make:env": "NODE_ENV=${NODE_ENV:-development} sh make-dot-env.sh",
     "inject:env": "dotenvx run",
     "lint": "eslint",

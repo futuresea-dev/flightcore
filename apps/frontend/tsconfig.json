@@ -1,5 +1,5 @@
 {
-  "extends": "./node_modules/astro/tsconfigs/strict",
+  "extends": "./node_modules/astro/tsconfigs/strict.json",
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "react",
@@ -7,6 +7,8 @@
     "allowJs": true,
     "strictNullChecks": true,
     "verbatimModuleSyntax": true,
-    "typeRoots": ["./src/typescript"]
+    "typeRoots": ["./src/typescript"],
+    "allowSyntheticDefaultImports": true,
+    "paths": {}
   }
 }
