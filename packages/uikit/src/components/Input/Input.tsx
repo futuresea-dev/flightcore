@@ -1,11 +1,12 @@
 import clsx from 'clsx'
-import React, { forwardRef, useCallback, useEffect, useState } from 'react'
+import React, { forwardRef, useCallback, useEffect, useState, type ClassAttributes, type InputHTMLAttributes } from 'react'
 
-export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
-  label?: string
-  validate?: (value: string) => boolean
-  onValidationChange?: (isValid: boolean) => void
-}
+export type InputProps = InputHTMLAttributes<HTMLInputElement> &
+  ClassAttributes<HTMLInputElement> & {
+    label?: string
+    validate?: (value: string) => boolean
+    onValidationChange?: (isValid: boolean) => void
+  }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ className, label, validate, onValidationChange, ...props }, ref) => {

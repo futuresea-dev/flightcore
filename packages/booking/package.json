@@ -6,14 +6,14 @@
   "version": "1.0.0",
   "scripts": {},
   "dependencies": {
-    "react": "^18.3.1"
+    "react": "^18.3.1",
+    "@flightcore/uikit": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^18.3.12",
     "typescript": "5.5.4"
   },
   "peerDependencies": {
-    "@flightcore/uikit": "workspace:*",
     "@nanostores/react": "^0.7.3",
     "clsx": "^2.1.1",
     "nanostores": "^0.11.3",

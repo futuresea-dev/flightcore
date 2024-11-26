@@ -71,7 +71,7 @@ const middleIndex = Math.floor(optimizedStudioCollection.length / 2)
             data-aos-anchor="#studios-title"
             data-aos-anchor-placement="top-center"
             data-aos={index === middleIndex ? 'fade' : index > middleIndex ? 'fade-right' : 'fade-left'}>
-            <StudioCard mark={index === 0} studioCollectionEntry={entry} />
+            <StudioCard client:load mark={index === 0} studioCollectionEntry={entry} />
           </div>
         ))
       }

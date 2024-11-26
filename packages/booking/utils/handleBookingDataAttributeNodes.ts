@@ -1,5 +1,4 @@
-
-import { modalController as bookingModalController } from "../components/BookingModal/BookingModal"
+import { modalController as bookingModalController } from '../components/BookingModal/BookingModal'
 
 export function handleBookingDataAttributeNodes() {
   document.querySelectorAll('[data-booking-button]').forEach((node) => {
