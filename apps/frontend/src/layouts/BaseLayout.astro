@@ -61,14 +61,14 @@ const {
 </html>
 
 <script>
-  import { show, hide } from '@flightcore/uikit/src/components/LoaderOverlay/LoaderOverlayController'
+  import { LoaderOverlayController } from '@flightcore/uikit'
   // Shows <LoaderOverlay /> on route change
   document.addEventListener('astro:before-preparation', async (ev) => {
     const originalLoader = ev.loader
     ev.loader = async function () {
-      show()
+      LoaderOverlayController.show()
       await originalLoader()
-      hide()
+      LoaderOverlayController.hide()
     }
   })
 </script>

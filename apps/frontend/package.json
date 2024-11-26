@@ -18,7 +18,7 @@
     "format:check": "prettier --check .",
     "make:env": "NODE_ENV=${NODE_ENV:-development} sh scripts/make-dot-env.sh",
     "inject:env": "dotenvx run",
-    "lint": "eslint",
+    "lint": "eslint .",
     "postinstall": "pnpm make:env"
   },
   "dependencies": {
