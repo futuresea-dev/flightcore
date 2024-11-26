@@ -15,7 +15,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Tactic Round'],
+        sans: ['Tactic Round', 'Arial Rounded MT', 'Arial', 'sans-serif'],
       },
       fontSize: {
         heading1: [

@@ -11,7 +11,7 @@ RUN corepack enable
 COPY . /app
 WORKDIR /app
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
-RUN pnpm run build:production
+RUN pnpm run astro build
 
 EXPOSE 4321
 

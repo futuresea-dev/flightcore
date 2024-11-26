@@ -31,7 +31,7 @@ export const ConsentField: FC<ConsentFieldProps> = ({ control }) => {
           Wyrażam zgodę na przetwarzanie moich danych osobowych przez Flightcore Studios w celu obsługi zapytania przesłanego za
           pośrednictwem formularza kontaktowego, zgodnie z obowiązującymi przepisami prawa. Szczegółowe informacje na temat
           przetwarzania danych znajdują się w{' '}
-          <a className="transition-colors hover:text-green-accent text-green font-semibold" href="/">
+          <a className="transition-colors hover:text-green-accent text-green font-semibold" href="/privacy-policy">
             Polityce Prywatności
           </a>
           .
