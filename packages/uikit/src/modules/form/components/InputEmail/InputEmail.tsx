@@ -1,8 +1,8 @@
 import { forwardRef } from 'react'
-import { TextInput, type TextInputProps } from '../TextInput/TextInput'
+import { InputText, type InputTextPropsType } from '../InputText/InputText'
 
-export const InputEmail = forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
-  return <TextInput {...props} ref={ref} type="email" />
+export const InputEmail = forwardRef<HTMLInputElement, InputTextPropsType>((props, ref) => {
+  return <InputText {...props} ref={ref} type="email" />
 })
 
 InputEmail.displayName = 'InputEmail'

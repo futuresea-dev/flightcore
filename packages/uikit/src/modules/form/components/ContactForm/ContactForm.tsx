@@ -40,7 +40,7 @@ export const ContactForm: React.FC = () => {
     <form
       onSubmit={handleSubmit(onFormSubmit)}
       className="mt-12 flex w-full flex-col items-center justify-between rounded-[30px] border-2 border-blue-medium p-8 md:mt-0 md:w-[520px] h-auto">
-      <div className="w-full space-y-6">
+      <div className="flex flex-col gap-6 w-full">
         <FirstNameField control={control} />
         <LastNameField control={control} />
         <EmailField control={control} />

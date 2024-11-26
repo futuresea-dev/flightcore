@@ -18,7 +18,7 @@ export type PhoneInputProps = InputHTMLAttributes<HTMLInputElement> &
 
 export const PhoneInput = forwardRef<PhoneInputProps & React.RefAttributes<PhoneInputRefType>, PhoneInputProps>(
   ({ error, ...props }, ref) => {
-    const [{ touched, focused }, events] = useInput(props)
+    const [{ touched: touched, focused }, events] = useInput(props)
 
     const isValid = touched === true && error === false
 

@@ -36,3 +36,12 @@ html:has(#mobile-menu-overlay[data-hidden='false']) {
   height: 100%;
   width: auto;
 }
+
+a {
+  color: theme('colors.green');
+  transition: color 100ms linear;
+}
+
+a:hover {
+  color: theme('colors.green-accent');
+}

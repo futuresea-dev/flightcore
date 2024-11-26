@@ -1,0 +1,12 @@
+---
+import { getEntry } from 'astro:content'
+import ArticleLayout from '../layouts/ArticleLayout.astro'
+
+const privacyPolicyEntry = await getEntry('articles', 'privacy-policy')
+
+const { Content } = await privacyPolicyEntry.render()
+---
+
+<ArticleLayout>
+  <Content />
+</ArticleLayout>

@@ -5,14 +5,6 @@ import { useCallback, useMemo, useState, type ClassAttributes, type FocusEvent, 
  *
  * @param inputProps - The properties of the input element, including optional error state.
  * @returns An array containing the input state and event handlers for focus and blur events.
- *
- * @typedef {Object} InputState
- * @property {boolean} focused - Indicates if the input is currently focused.
- * @property {boolean} touched - Indicates if the input has been touched (blurred at least once).
- *
- * @callback UseInput
- * @param {InputHTMLAttributes<HTMLInputElement> & ClassAttributes<HTMLInputElement> & { error?: boolean }} inputProps - The properties of the input element.
- * @returns {[InputState, { onFocus: (e: FocusEvent<HTMLInputElement, Element>) => void, onBlur: (e: FocusEvent<HTMLInputElement, Element>) => void }]}
  */
 export const useInput: UseInput = (inputProps) => {
   const [state, setState] = useState<InputState>(defaultState)
@@ -35,13 +27,16 @@ export const useInput: UseInput = (inputProps) => {
 
   return useMemo(
     () => [
-      state,
+      {
+        ...state,
+        focused: state.focused || !!inputProps.value,
+      },
       {
         onFocus: handleOnFocus,
         onBlur: handleOnBlur,
       },
     ],
-    [state, handleOnFocus, handleOnBlur],
+    [state, handleOnFocus, handleOnBlur, inputProps.value],
   )
 }
 
@@ -58,12 +53,12 @@ export type UseInput = (
   },
 ]
 
-type InputState = {
+export type InputState = {
   focused: boolean
   touched: boolean
 }
 
-const defaultState: InputState = {
+export const defaultState: InputState = {
   focused: false,
   touched: false,
 }

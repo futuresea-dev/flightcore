@@ -7,7 +7,6 @@ export const prerender = true
 
 export async function getStaticPaths() {
   const LANG_CODE = 'pl' // TODO: i18n
-
   return getCollection('offers').then((data) =>
     data
       .filter(({ id }) => id.startsWith(LANG_CODE))

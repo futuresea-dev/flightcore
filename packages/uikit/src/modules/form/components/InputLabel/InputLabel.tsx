@@ -1,16 +1,20 @@
 import clsx from 'clsx'
-import type { FC, PropsWithChildren } from 'react'
+import type { DetailedHTMLProps, FC, PropsWithChildren } from 'react'
 
-export const InputLabel: FC<PropsWithChildren> = ({ children: label }) => {
+export type InputLabelPropsType = DetailedHTMLProps<React.LabelHTMLAttributes<HTMLLabelElement>, HTMLLabelElement> & {
+  active?: boolean
+}
+
+export const InputLabel: FC<PropsWithChildren<InputLabelPropsType>> = ({ children: label, active, ...props }) => {
   return (
     <label
+      {...props}
       className={clsx(
-        'absolute left-3 text-blue-light text-lg transition-all duration-200 bg-extra-dark px-2',
-        'pointer-events-none select-none',
-        // {
-        //   'top-4': !isFocused && !value,
-        //   'top-[8px] left-2 text-xs': isFocused || value,
-        // },
+        'top-0 px-[16px] block absolute',
+        'text-body1 transition-[font-size,line-height] transition-linear duration-200',
+        active === true && 'text-blue-light text-caption',
+        active === false && 'text-blue-lightest text-body1',
+        props.className,
       )}>
       {label}
     </label>

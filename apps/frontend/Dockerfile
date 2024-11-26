@@ -15,4 +15,4 @@ RUN pnpm run build
 
 EXPOSE 4321
 
-CMD ["node", "/app/apps/frontend/dist//server/entry.mjs"]
+CMD ["node", "/app/apps/frontend/dist/server/entry.mjs"]
