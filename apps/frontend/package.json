@@ -8,7 +8,6 @@
     "check": "astro check",
     "dev": "dotenvx run -f .env.development -- astro dev",
     "build": "dotenvx run --verbose -- astro build",
-    "prebuild": "rm -rf dist",
     "build:production": "dotenvx run -f .env.production --verbose -- astro build",
     "build:prerelease": "dotenvx run -f .env.prerelease --verbose -- astro build",
     "build:development": "dotenvx run -f .env.development --verbose -- astro build",
@@ -28,6 +27,7 @@
     "@astrojs/react": "^3.6.3",
     "@astrojs/sitemap": "^3.2.1",
     "@astrojs/tailwind": "^5.1.2",
+    "@dotenvx/dotenvx": "^1.25.0",
     "@flightcore/booking": "workspace:*",
     "@flightcore/uikit": "workspace:*",
     "@nanostores/react": "^0.7.3",
@@ -40,6 +40,7 @@
     "axios": "^1.7.8",
     "blurhash": "^2.0.5",
     "clsx": "^2.1.1",
+    "daisyui": "^4.12.12",
     "embla-carousel": "^8.5.1",
     "embla-carousel-auto-scroll": "^8.5.1",
     "embla-carousel-autoplay": "^8.5.1",
@@ -47,10 +48,15 @@
     "embla-carousel-fade": "^8.5.1",
     "embla-carousel-react": "^8.5.1",
     "express": "^4.21.1",
+    "google-libphonenumber": "^3.2.39",
+    "ky": "^1.7.2",
     "nanostores": "^0.11.3",
     "photoswipe": "^5.4.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-google-recaptcha": "^3.1.0",
+    "react-hook-form": "^7.53.2",
+    "react-international-phone": "^4.3.0",
     "subfont": "^7.2.1",
     "typescript": "5.5.4"
   },
@@ -72,8 +78,5 @@
     "svgo": "^3.3.2",
     "typescript": "5.5.4",
     "typescript-eslint": "^8.16.0"
-  },
-  "peerDependencies": {
-    "@dotenvx/dotenvx": "^1.25.0"
   }
 }

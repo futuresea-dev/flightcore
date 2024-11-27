@@ -13,6 +13,7 @@
     "lint": "pnpm frontend lint && pnpm uikit lint && pnpm booking lint"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.15",
     "@eslint/js": "^9.15.0",
     "@types/eslint__js": "^8.42.3",
     "@types/react": "^18.3.12",

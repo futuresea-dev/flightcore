@@ -24,7 +24,14 @@ export default defineConfig({
     ssr: {
       noExternal: ['astro-icon', '@iconify/tools'],
     },
+    build: {
+      manifest: true,
+      rollupOptions: {
+        external: [],
+      },
+    },
   },
+
   prefetch: {
     prefetchAll: false,
     defaultStrategy: 'viewport',
