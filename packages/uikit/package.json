@@ -9,7 +9,6 @@
     "format": "prettier --write .",
     "lint": "eslint ."
   },
-  "dependencies": {},
   "devDependencies": {
     "@types/google-libphonenumber": "^7.4.30",
     "@types/react": "^18.3.12",
@@ -17,13 +16,13 @@
     "@types/react-google-recaptcha": "^2.1.9",
     "typescript": "5.5.4"
   },
-  "peerDependencies": {
+  "dependencies": {
+    "astro": "^4.16.6",
     "google-libphonenumber": "^3.2.39",
     "react-google-recaptcha": "^3.1.0",
     "react-international-phone": "^4.3.0",
     "ky": "^1.7.2",
     "@nanostores/react": "^0.7.3",
-    "astro": "^4.16.6",
     "clsx": "^2.1.1",
     "daisyui": "^4.12.12",
     "embla-carousel": "^8.3.0",

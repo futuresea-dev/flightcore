@@ -7,16 +7,18 @@
   },
   "scripts": {
     "frontend": "pnpm --filter @flightcore/frontend",
+    "frontend:build": "pnpm frontend build:production",
     "uikit": "pnpm --filter @flightcore/uikit",
     "booking": "pnpm --filter @flightcore/booking",
     "format": "pnpm frontend format && pnpm uikit format && pnpm booking format",
     "lint": "pnpm frontend lint && pnpm uikit lint && pnpm booking lint"
   },
   "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@types/eslint__js": "^8.42.3",
     "@tailwindcss/typography": "^0.5.15",
     "@eslint/js": "^9.15.0",
-    "@types/eslint__js": "^8.42.3",
-    "@types/react": "^18.3.12",
     "@typescript-eslint/parser": "^8.16.0",
     "eslint": "9.14.0",
     "eslint-config-prettier": "^9.1.0",
@@ -24,11 +26,13 @@
     "lodash": "^4.17.21",
     "prettier": "^3.3.3",
     "prettier-plugin-organize-imports": "^4.1.0",
-    "sharp": "^0.33.5",
     "typescript": "5.5.4",
     "typescript-eslint": "^8.16.0"
   },
   "dependencies": {
-    "@dotenvx/dotenvx": "^1.25.0"
+    "react": "^18.3.1",
+    "astro": "^4.16.14",
+    "@dotenvx/dotenvx": "^1.25.0",
+    "sharp": "^0.33.5"
   }
 }

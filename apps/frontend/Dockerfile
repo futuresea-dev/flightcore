@@ -1,36 +1,22 @@
-# Use a lightweight Node.js image
 FROM node:lts-slim
 
-# Set PNPM environment variables
-ENV PNPM_HOME=/pnpm
-ENV PATH=$PNPM_HOME:$PATH
+ARG PUBLIC_BOOKING_IFRAME_SRC
+ARG CONTACT_WEBHOOK_URL
+ARG CONTACT_WEBHOOK_TOKEN_KEY
+ARG CONTACT_WEBHOOK_TOKEN_VALUE
 
-# Enable Corepack and prepare PNPM
-RUN corepack enable && corepack prepare pnpm@latest --activate
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
 
-# Set the working directory for the workspace
-WORKDIR /workspace
+COPY . /app
+WORKDIR /app
 
-# Copy workspace-level files
-COPY pnpm-workspace.yaml package.json pnpm-lock.yaml ./
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 
-# Install workspace dependencies
-RUN pnpm install --frozen-lockfile
+RUN pnpm run frontend:build
 
-# Copy the entire workspace into the container
-COPY . .
-
-# Change to the frontend app directory
-WORKDIR /workspace/apps/frontend
-
-# Install frontend-specific dependencies
-RUN pnpm install --filter=@flightcore/frontend --frozen-lockfile
-
-# Build the frontend app
-RUN pnpm run build:production
-
-# Expose the port for the frontend app
 EXPOSE 4321
 
-# Start the SSR app
-CMD ["node", "dist/server/entry.mjs"]
+CMD ["node", "/app/apps/frontend/dist//server/entry.mjs"]
+

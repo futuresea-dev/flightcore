@@ -7,19 +7,16 @@
   "scripts": {},
   "dependencies": {
     "react": "^18.3.1",
+    "@nanostores/react": "^0.7.3",
+    "clsx": "^2.1.1",
+    "nanostores": "^0.11.3",
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^3.4.7",
     "@flightcore/uikit": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^18.3.12",
     "typescript": "5.5.4"
   },
-  "peerDependencies": {
-    "@nanostores/react": "^0.7.3",
-    "clsx": "^2.1.1",
-    "nanostores": "^0.11.3",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "tailwindcss": "^3.4.7"
-  },
-  "license": "MIT"
+  "license": "UNLICENSED"
 }
