@@ -16,5 +16,5 @@ export const MessageField: FC<MessageFieldProps> = ({ control }) => {
     control,
     name: 'message',
   })
-  return <Textarea name="message" value={value} onChange={onChange} onBlur={onBlur} error={!!error?.message} />
+  return <Textarea label="Wiadomosc" name="message" value={value} onChange={onChange} onBlur={onBlur} error={!!error?.message} />
 }

@@ -1,104 +1,48 @@
 import clsx from 'clsx'
-import { forwardRef, useCallback, useEffect, useState, type TextareaHTMLAttributes } from 'react'
+import { forwardRef, isValidElement, useMemo, type ClassAttributes, type InputHTMLAttributes } from 'react'
+import { InputLabel } from '../InputLabel'
+import type { InputTextSlotsType } from '../InputText'
 
-export type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
-  label?: string
-  error?: boolean
-  validate?: (value: string) => boolean
-  onValidationChange?: (isValid: boolean) => void
-}
+export type TextareaPropsType = InputHTMLAttributes<HTMLTextAreaElement> &
+  ClassAttributes<HTMLTextAreaElement> &
+  InputTextSlotsType & {
+    error?: boolean
+    valid?: boolean
+  }
 
-const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ className, label, validate, onValidationChange, onChange, value: propValue, ...props }, ref) => {
-    const [value, setValue] = useState((propValue as string) || '')
-    const [isFocused, setIsFocused] = useState(false)
-    const [error, setError] = useState(false)
-    const [touched, setTouched] = useState(false)
-    const [isValid, setIsValid] = useState(true)
+// 'flex w-full items-center justify-center rounded-[10px] px-4 py-5 text-lg text-blue-lightest bg-extra-dark border-2 h-[160px]',
+// 'focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 resize-none pt-8', // Added pt-8 to make room for the label
 
-    const validateTextarea = useCallback(
-      (inputValue: string) => {
-        if (validate) {
-          return validate(inputValue)
-        }
-        return inputValue.trim() !== ''
-      },
-      [validate],
-    )
-
-    useEffect(() => {
-      const validationResult = validateTextarea(value)
-      setIsValid(validationResult)
-      if (onValidationChange) {
-        onValidationChange(validationResult)
-      }
-    }, [value, validateTextarea, onValidationChange])
-
-    useEffect(() => {
-      setValue((propValue as string) || '')
-    }, [propValue])
-
-    const handleFocus = () => setIsFocused(true)
-    const handleBlur = () => {
-      setIsFocused(false)
-      setTouched(true)
-      const validationResult = validateTextarea(value)
-      setError(!validationResult)
-      setIsValid(validationResult)
+export const Textarea = forwardRef<HTMLTextAreaElement, TextareaPropsType>(({ error, valid, label, ...props }, ref) => {
+  const Label = useMemo(() => {
+    if (typeof label === 'string') {
+      return <InputLabel>{label}</InputLabel>
     }
+    if (isValidElement(label)) return label
+    return null
+  }, [label])
 
-    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-      const newValue = e.target.value
-      setValue(newValue)
-      if (touched) {
-        const validationResult = validateTextarea(newValue)
-        setError(!validationResult)
-        setIsValid(validationResult)
-      }
-      if (onChange) {
-        onChange(e)
-      }
-    }
-
-    return (
-      <div className="relative">
-        <textarea
-          className={clsx(
-            'flex w-full items-center justify-center rounded-[10px] px-4 py-5 text-lg text-blue-lightest bg-extra-dark border-2 h-[160px]',
-            'focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 resize-none pt-8', // Added pt-8 to make room for the label
-            {
-              'border-blue-medium': !isFocused && !error && !touched,
-              'border-blue-light': isFocused,
-              'border-error': touched && error,
-              'border-green': !error && touched && isValid,
-            },
-            className,
-          )}
-          ref={ref}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          onChange={handleChange}
-          value={value}
-          {...props}
-        />
-        {label && (
-          <label
-            className={clsx(
-              'absolute left-3 text-blue-light text-lg transition-all duration-200 bg-extra-dark px-2',
-              'pointer-events-none select-none', // Make label non-interactive
-              {
-                'top-4': !isFocused && !value,
-                'top-[8px] left-2 text-xs': isFocused || value,
-              },
-            )}>
-            {label}
-          </label>
-        )}
-      </div>
-    )
-  },
-)
+  const outlineClassName = useMemo(() => {
+    if (error) return 'outline-error'
+    if (valid) return 'outline-green'
+    return 'outline-blue-medium'
+  }, [error, valid])
+  return (
+    <div className="relative">
+      <textarea
+        placeholder={props.id || props.name}
+        {...props}
+        className={clsx(inputBaseClasses, outlineClassName, props.className)}
+        ref={ref}
+      />
+      {Label}
+    </div>
+  )
+})
 
 Textarea.displayName = 'Textarea'
 
-export { Textarea }
+const inputBaseClasses = [
+  'peer block min-h-[160px] max-h-[320px] w-full px-[16px] py-[14px] rounded-[10px] text-body1 outline outline-[1px] outline-blue-medium bg-extra-dark placeholder:text-transparent',
+  'transition-[padding,outline] transition-linear duration-[130ms]',
+]

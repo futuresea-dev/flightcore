@@ -1,4 +1,13 @@
-import { useCallback, useMemo, useState, type ClassAttributes, type FocusEvent, type InputHTMLAttributes } from 'react'
+import {
+  useCallback,
+  useMemo,
+  useState,
+  type ClassAttributes,
+  type FocusEvent,
+  type ForwardedRef,
+  type InputHTMLAttributes,
+} from 'react'
+import { useMounted } from '../../shared'
 
 /**
  * Manages the focus, blur, and touch state of an input element.
@@ -6,7 +15,7 @@ import { useCallback, useMemo, useState, type ClassAttributes, type FocusEvent, 
  * @param inputProps - The properties of the input element, including optional error state.
  * @returns An array containing the input state and event handlers for focus and blur events.
  */
-export const useInput: UseInput = (inputProps) => {
+export const useInput: UseInput = (inputProps, ref) => {
   const [state, setState] = useState<InputState>(defaultState)
 
   const handleOnFocus = useCallback(
@@ -25,6 +34,24 @@ export const useInput: UseInput = (inputProps) => {
     [inputProps.onBlur],
   )
 
+  const isMounted = useMounted()
+  const register = useCallback(() => {
+    return {
+      ref: (_ref: HTMLInputElement | null) => {
+        if (typeof ref === 'function') {
+          ref(_ref)
+        } else if (ref) {
+          ref.current = _ref
+        }
+        if (!_ref || isMounted.current) return
+
+        // Mark the input as a focused if it has a value when the component mounts
+        if (!_ref.value) return
+        setState((prevState) => ({ ...prevState, focused: true }))
+      },
+    }
+  }, [])
+
   return useMemo(
     () => [
       {
@@ -32,11 +59,12 @@ export const useInput: UseInput = (inputProps) => {
         focused: state.focused || !!inputProps.value,
       },
       {
+        register,
         onFocus: handleOnFocus,
         onBlur: handleOnBlur,
       },
     ],
-    [state, handleOnFocus, handleOnBlur, inputProps.value],
+    [state, register, handleOnFocus, handleOnBlur, inputProps.value],
   )
 }
 
@@ -45,20 +73,24 @@ export type UseInput = (
     ClassAttributes<HTMLInputElement> & {
       error?: boolean
     },
+  ref?: ForwardedRef<HTMLInputElement>,
 ) => [
   InputState,
   {
     onFocus: (e: FocusEvent<HTMLInputElement, Element>) => void
     onBlur: (e: FocusEvent<HTMLInputElement, Element>) => void
+    register: () => { ref: (ref: HTMLInputElement | null) => void }
   },
 ]
 
 export type InputState = {
   focused: boolean
   touched: boolean
+  dirty: boolean
 }
 
 export const defaultState: InputState = {
   focused: false,
   touched: false,
+  dirty: false,
 }

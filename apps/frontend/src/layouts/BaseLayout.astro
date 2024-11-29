@@ -12,10 +12,10 @@ interface Props {
 
 const {
   meta = {
-    title: 'flightcore.pl',
+    title: '🌐 Studio Nagrań | FLIGHTCORE Warszawa',
     description: '',
     url: Astro.url.pathname,
-    image: '/brand-banner.jpg',
+    name: '🌐 Studio Nagrań | FLIGHTCORE Warszawa',
   },
 } = Astro.props
 ---
@@ -36,15 +36,14 @@ const {
     <!-- <link rel="prefetch" href="/assets/fonts/Tactic Round Thn.woff2" as="font" type="font/woff2" crossorigin="anonymous" /> -->
     <!-- <link rel="prefetch" href="/assets/fonts/Tactic Round Ult.woff2" as="font" type="font/woff2" crossorigin="anonymous" /> -->
     <slot name="meta">
-      <title>{meta.title}</title>
       <link rel="preconnect" href={import.meta.env.PUBLIC_BOOKING_IFRAME_SRC} />
       <meta name="description" content={meta.description} />
+      <title>{meta.title}</title>
       <meta property="og:title" content={meta.title} />
       <meta property="og:description" content={meta.description} />
-      <meta property="og:image" content="/brand-banner.jpg" />
       <meta property="og:url" content={meta.url} />
       <meta property="og:type" content="website" />
-      <meta property="og:site_name" content="YourSiteName" />
+      <meta property="og:site_name" content={meta.name} />
     </slot>
     <ViewTransitions />
   </head>
