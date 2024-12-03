@@ -17,7 +17,7 @@ export async function getStaticPaths() {
         props: {
           offerEntry: offer,
         },
-      })),
+      }))
   )
 }
 
@@ -31,6 +31,11 @@ const { Content } = await offerEntry.render()
 ---
 
 <OfferLayout>
-  <Image src={offerEntry.data.imageLarge} alt="" />
-  <Content />
+  <div class="container mt-[160px] mb-[72px]">
+    <Image src={offerEntry.data.imageLarge} alt={offerEntry.data.imageAlt} class="hidden lg:block" />
+    <Image src={offerEntry.data.imageSmall} alt={offerEntry.data.imageAlt} class="lg:hidden" />
+  </div>
+  <div class="container">
+    <Content />
+  </div>
 </OfferLayout>

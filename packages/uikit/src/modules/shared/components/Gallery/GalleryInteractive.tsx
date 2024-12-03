@@ -22,7 +22,7 @@ export const GalleryInteractive: FC<GalleryInteractivePropsType> = ({ items }) =
 
   return (
     <div className="overflow-hidden w-full" ref={emblaRef}>
-      <div className="flex items-center gap-[80px]">
+      <div className="flex items-center justify-center gap-[80px]">
         {items.map((item, index) => (
           <GalleryItem
             key={index}

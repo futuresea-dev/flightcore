@@ -1,12 +1,21 @@
-import type { CollectionEntry } from 'astro:content'
 import type { FC } from 'react'
 import { PriceListCard } from './PriceList.Card'
 import { PriceListItem } from './PriceList.Item'
 
-type PricingType = CollectionEntry<'prices'>['data']['pricing'][number]
+type PriceItem = {
+  key: string
+  service: string
+  price: string
+}
+
+type PriceContent = {
+  title?: string
+  key?: string
+  items: PriceItem[]
+}
 
 export type PriceListPropsType = {
-  content: PricingType
+  content: PriceContent
 }
 
 export const PriceList: FC<PriceListPropsType> = ({ content }) => {

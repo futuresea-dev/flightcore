@@ -5,6 +5,48 @@ imageSmall: './banners/banner3-mobile@2x.jpg'
 slug: 'topowi-producenci-songwriterzy'
 ---
 
-Kręcisz film i chcesz upewnić się, że dźwięk będzie jakościowy i nagrany jak powinien? Planujesz sesję kreatywną za miastem i potrzebujesz biegłego realizatora, który wpasuje się w twórczy klimat? Być może jesteś koncertującym artystą i warto byłoby dodać kilka efektów, by nadać Twojemu show więcej magii, albo budujesz studio u siebie w domu i potrzebujesz pomocy z jego zaprojektowaniem?
+import { MDSection } from '../../../components/layout/Section/MDSection'
+import { PriceList } from '../../../components/shared/PriceList'
+import { GalleryInteractive } from '@flightcore/uikit'
 
-Jesteśmy do Twojej dyspozycji - nasz dźwiękowiec dotrze tam, gdzie potrzebujesz. Śmiało zapytaj o naszą dostępność - jesteśmy ludźmi od zadań specjalnych
+<MDSection>
+  Wyobraź sobie, jak niesamowicie byłoby tworzyć muzykę z pomocą doświadczonych producentów i songwriterów. Być może potrzebujesz
+  podkładu muzycznego, melodii dla napisanego tekstu, albo ciekawie poprowadzonego flow? 
+  <br />
+  Wystarczy, że wyślesz nam kilka notatek, inspiracji, przemyśleń zapisanych pod wpływem chwili, aby nasi producenci i
+  songwriterzy stworzyli wpadającą w ucho kompozycję. Utwory stworzone przez nas zespół zostały odtworzone łącznie ponad sto
+  milionów razy i nie, to nie są opowieści o gigantycznych szczupakach złowionych przez wujka na weselu!
+  <br />
+  Fakt, że dziś profesjonalnie zajmujemy się tworzeniem muzyki oraz tekstów, jest efektem ubocznym wieloletniej pasji, którą duża
+  część z nas rozwija już od ponad dekady. Jesteśmy autorami wielu virali, na co dzień orientującymi się muzycznie w rozmaitych
+  stylach i gatunkach.
+  <br />
+  Razem słuchamy, inspirujemy się i dodajemy wspólnym utworom głębi, aż osiągniemy perfekcję. Przywiązujemy uwagę do detali,
+  dzieląc się pomysłami na content, który pomoże Ci dotrzeć do szerszej publiczności. Dołącz do grona artystów, którzy z nami
+  współpracowali i stwórz hit, który zdobędzie serca każdego ze słuchaczy!
+  <br />
+  Decydując się na kupno uslugi produkcja/songwriting, wyślij nam proszę utwory, którymi powinniśmy się zainspirować, lub opisz w
+  przybliżeniu gatunek muzyczny w jakim ma być utrzymana piosenka. Następnie rozpoczniesz współpracę z producentem / songwriterem
+  i będąc w stałym kontakcie, wspólnie wypracujecie ekscytujący efekt.
+</MDSection>
+
+<MDSection>
+  <PriceList
+    content={{
+      items: [
+        {
+          service: 'Produkcja muzyczna',
+          price: 'od 500 zł',
+          key: 'Produkcja',
+        },
+        {
+          service: 'Songwriting',
+          price: 'już od 1000 zł + VAT*',
+          key: 'Songwriting',
+        },
+      ],
+    }}
+  />
+  *Ceny mogą się różnić w zależności od stopnia zaawansowania projektu - szczegółową wycenę otrzymają Państwo w wiadomości
+  zwrotnej, po zapoznaniu się przez nas z briefem dotyczącym produkcji utworu.
+</MDSection>
