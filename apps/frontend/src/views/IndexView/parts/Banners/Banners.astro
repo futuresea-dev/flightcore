@@ -1,6 +1,18 @@
+---
+import { getCollection } from 'astro:content'
+import { BannersCarousel } from './BannersCarousel'
+
+const banners = await getCollection('offers')
+const items = banners.map((banner) => ({
+  slug: banner.slug,
+  imageLarge: banner.data.imageLarge,
+  imageSmall: banner.data.imageSmall,
+}))
+---
+
 <section class="banners" transition:name="index-banners">
   <div class="container">
-    <div class="banner-mock"></div>
+    <BannersCarousel client:load items={items} />
   </div>
 </section>
 
