@@ -39,7 +39,7 @@ function indexToDelay(index: number) {
 
 <section class="offer" transition:name="index-offer">
   <div class="container">
-    <h3 id="offer-section-title" class="offer__title" data-aos="fade" data-aos-anchor-placement="top-center">
+    <h3 id="offer-section-title" class="offer__title" data-aos="fade" data-aos-anchor-placement="top-bottom">
       {`Team Flightcore wesprze Twoją twórczość na każdym etapie`}
     </h3>
     <div class="offer__tiles">
@@ -47,7 +47,7 @@ function indexToDelay(index: number) {
         tiles.map((tile, index) => (
           <OfferTile
             data-aos={index === tilesMiddleIndex ? 'fade' : index > tilesMiddleIndex ? 'zoom-out-left' : 'zoom-out-right'}
-            data-aos-anchor-placement="top-center"
+            data-aos-anchor-placement="top-bottom"
             data-aos-anchor="#offer-section-title"
             data-aos-delay={indexToDelay(index)}
             icon={tile.icon}
