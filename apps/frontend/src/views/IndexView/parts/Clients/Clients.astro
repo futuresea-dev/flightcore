@@ -2,14 +2,17 @@
 import { ClientsCarousele } from './Clients.Carousele'
 import { getImage } from 'astro:assets'
 import { getCollection } from 'astro:content'
+import type { ImageMetadata } from 'astro'
+import type { CollectionEntry } from 'astro:content'
 
 const LANG_CODE = 'pl' // TODO: i18n
+const clientsCollection = await getCollection('clients').then((c: CollectionEntry<'clients'>[]) =>
+  c.filter((e: CollectionEntry<'clients'>) => e.id.startsWith(LANG_CODE)),
+)
 
-const clientsCollection = await getCollection('clients').then((c) => c.filter((e) => e.id.startsWith(LANG_CODE)))
 const clientsAssets = import.meta.glob<ImageMetadata>('/src/assets/clients/**', { eager: true, import: 'default' })
-
 const clientLogoList = await Promise.all(
-  clientsCollection.map(async ({ data: { logo } }) => {
+  clientsCollection.map(async ({ data: { logo } }: CollectionEntry<'clients'>) => {
     const optimizedImage = await getImage({ src: clientsAssets[logo] })
     return optimizedImage.src
   }),
