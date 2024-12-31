@@ -21,24 +21,34 @@ export const CookieConsent: FC = () => {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-blue-medium z-50 rounded-t-[20px]">
-      <div className="container flex justify-between items-center py-6">
-        <p className="text-body2 text-blue-lightest max-w-2xl whitespace-nowrap">
-          Strona wykorzystuje pliki cookies. Szczegóły znajdziesz w{' '}
-          <a href="/privacy-policy" className="text-green hover:text-green-accent transition-colors">
-            Polityce prywatności
-          </a>
-          .
-        </p>
-        <div className="flex items-center gap-4">
-          <Button onClick={handleAccept} variant="filled" color="green" size="small">
+      <button onClick={handleAccept} className="absolute top-4 right-4 text-green hover:text-green-accent md:hidden">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      </button>
+      <div className="container flex flex-row items-center justify-between py-6">
+        <div className="flex flex-row items-center gap-4 flex-1">
+          <p className="text-body2 text-blue-lightest md:whitespace-nowrap">
+            Strona wykorzystuje pliki cookies. Szczegóły znajdziesz w{' '}
+            <a href="/privacy-policy" className="text-green hover:text-green-accent transition-colors">
+              Polityce prywatności
+            </a>
+            .
+          </p>
+          <Button
+            onClick={handleAccept}
+            variant="filled"
+            color="green"
+            size="small"
+            className="w-[120px] h-[60px] flex items-center justify-center md:w-auto md:h-auto">
             <span className="text-blue-dark">WYRAŻAM ZGODĘ</span>
           </Button>
-          <button onClick={handleAccept} className="text-green hover:text-green-accent">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
         </div>
+        <button onClick={handleAccept} className="text-green hover:text-green-accent hidden md:block ml-8">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          </svg>
+        </button>
       </div>
     </div>
   )

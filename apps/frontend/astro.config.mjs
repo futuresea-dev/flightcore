@@ -10,6 +10,10 @@ import { defineConfig } from 'astro/config'
 // https://astro.build/config
 export default defineConfig({
   site: process.env.BASE_FQDN,
+  server: {
+    host: '0.0.0.0',
+    port: 4321,
+  },
   experimental: {},
   i18n: {
     defaultLocale: 'pl',
