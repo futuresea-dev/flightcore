@@ -11,10 +11,23 @@ interface MessageFieldProps {
 export const MessageField: FC<MessageFieldProps> = ({ control }) => {
   const {
     field: { value, onBlur, onChange },
-    fieldState: { error },
+    fieldState: { error, isDirty },
   } = useContactFormControl({
     control,
     name: 'message',
   })
-  return <Textarea label="Wiadomosc" name="message" value={value} onChange={onChange} onBlur={onBlur} error={!!error?.message} />
+
+  const showValid = isDirty && value.trim().length > 0
+
+  return (
+    <Textarea
+      label="Wiadomosc"
+      name="message"
+      value={value}
+      onChange={onChange}
+      onBlur={onBlur}
+      error={!!error?.message}
+      valid={showValid}
+    />
+  )
 }

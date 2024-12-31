@@ -6,9 +6,59 @@
   --react-international-phone-font-size: 1.125rem;
 }
 
+/* USTAWIAMY KONTEKST POZYCJONOWANIA NA .react-international-phone */
+.react-international-phone {
+  position: relative !important; /* KLUCZOWE - MUSI BYĆ RELATIVE */
+  width: 100% !important;
+  height: 100% !important;
+  /* Możesz usunąć lub zmniejszyć poniższe, jeśli za bardzo przesuwa:
+  padding-left: 4.5rem !important; */
+}
+
+/* PRZYCISK Z FLAGĄ (PO LEWEJ) */
+.react-international-phone-country-selector-button {
+  position: absolute !important;
+  left: 1.25rem !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 1;
+  background-color: transparent !important;
+}
+
+/* SAMO INPUT PO PRAWEJ */
+.react-international-phone-input {
+  /* Robimy większe wcięcie z lewej, żeby zmieścić flagę i +48 */
+  padding-left: 6.5rem !important;
+  font-size: 1rem !important;
+  color: #dbe2e6 !important;
+  transition: padding-top 0.2s ease-out !important;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+}
+
+/* +48, KTÓRY MA BYĆ PRZESUNIĘTY W PRAWO */
+.react-international-phone-dial-code-preview {
+  position: absolute !important;
+  left: 4.5rem !important; /* TU ZWIĘKSZ/ ZMIEJSZ, JAK CHCESZ JESZCZE BARDZIEJ W PRAWO */
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  font-size: 1rem !important;
+  color: #dbe2e6 !important;
+  z-index: 1;
+}
+
+/* STYL DLA LISTY Z FLAGAMI (DROPDOWN) */
 .react-international-phone-country-selector-dropdown {
   background-color: #1b2634 !important;
   color: #bacbda !important;
+  margin-top: 4px !important;
+  border-radius: 8px !important;
+  border: none !important;
+}
+
+.react-international-phone-country-selector-dropdown__list-item {
+  padding: 8px 16px !important;
 }
 
 .react-international-phone-country-selector-dropdown__list-item:hover {
@@ -22,67 +72,20 @@
   color: #ffffff !important;
 }
 
-.react-international-phone-country-selector-dropdown__list-item-country-flag {
-  background-color: transparent !important;
-}
-
 .react-international-phone-country-selector-dropdown__list-item-country-name,
 .react-international-phone-country-selector-dropdown__list-item-country-dial-code {
   color: #bacbda !important;
 }
 
-.react-international-phone-country-selector-button:hover {
-  background-color: transparent !important;
-}
-
-.react-international-phone-country-selector-button {
-  position: absolute;
-  left: 0.5rem;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1;
-}
-
-.react-international-phone-input {
-  padding-left: 3rem !important;
-  font-size: 1rem;
-  color: #dbe2e6;
-  transition: padding-top 0.2s ease-out;
-}
-
-.react-international-phone-country-selector-button {
-  position: absolute;
-  left: 0.5rem;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1;
-}
-
-.react-international-phone-dial-code-preview {
-  position: absolute;
-  left: 2.5rem;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1rem;
-  color: #dbe2e6;
-  z-index: 1;
-  transition:
-    top 0.2s ease-out,
-    transform 0.2s ease-out;
-}
-
+/* NIE RUSZAJ JAK CI NIE PRZESZKADZA ANIMACJA LABELKI */
 .input-active .react-international-phone-input {
   padding-top: 1rem !important;
 }
 
 .input-active .react-international-phone-dial-code-preview {
-  top: calc(50% + 0.5rem);
+  top: calc(50% + 0.5rem) !important;
 }
 
 .input-active input {
   padding-top: 1rem !important;
-}
-
-.react-international-phone {
-  padding-left: 4.5rem !important;
 }

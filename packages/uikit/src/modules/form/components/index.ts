@@ -1,6 +1,7 @@
 export * from './Checkbox'
 export * from './ContactForm'
 export * from './InputEmail'
+export * from './InputHelperText'
 export * from './InputLabel'
 export * from './InputPhoneNumber'
 export * from './InputText'

@@ -1,75 +1,102 @@
 import clsx from 'clsx'
-import { forwardRef, type ClassAttributes, type InputHTMLAttributes, type ReactNode } from 'react'
-import { PhoneInput as ReactPhoneInput, type PhoneInputRefType } from 'react-international-phone'
-import { useInput } from '../../hooks/useInput'
-
+import { useState, type FC } from 'react'
+import { PhoneInput as ReactPhoneInput } from 'react-international-phone'
 import 'react-international-phone/style.css'
-
 import './InputPhoneNumber.css'
 
-export type PhoneInputProps = InputHTMLAttributes<HTMLInputElement> &
-  ClassAttributes<HTMLInputElement> & {
-    value?: string
-    onChange?: (phone: string) => void
-    error?: boolean
-    before?: ReactNode
-    after?: ReactNode
+// Import asynchronicznej walidacji
+import { validatePhoneNumber } from './InputPhoneNumberValidator'
+
+export type InputPhoneNumberProps = {
+  label?: string
+  name: string
+  value: string
+  onChange: (value: string) => void
+  onBlur?: () => void
+  // Możesz też mieć propsy error, valid itd.
+}
+
+export const InputPhoneNumber: FC<InputPhoneNumberProps> = ({ label = 'Telefon', name, value, onChange, onBlur }) => {
+  const [isFocused, setIsFocused] = useState(false)
+  const [isPhoneValid, setIsPhoneValid] = useState(false)
+
+  const handleFocus = () => setIsFocused(true)
+  const handleBlur = () => {
+    setIsFocused(false)
+    onBlur?.()
   }
 
-export const PhoneInput = forwardRef<PhoneInputProps & React.RefAttributes<PhoneInputRefType>, PhoneInputProps>(
-  ({ error, ...props }, ref) => {
-    const [{ touched: touched, focused }, events] = useInput(props)
+  /**
+   * Główna zmiana:
+   * - Wywołujemy onChange (by przekazać wartość wyżej)
+   * - Następnie asynchronicznie sprawdzamy, czy numer jest valid
+   */
+  const handleChange = async (val: string) => {
+    onChange(val) // <-- informujemy parenta o nowej wartości
 
-    const isValid = touched === true && error === false
+    if (!val.trim()) {
+      // Puste? Od razu false
+      setIsPhoneValid(false)
+      return
+    }
+    // Asynchroniczny check
+    const valid = await validatePhoneNumber(val)
+    setIsPhoneValid(valid)
+  }
 
-    const borderClassName = clsx({
-      'border-blue-medium': focused,
-      'border-error': error,
-      'border-green': isValid,
-    })
-    const dynamicPaddingClass = focused ? 'input-active' : ''
+  // Outline zależny od `isPhoneValid`
+  const outlineClassName = isPhoneValid ? 'outline-green' : 'outline-blue-medium'
 
-    return (
-      <div className={clsx(inputBaseClasses, focusClasses, borderClassName, 'relative', props.className)}>
-        <ReactPhoneInput
-          {...props}
-          onChange={(e) => {
-            props.onChange?.(e)
-          }}
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-expect-error
-          ref={ref}
-          defaultCountry="pl"
-          className={clsx('relative w-full h-full bg-transparent text-blue-lightest', dynamicPaddingClass)}
-          inputClassName="w-full h-full bg-transparent text-blue-lightest focus:outline-none pl-32"
-          countrySelectorStyleProps={{
-            buttonClassName: 'absolute left-2 top-1/2 transform -translate-y-1/2 text-lg text-blue-lightest bg-transparent',
-            dropdownStyleProps: {
-              className: 'bg-extra-dark text-blue-lightest',
-              listItemClassName: 'hover:bg-blue-medium',
-            },
-          }}
-          inputProps={{
-            ...props,
-            ...events,
-            autoFocus: false,
-          }}
-        />
-        {/* {label && (
-          <label
-            className={clsx('absolute text-blue-light pointer-events-none transition-all duration-200 bg-extra-dark px-2', {
-              'top-1/2 transform -translate-y-1/2 left-[115px] text-lg': !isFocused && !hasNumberEntered,
-              'top-[8px] left-[60px] text-xs': isFocused || hasNumberEntered,
-            })}>
-            {label}
-          </label>
-        )} */}
-      </div>
-    )
-  },
-)
+  // Decyzja, kiedy label "leci na górę":
+  // np. focus -> label na górze
+  // lub cokolwiek wpisano -> label na górze
+  const hasAnyDigit = Boolean(value.replace(/\D/g, '').length)
+  const showLabelOnTop = isFocused || hasAnyDigit
 
-const inputBaseClasses = 'h-[58px] w-full rounded-[10px] px-4 text-lg bg-extra-dark border-2'
-const focusClasses = 'focus:outline-none focus:border-blue-light'
+  return (
+    <div className={clsx('relative h-[58px] w-full rounded-[10px]', 'bg-extra-dark outline outline-[1px]', outlineClassName)}>
+      <ReactPhoneInput
+        value={value || ''}
+        onChange={handleChange}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        defaultCountry="pl"
+        style={{
+          position: 'relative',
+          width: '100%',
+          height: '100%',
+        }}
+        inputStyle={{
+          paddingLeft: '5rem',
+          backgroundColor: 'transparent',
+          border: 'none',
+          outline: 'none',
+          fontSize: '1rem',
+          color: '#dbe2e6',
+        }}
+        inputProps={{
+          name,
+          placeholder: '',
+          className: clsx(
+            'peer block h-[58px] w-full px-[16px] py-[14px]',
+            'rounded-[10px] text-body1 bg-transparent text-blue-lightest',
+            'outline-none',
+          ),
+        }}
+        countrySelectorStyleProps={{
+          buttonClassName: 'absolute left-4 top-1/2 -translate-y-1/2 text-blue-lightest bg-transparent',
+        }}
+      />
 
-PhoneInput.displayName = 'PhoneInput'
+      {label && (
+        <span
+          className={clsx(
+            'absolute text-lg text-flightcore-ultra-light-blue pointer-events-none transition-all duration-150',
+            showLabelOnTop ? 'text-xs left-[5rem] top-0.5 text-blue-light' : 'text-base left-[8rem] top-1/2 -translate-y-1/2',
+          )}>
+          {label}
+        </span>
+      )}
+    </div>
+  )
+}
