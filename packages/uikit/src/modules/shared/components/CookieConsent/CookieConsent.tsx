@@ -22,7 +22,7 @@ export const CookieConsent: FC = () => {
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-blue-medium z-50 rounded-t-[20px]">
       <div className="container flex justify-between items-center py-6">
-        <p className="text-body2 text-blue-lightest max-w-2xl">
+        <p className="text-body2 text-blue-lightest max-w-2xl whitespace-nowrap">
           Strona wykorzystuje pliki cookies. Szczegóły znajdziesz w{' '}
           <a href="/privacy-policy" className="text-green hover:text-green-accent transition-colors">
             Polityce prywatności
