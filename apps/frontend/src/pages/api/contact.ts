@@ -2,9 +2,7 @@
 import type { APIRoute } from 'astro'
 import axios from 'axios'
 
-const CONTACT_WEBHOOK_URL = import.meta.env.CONTACT_WEBHOOK_URL
-const CONTACT_WEBHOOK_TOKEN_KEY = import.meta.env.CONTACT_WEBHOOK_TOKEN_KEY
-const CONTACT_WEBHOOK_TOKEN_VALUE = import.meta.env.CONTACT_WEBHOOK_TOKEN_VALUE
+const { CONTACT_WEBHOOK_URL, CONTACT_WEBHOOK_TOKEN_KEY, CONTACT_WEBHOOK_TOKEN_VALUE } = process.env
 
 if (!CONTACT_WEBHOOK_URL) throw new Error(`CONTACT_WEBHOOK_URL is undefined`)
 if (!CONTACT_WEBHOOK_TOKEN_KEY) throw new Error(`CONTACT_WEBHOOK_TOKEN_KEY is undefined`)
