@@ -17,12 +17,9 @@
     "typescript": "5.5.4"
   },
   "dependencies": {
-    "astro": "^4.16.6",
-    "google-libphonenumber": "^3.2.39",
-    "react-google-recaptcha": "^3.1.0",
-    "react-international-phone": "^4.3.0",
-    "ky": "^1.7.2",
     "@nanostores/react": "^0.7.3",
+    "@tailwindcss/typography": "^0.5.15",
+    "astro": "^4.16.6",
     "clsx": "^2.1.1",
     "daisyui": "^4.12.12",
     "embla-carousel": "^8.3.0",
@@ -31,12 +28,16 @@
     "embla-carousel-class-names": "^8.3.0",
     "embla-carousel-fade": "^8.3.0",
     "embla-carousel-react": "^8.3.0",
+    "google-libphonenumber": "^3.2.39",
+    "ky": "^1.7.2",
+    "libphonenumber-js": "^1.11.17",
     "nanostores": "^0.11.3",
+    "photoswipe": "^5.4.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "tailwindcss": "^3.4.12",
-    "@tailwindcss/typography": "^0.5.15",
+    "react-google-recaptcha": "^3.1.0",
     "react-hook-form": "^7.53.2",
-    "photoswipe": "^5.4.4"
+    "react-international-phone": "^4.3.0",
+    "tailwindcss": "^3.4.12"
   }
 }
