@@ -20,16 +20,18 @@ export const VoucherCard: FC<VoucherCardProps> = ({ content }) => {
           <h1 className="text-heading3 mb-[-3px]">{content.title}</h1>
           <h2 className="text-heading2 font-bold">{content.price}</h2>
         </div>
-        <Button
-          onClick={() => alert(':)')}
-          tabIndex={0}
-          aria-label="Order a voucher"
-          aria-describedby={`voucherCard-${content.key}-footer`}
-          role="button"
-          color="dark-blue"
-          variant="outline">
-          ZAMÓW VOUCHER
-        </Button>
+        <div className="flex justify-center">
+          <Button
+            onClick={() => alert(':)')}
+            tabIndex={0}
+            aria-label="Order a voucher"
+            aria-describedby={`voucherCard-${content.key}-footer`}
+            role="button"
+            color="dark-blue"
+            variant="outline">
+            ZAMÓW VOUCHER
+          </Button>
+        </div>
       </div>
       <footer className="px-[40px] py-[24px]">
         <CheckList id={`voucherCard-${content.key}-footer`} items={content.footerCheckList} />
