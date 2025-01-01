@@ -20,3 +20,6 @@ db-data/**
 .pnpm-store
 .pnpm-lock.yaml
 
+**/*.module.css
+*.module.css
+src/**/*.module.css
