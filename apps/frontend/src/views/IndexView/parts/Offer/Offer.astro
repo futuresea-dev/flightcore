@@ -44,17 +44,31 @@ function indexToDelay(index: number) {
     </h3>
     <div class="offer__tiles">
       {
-        tiles.map((tile, index) => (
-          <OfferTile
-            data-aos={index === tilesMiddleIndex ? 'fade' : index > tilesMiddleIndex ? 'zoom-out-left' : 'zoom-out-right'}
-            data-aos-anchor-placement="top-bottom"
-            data-aos-anchor="#offer-section-title"
-            data-aos-delay={indexToDelay(index)}
-            icon={tile.icon}
-            title={tile.title}
-            desc={tile.desc}
-          />
-        ))
+        tiles.map((tile, index) => {
+          // Wyliczanie środka
+          const tilesMiddleIndex = Math.floor(tiles.length / 2)
+
+          // Logika przypisania animacji
+          const direction = index === tilesMiddleIndex ? 'fade' : index > tilesMiddleIndex ? 'zoom-out-left' : 'zoom-out-right'
+
+          // Opóźnienia na podstawie warunków
+          const delay =
+            typeof window !== 'undefined' && window.innerWidth >= 1024
+              ? Math.abs(index - tilesMiddleIndex) * 300 // Od środka na desktopie
+              : index * 300 // Od lewej na mobilkach
+
+          return (
+            <OfferTile
+              data-aos={direction}
+              data-aos-anchor-placement="top-bottom"
+              data-aos-anchor="#offer-section-title"
+              data-aos-delay={delay}
+              icon={tile.icon}
+              title={tile.title}
+              desc={tile.desc}
+            />
+          )
+        })
       }
     </div>
   </div>
