@@ -3,60 +3,61 @@ import { Icon } from 'astro-icon/components'
 import { ContactForm } from '@flightcore/uikit'
 ---
 
-<div class="container p-5 pb-[100px]" transition:name="contact-view">
-  <h2 class="pt-10 text-center text-[38px] text-heading2 md:pt-20 md:text-left md:text-[48px]">Napisz do Nas</h2>
-  <div class="flex w-full flex-col justify-between pt-6 md:flex-row md:gap-4">
-    <div>
-      <p class="w-[374px] text-center text-body1 md:w-[520px] md:text-left">
-        Jeśli masz pytania dotyczące realizacji Twojego projektu, śmiało do nas napisz :)
-      </p>
-      <div class="flex flex-col items-center space-y-4 pt-10 md:items-start">
-        <div class="flex flex-row items-center space-x-[10px]">
+<div class="container p-5 pb-[100px] pt-[120px]" transition:name="contact-view">
+  <div class="flex flex-col items-center lg:items-start lg:flex-row lg:justify-between lg:gap-4">
+    <div class="w-full lg:w-auto max-w-[520px] text-center lg:text-left mb-8 md:mb-8">
+      <h2 class="text-[38px] text-heading2 md:text-[48px] mb-8">Napisz do Nas</h2>
+      <p class="text-body1 mb-8">Jeśli masz pytania dotyczące realizacji Twojego projektu, śmiało do nas napisz :)</p>
+      <div class="flex flex-col items-center lg:items-start space-y-4">
+        <div class="flex items-center space-x-[10px]">
           <Icon name="contact/mail" class="w-6 h-6" />
           <a href="mailto:flightcore.studios@gmail.com" class="text-green">
             <p class="text-body1">flightcore.studios@gmail.com</p>
           </a>
         </div>
-        <div class="flex flex-row items-center space-x-[10px]">
+        <div class="flex items-center space-x-[10px]">
           <Icon name="contact/phone" class="w-6 h-6" />
           <a href="tel:+48791730204">
             <p class="text-body1 text-green">+48 791 730 204</p>
           </a>
         </div>
-        <div class="flex flex-row items-start space-x-[10px]">
+        <div class="flex items-center space-x-[10px]">
           <Icon name="contact/location" class="w-6 h-6" />
           <p class="text-body1">
-            Flightcore Studios Sp. z o.o.
-            <br />
-            Mickiewicza 9/U1
-            <br />
+            Flightcore Studios Sp. z o.o.<br />
+            Mickiewicza 9/U1<br />
             01-517 Warszawa
           </p>
         </div>
-        <div class="mt-8 w-full md:w-[600px] h-[300px] md:h-[450px] rounded-[30px] overflow-hidden">
-          <div class="w-full h-full" style="-webkit-filter: invert(90%);filter: invert(90%);">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9767.943706540918!2d20.9924622!3d52.2618006!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x42b119266c786761!2sFLIGHTCORE%20Studios!5e0!3m2!1spl!2spl!4v1658529880520!5m2!1spl!2spl"
-              width="100%"
-              height="100%"
-              style="border:0;"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-          </div>
+      </div>
+      <div class="hidden lg:block mt-8 w-full md:w-[400px] h-[350px] rounded-[30px] overflow-hidden">
+        <div class="w-full h-full" style="-webkit-filter: invert(90%);filter: invert(90%);">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9767.943706540918!2d20.9924622!3d52.2618006!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x42b119266c786761!2sFLIGHTCORE%20Studios!5e0!3m2!1spl!2spl!4v1658529880520!5m2!1spl!2spl"
+            class="w-full h-full"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
         </div>
       </div>
     </div>
-    <ContactForm client:load />
+    <ContactForm client:load class="w-full lg:w-auto" />
+  </div>
+
+  <div class="w-full max-w-[600px] mx-auto mt-8 lg:hidden">
+    <div class="h-[350px] rounded-[30px] overflow-hidden">
+      <div class="w-full h-full" style="-webkit-filter: invert(90%);filter: invert(90%);">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9767.943706540918!2d20.9924622!3d52.2618006!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x42b119266c786761!2sFLIGHTCORE%20Studios!5e0!3m2!1spl!2spl!4v1658529880520!5m2!1spl!2spl"
+          class="w-full h-full"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
   </div>
 </div>
-
-<style>
-  .input-wrapper {
-    margin-bottom: 1.5rem;
-  }
-  .input-wrapper:last-child {
-    margin-bottom: 0;
-  }
-</style>

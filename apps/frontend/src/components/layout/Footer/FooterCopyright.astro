@@ -3,11 +3,17 @@ import SocialsFields from '../Socials/Socials.astro'
 ---
 
 <hr class="border-blue-medium" />
-<div class="flex justify-between items-center py-[15px]">
-  <p class="text-blue-lightest text-body2">
-    Copyright © {new Date().getFullYear()} Flightcore | All Rights Reserved
-  </p>
-  <nav class="flex space-x-[12px] text-green">
-    <SocialsFields size="large" />
-  </nav>
+<div class="py-[15px]">
+  <div class="flex flex-col items-center md:flex-row md:justify-between">
+    <div class="order-2 md:order-1">
+      <p class="text-blue-lightest text-body2 text-center md:text-left">
+        Copyright © {new Date().getFullYear()} Flightcore | <span class="block md:hidden">All Rights Reserved</span><span
+          class="hidden md:inline">All Rights Reserved</span
+        >
+      </p>
+    </div>
+    <nav class="flex gap-4 mb-4 md:mb-0 order-1 md:order-2">
+      <SocialsFields size="large" />
+    </nav>
+  </div>
 </div>

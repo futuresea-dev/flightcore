@@ -13,23 +13,30 @@ NIP: 525-290-87-47`
 <footer transition:name="footer-base" class="w-full">
   <div class="container">
     <hr class="border-blue-medium" />
-    <div class="lg:flex lg:gap-[240px] lg:mb-[64px]">
-      <div>
+    <div class="grid grid-cols-1 lg:grid-cols-[280px_1fr] lg:mb-[64px] lg:gap-[240px]">
+      <div class="min-w-0 flex flex-col items-center lg:items-start">
         <Icon width={undefined} height={undefined} name="brand/wide/medium" class="brand-image" />
-        <p class="company-location-text">{companyLocationText}</p>
+        <p class="company-location-text text-center lg:text-left">{companyLocationText}</p>
       </div>
-      <div>
+      <div class="min-w-0">
         <div class="footer-nav">
           <h6 class="footer-nav__title">Menu</h6>
-          <Navigation showPriceListRoute={false} />
+          <div class="flex justify-center lg:justify-start">
+            <Navigation showPriceListRoute={true} />
+          </div>
         </div>
         <div class="instagram-posts">
-          <h6 class="instagram-posts__title">Follow Us on Instagram</h6>
-          <div class="instagram-posts__rail">
-            <div style="width: 120px; height: 120px; background: #000"></div>
-            <div style="width: 120px; height: 120px; background: #000"></div>
-            <div style="width: 120px; height: 120px; background: #000"></div>
-            <div style="width: 120px; height: 120px; background: #000"></div>
+          <h6 class="instagram-posts__title text-center lg:text-left">Follow Us on Instagram</h6>
+          <div class="instagram-posts__wrapper">
+            <div class="instagram-posts__rail">
+              <div
+                class="grid grid-cols-2 gap-3 mx-auto w-fit md:flex md:flex-row md:gap-[12px] md:w-full mb-10 lg:justify-start">
+                <div class="instagram-post"></div>
+                <div class="instagram-post"></div>
+                <div class="instagram-post"></div>
+                <div class="instagram-post"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -52,11 +59,13 @@ NIP: 525-290-87-47`
   .instagram-posts__title {
     @apply text-white text-subtitle mb-[18px];
   }
-
-  .instagram-posts {
+  .instagram-posts__wrapper {
+    @apply w-full overflow-hidden;
   }
-
   .instagram-posts__rail {
-    @apply flex gap-[12px];
+    @apply w-full overflow-x-auto;
+  }
+  .instagram-post {
+    @apply flex-shrink-0 w-[120px] h-[120px] bg-black;
   }
 </style>

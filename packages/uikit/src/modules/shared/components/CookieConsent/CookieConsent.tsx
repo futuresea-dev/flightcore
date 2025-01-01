@@ -26,29 +26,29 @@ export const CookieConsent: FC = () => {
           <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
         </svg>
       </button>
-      <div className="container flex flex-row items-center justify-between py-6">
-        <div className="flex flex-row items-center gap-4 flex-1">
-          <p className="text-body2 text-blue-lightest md:whitespace-nowrap">
-            Strona wykorzystuje pliki cookies. Szczegóły znajdziesz w{' '}
-            <a href="/privacy-policy" className="text-green hover:text-green-accent transition-colors">
-              Polityce prywatności
-            </a>
-            .
-          </p>
+      <div className="container flex flex-col md:flex-row items-start md:items-center gap-4 py-6">
+        <p className="text-body2 text-blue-lightest flex-1 pr-4">
+          Strona wykorzystuje pliki cookies. Szczegóły znajdziesz w{' '}
+          <a href="/privacy-policy" className="text-green hover:text-green-accent transition-colors">
+            Polityce prywatności
+          </a>
+          .
+        </p>
+        <div className="flex items-center gap-4 shrink-0">
           <Button
             onClick={handleAccept}
             variant="filled"
             color="green"
             size="small"
-            className="w-[120px] h-[60px] flex items-center justify-center md:w-auto md:h-auto">
+            className="w-[140px] h-[60px] flex items-center justify-center md:w-auto md:h-auto">
             <span className="text-blue-dark">WYRAŻAM ZGODĘ</span>
           </Button>
+          <button onClick={handleAccept} className="text-green hover:text-green-accent hidden md:block">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          </button>
         </div>
-        <button onClick={handleAccept} className="text-green hover:text-green-accent hidden md:block ml-8">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          </svg>
-        </button>
       </div>
     </div>
   )
