@@ -1,10 +1,22 @@
+.root {
+  @apply relative w-full lg:w-[390px] mb-16;
+}
+
 .studio-item {
-  @apply relative aspect-[390/440]  lg:w-[390px] cursor-pointer p-[4px];
+  @apply relative aspect-[390/440] cursor-pointer;
+  @apply rounded-[20px] overflow-visible;
+}
+
+.studio-item::before {
+  content: '';
+  @apply absolute inset-0 rounded-[20px];
   background: linear-gradient(180deg, rgba(0, 0, 0, 0), #243447);
 }
 
 .inner-container {
-  @apply relative flex items-end p-[2px] w-full h-full;
+  @apply relative flex items-end w-full h-full;
+  @apply rounded-[20px] overflow-hidden;
+  @apply border-2 border-[#243447];
 }
 
 .inner-container::after {
@@ -15,33 +27,65 @@
   inset: 0;
 }
 
-.studio-item,
-.inner-container {
-  @apply rounded-[20px] overflow-hidden;
-}
-
 .studio-item__poster {
-  position: absolute;
+  @apply absolute inset-0 w-full h-full;
   object-fit: cover;
   object-position: 50% 50%;
-  width: 100%;
-  height: 100%;
-  /* z-index: -1; */
 }
 
 .studio-item__title {
-  @apply text-heading3;
-  @apply text-green-dark;
-  @apply font-bold;
-  @apply p-[14px];
-  @apply z-10;
+  @apply text-heading3 text-green-dark font-bold p-[14px] z-10;
 }
 
 .overlay {
   @apply absolute inset-0 flex items-center justify-center text-green text-body1 font-bold opacity-0 bg-blue-medium transition duration-100;
 }
 
-.studio-item--mark .overlay,
 .studio-item:hover .overlay {
   @apply opacity-[0.7];
 }
+
+.details-wrapper {
+  @apply absolute left-1/2 -translate-x-1/2 top-full lg:hidden;
+  width: calc(100% - 32px);
+  max-width: 354px;
+}
+
+.details-button {
+  @apply h-[42px] w-full;
+  @apply bg-extra-dark rounded-b-[14px] rounded-t-none;
+  @apply flex items-center justify-center;
+  @apply text-green text-body2 font-bold;
+  border: 2px solid #243447;
+  border-top: none;
+  margin-top: -2px;
+}
+
+.details-panel {
+  position: relative;
+  @apply w-full bg-blue-medium rounded-b-[14px];
+  @apply overflow-hidden transition-all duration-200;
+  @apply flex flex-col;
+  height: 0;
+}
+
+.details-panel--expanded {
+  height: auto;
+}
+
+.details-content {
+  @apply p-4 flex-1;
+}
+
+.details-separator {
+  @apply w-full h-px bg-blue-extra;
+}
+
+.details-panel .details-button {
+  @apply mt-0 rounded-none border-none;
+}
+
+/* .details-backdrop {
+  @apply absolute inset-0 z-40 bg-transparent;
+  height: 100vh;
+} */
