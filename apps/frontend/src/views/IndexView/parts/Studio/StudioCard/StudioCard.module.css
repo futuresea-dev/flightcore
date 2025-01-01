@@ -1,3 +1,4 @@
+/* prettier-ignore-file */
 .root {
   @apply relative w-full mb-16;
   @apply lg:w-[320px] xl:w-[390px]; /* Zmniejszamy lg z 340px na 320px */
