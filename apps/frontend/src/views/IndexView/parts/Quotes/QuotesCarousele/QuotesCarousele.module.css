@@ -1,9 +1,21 @@
 .root {
   margin: auto;
-  padding: 32px 0;
+  padding: 0px 0;
   --slide-height: 200px;
   --slide-spacing: 1rem;
-  --slide-size: 480px;
+  --slide-size: 480px; /* Domyślny rozmiar */
+}
+
+@media (max-width: 768px) {
+  .root {
+    --slide-size: 320px; /* Mniejszy rozmiar na tablety */
+  }
+}
+
+@media (max-width: 480px) {
+  .root {
+    --slide-size: 280px; /* Jeszcze mniejszy rozmiar na telefony */
+  }
 }
 
 .viewport {

@@ -24,10 +24,10 @@ export const VideoSource: FC<VideoSourceProps> = ({ t, source, sourceType = 'vid
     const sources: JSX.Element[] = []
 
     const bp: Record<VideoSourceBreakpointKey, string> = {
-      sm: 'max-width: 639px',
-      md: 'min-width: 640px and max-width: 767px',
-      lg: 'min-width: 768px and max-width: 1023px',
-      xl: 'min-width: 1024px',
+      sm: '(max-width: 639px)',
+      md: '(min-width: 640px) and (max-width: 767px)',
+      lg: '(min-width: 768px) and (max-width: 1023px)',
+      xl: '(min-width: 1024px)',
     }
 
     Object.keys(bp).forEach((key) => {
