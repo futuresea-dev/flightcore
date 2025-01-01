@@ -1,7 +1,10 @@
+import { CarouseleBullet, useCarousele } from '@flightcore/uikit'
 import { useStore } from '@nanostores/react'
 import clsx from 'clsx'
+import useEmblaCarousel from 'embla-carousel-react'
 import { atom } from 'nanostores'
-import { type FC, useEffect } from 'react'
+import type { FC } from 'react'
+import { useEffect, useState } from 'react'
 import { studioDialogController } from '../StudioDialog'
 import type { StudioEntryType } from '../StudioDialog/StudioDialogController'
 import styles from './StudioCard.module.css'
@@ -22,9 +25,28 @@ const globalClickHandler = (e: MouseEvent) => {
 }
 
 export const StudioCard: FC<StudioCardPropsType> = ({ studioCollectionEntry }) => {
-  const { title, poster, desc } = studioCollectionEntry
+  const [isMobile, setIsMobile] = useState(false)
+  const { title, poster, desc, photos } = studioCollectionEntry
   const expandedCardId = useStore(expandedCardStore)
   const isExpanded = expandedCardId === title
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 1024)
+    const handleResize = () => setIsMobile(window.innerWidth < 1024)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  const [emblaRef, emblaAPI] = useEmblaCarousel({
+    slidesToScroll: 1,
+    loop: true,
+    align: 'start',
+    dragFree: false,
+    direction: 'ltr',
+    watchDrag: true,
+  })
+
+  const { selectedIndex, scrollSnaps, onDotButtonClick } = useCarousele(emblaAPI)
 
   useEffect(() => {
     if (isExpanded) {
@@ -34,28 +56,59 @@ export const StudioCard: FC<StudioCardPropsType> = ({ studioCollectionEntry }) =
   }, [isExpanded])
 
   const handleClick = () => {
-    if (window.innerWidth >= 1024) {
+    if (!isMobile) {
       studioDialogController.show(studioCollectionEntry)
     }
   }
 
-  const toggleExpand = () => {
+  const toggleExpand = (e: React.MouseEvent) => {
+    e.stopPropagation()
     expandedCardStore.set(isExpanded ? null : title)
   }
 
   return (
     <div className={styles.root}>
-      <div tabIndex={0} onClick={handleClick} className={styles['studio-item']}>
+      <div className={styles['studio-item']} onClick={handleClick}>
         <div className={styles['inner-container']}>
-          <img
-            src={poster.src}
-            srcSet={poster.srcSet.attribute}
-            className={styles['studio-item__poster']}
-            loading="lazy"
-            decoding="async"
-            alt={title}
-          />
+          {isMobile ? (
+            <div className={styles['carousel-wrapper']}>
+              <div ref={emblaRef} className={styles['carousel-viewport']}>
+                <div className={styles['carousel-container']}>
+                  {photos.map((photo: StudioEntryType['photos'][0]) => (
+                    <div key={photo.src} className={styles['carousel-slide']}>
+                      <img
+                        className={styles['carousel-image']}
+                        src={photo.src}
+                        srcSet={photo.srcSet.attribute}
+                        loading="lazy"
+                        decoding="async"
+                        alt={title}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <img
+              src={poster.src}
+              srcSet={poster.srcSet.attribute}
+              className={styles['studio-item__poster']}
+              loading="lazy"
+              decoding="async"
+              alt={title}
+            />
+          )}
+
           <p className={styles['studio-item__title']}>{title}</p>
+
+          {isMobile && (
+            <div className="absolute bottom-16 left-1/2 -translate-x-1/2 z-10 flex justify-center gap-2">
+              {scrollSnaps.map((_, index) => (
+                <CarouseleBullet key={index} active={index === selectedIndex} onClick={() => onDotButtonClick(index)} />
+              ))}
+            </div>
+          )}
 
           <div className={clsx(styles['overlay'], '!hidden lg:!flex')}>
             <span>Pokaż szczegóły</span>
@@ -65,12 +118,7 @@ export const StudioCard: FC<StudioCardPropsType> = ({ studioCollectionEntry }) =
 
       <div className={styles['details-wrapper']} style={{ zIndex: isExpanded ? 51 : 'auto' }}>
         {!isExpanded && (
-          <button
-            onClick={(e) => {
-              e.stopPropagation()
-              toggleExpand()
-            }}
-            className={styles['details-button']}>
+          <button onClick={toggleExpand} className={styles['details-button']}>
             Pokaż szczegóły
           </button>
         )}
@@ -83,12 +131,7 @@ export const StudioCard: FC<StudioCardPropsType> = ({ studioCollectionEntry }) =
           {isExpanded && (
             <>
               <div className={styles['details-separator']} />
-              <button
-                onClick={(e) => {
-                  e.stopPropagation()
-                  toggleExpand()
-                }}
-                className={styles['details-button']}>
+              <button onClick={toggleExpand} className={styles['details-button']}>
                 Ukryj szczegóły
               </button>
             </>

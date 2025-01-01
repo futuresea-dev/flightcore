@@ -1,7 +1,7 @@
 .root {
-  @apply relative w-full lg:w-[390px] mb-16;
+  @apply relative w-full mb-16;
+  @apply lg:w-[320px] xl:w-[390px]; /* Zmniejszamy lg z 340px na 320px */
 }
-
 .studio-item {
   @apply relative aspect-[390/440] cursor-pointer;
   @apply rounded-[20px] overflow-visible;
@@ -89,3 +89,28 @@
   @apply absolute inset-0 z-40 bg-transparent;
   height: 100vh;
 } */
+.carousel-wrapper {
+  @apply absolute inset-0 z-10;
+  touch-action: pan-x pan-y;
+}
+
+.carousel-viewport {
+  @apply w-full h-full overflow-hidden;
+}
+
+.carousel-container {
+  @apply flex h-full w-full;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.carousel-slide {
+  @apply relative flex-[0_0_100%] min-w-0 h-full;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.carousel-image {
+  @apply h-full w-full object-cover;
+  pointer-events: none;
+  user-select: none;
+}

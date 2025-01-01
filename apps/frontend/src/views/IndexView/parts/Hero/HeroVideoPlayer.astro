@@ -1,0 +1,95 @@
+---
+// HeroVideoPlayer.astro
+import { getImage } from 'astro:assets'
+import heroImage from '/public/assets/images/showreel/Showreel@3x.jpg'
+
+const image = await getImage({
+  src: heroImage,
+  format: 'webp',
+})
+---
+
+<div class="video-wrapper relative w-full h-full bg-black">
+  <video
+    id="home-hero-video"
+    class="relative z-0 w-full h-full object-cover object-center pointer-events-none opacity-0 transition-opacity duration-500"
+    autoplay
+    loop
+    muted
+    playsinline
+    poster={image.src}>
+    <source src="/assets/videos/hero_1080p.mp4" type="video/mp4" media="(min-width: 1024px)" />
+    <source src="/assets/videos/hero_720p.mp4" type="video/mp4" media="(min-width: 768px)" />
+    <source src="/assets/videos/hero_480p.mp4" type="video/mp4" media="(min-width: 640px)" />
+    <source src="/assets/videos/hero_360p.mp4" type="video/mp4" />
+  </video>
+</div>
+
+<script>
+  let videoInitialized = false
+
+  const initVideo = () => {
+    if (videoInitialized) return // Zapobiegamy wielokrotnej inicjalizacji
+
+    const video = document.getElementById('home-hero-video') as HTMLVideoElement
+    if (!video) return
+
+    videoInitialized = true
+
+    const isMobile = /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+
+    if (isMobile) {
+      video.innerHTML = '<source src="/assets/videos/hero_360p.mp4" type="video/mp4">'
+    }
+
+    const loadAndPlay = async () => {
+      try {
+        await new Promise((resolve) => {
+          if (video.readyState >= 2) {
+            resolve(true)
+          } else {
+            video.addEventListener('canplay', () => resolve(true), { once: true })
+          }
+        })
+
+        await video.play()
+        video.classList.remove('opacity-0')
+      } catch {
+        setTimeout(async () => {
+          try {
+            await video.play()
+            video.classList.remove('opacity-0')
+          } catch {
+            // Silent fail
+          }
+        }, 100)
+      }
+    }
+
+    loadAndPlay()
+  }
+
+  // Initial load
+  initVideo()
+
+  // Navigation events - używamy throttle żeby uniknąć zbyt częstych wywołań
+  let timeout: ReturnType<typeof setTimeout>
+  const throttledInit = () => {
+    if (timeout) clearTimeout(timeout)
+    timeout = setTimeout(() => {
+      videoInitialized = false
+      initVideo()
+    }, 300)
+  }
+
+  document.addEventListener('astro:page-load', throttledInit)
+  document.addEventListener('astro:after-swap', throttledInit)
+
+  // Logo click
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement
+    if (target.closest('a[href="/"]')) {
+      throttledInit()
+    }
+  })
+</script>

@@ -1,6 +1,6 @@
 import AutoPlay from 'embla-carousel-autoplay'
 import useEmblaCarousel from 'embla-carousel-react'
-import type { FC } from 'react'
+import { useEffect, useState, type FC } from 'react'
 
 export const BannersCarousel: FC<{ items: BannersCarouselItemType[] }> = ({ items }) => {
   const [emblaRef] = useEmblaCarousel(
@@ -13,7 +13,7 @@ export const BannersCarousel: FC<{ items: BannersCarouselItemType[] }> = ({ item
 
   return (
     <div ref={emblaRef} className="relative overflow-hidden">
-      <div className="flex ">
+      <div className="flex">
         {items.map((item) => (
           <BannersCarouselItem key={item.slug} {...item} />
         ))}
@@ -22,14 +22,34 @@ export const BannersCarousel: FC<{ items: BannersCarouselItemType[] }> = ({ item
   )
 }
 
-export const BannersCarouselItem: FC<BannersCarouselItemType> = ({ slug, imageLarge, imageSmall }) => (
-  <a href={`/offer/${slug}`} className="block" style={{ flex: '1 0 100%' }}>
-    <picture className="w-full h-full">
-      <source media="(min-width: 768px)" srcSet={imageLarge.src} />
-      <img src={imageSmall.src} />
-    </picture>
-  </a>
-)
+export const BannersCarouselItem: FC<BannersCarouselItemType> = ({ slug, imageLarge, imageSmall }) => {
+  const [isMobile, setIsMobile] = useState<boolean | null>(null)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    // Sprawdź początkowo
+    checkMobile()
+
+    // Nasłuchuj zmian rozmiaru okna
+    window.addEventListener('resize', checkMobile)
+
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Pokaż loader podczas sprawdzania rozmiaru ekranu
+  if (isMobile === null) {
+    return <div className="w-full aspect-[1220/480] bg-gray-800 animate-pulse" style={{ flex: '1 0 100%' }} />
+  }
+
+  return (
+    <a href={`/offer/${slug}`} className="block" style={{ flex: '1 0 100%' }}>
+      <img src={isMobile ? imageSmall.src : imageLarge.src} className="w-full h-full" alt="" />
+    </a>
+  )
+}
 
 export type BannersCarouselItemType = {
   slug: string
