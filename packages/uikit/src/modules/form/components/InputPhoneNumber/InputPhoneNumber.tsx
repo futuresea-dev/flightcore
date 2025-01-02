@@ -5,7 +5,6 @@ import 'react-international-phone/style.css'
 import './InputPhoneNumber.css'
 
 // Import asynchronicznej walidacji
-import { validatePhoneNumber } from './InputPhoneNumberValidator'
 
 export type InputPhoneNumberProps = {
   label?: string
@@ -13,12 +12,20 @@ export type InputPhoneNumberProps = {
   value: string
   onChange: (value: string) => void
   onBlur?: () => void
-  // Możesz też mieć propsy error, valid itd.
+  error?: boolean // dodane
+  valid?: boolean // dodane
 }
 
-export const InputPhoneNumber: FC<InputPhoneNumberProps> = ({ label = 'Telefon', name, value, onChange, onBlur }) => {
+export const InputPhoneNumber: FC<InputPhoneNumberProps> = ({
+  label = 'Telefon',
+  name,
+  value,
+  onChange,
+  onBlur,
+  error = false,
+  valid = false,
+}) => {
   const [isFocused, setIsFocused] = useState(false)
-  const [isPhoneValid, setIsPhoneValid] = useState(false)
 
   const handleFocus = () => setIsFocused(true)
   const handleBlur = () => {
@@ -26,26 +33,11 @@ export const InputPhoneNumber: FC<InputPhoneNumberProps> = ({ label = 'Telefon',
     onBlur?.()
   }
 
-  /**
-   * Główna zmiana:
-   * - Wywołujemy onChange (by przekazać wartość wyżej)
-   * - Następnie asynchronicznie sprawdzamy, czy numer jest valid
-   */
   const handleChange = async (val: string) => {
-    onChange(val) // <-- informujemy parenta o nowej wartości
-
-    if (!val.trim()) {
-      // Puste? Od razu false
-      setIsPhoneValid(false)
-      return
-    }
-    // Asynchroniczny check
-    const valid = await validatePhoneNumber(val)
-    setIsPhoneValid(valid)
+    onChange(val)
   }
 
-  // Outline zależny od `isPhoneValid`
-  const outlineClassName = isPhoneValid ? 'outline-green' : 'outline-blue-medium'
+  const outlineClassName = valid ? 'outline-green' : error ? 'outline-red-500' : 'outline-blue-medium'
 
   // Decyzja, kiedy label "leci na górę":
   // np. focus -> label na górze

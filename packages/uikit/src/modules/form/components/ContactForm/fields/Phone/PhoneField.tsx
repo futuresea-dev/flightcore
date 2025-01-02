@@ -1,6 +1,6 @@
 import type { FC } from 'react'
+import { useEffect, useState } from 'react'
 import type { Control } from 'react-hook-form'
-import { InputHelperText } from '../../../InputHelperText/InputHelperText'
 import { InputPhoneNumber } from '../../../InputPhoneNumber/InputPhoneNumber'
 import { validatePhoneNumber } from '../../../InputPhoneNumber/InputPhoneNumberValidator'
 import type { ContactFormValues } from '../../ContactFormEntity'
@@ -11,9 +11,11 @@ interface PhoneFieldProps {
 }
 
 export const PhoneField: FC<PhoneFieldProps> = ({ control }) => {
+  const [isValidPhone, setIsValidPhone] = useState(false)
+
   const {
     field: { value, onBlur, onChange },
-    fieldState: { error, invalid, isDirty, isTouched },
+    fieldState: { error, invalid, isTouched },
   } = useContactFormControl({
     control,
     name: 'phone',
@@ -24,39 +26,45 @@ export const PhoneField: FC<PhoneFieldProps> = ({ control }) => {
       },
       validate: {
         validPhone: async (value: string) => {
-          // Jeśli pole jest puste, nie pokazujemy błędu
-          if (!value?.trim()) return true
-
-          // Sprawdzamy czy numer jest poprawny
+          if (!value || !value.trim()) {
+            setIsValidPhone(false)
+            return true
+          }
           const isValid = await validatePhoneNumber(value)
+          setIsValidPhone(isValid)
           return isValid || 'Niepoprawny numer telefonu'
         },
       },
     },
+    defaultValue: '',
   })
 
-  // Pole jest valid tylko gdy:
-  // - było dotknięte (isTouched)
-  // - ma wartość (value?.trim())
-  // - przeszło walidację (!invalid)
-  // - przeszło pełną walidację (value?.length >= 9)
-  const isValid = isTouched && !invalid && Boolean(value?.trim()) && value?.length >= 9
+  useEffect(() => {
+    const validateValue = async () => {
+      if (!value || !value.trim()) {
+        setIsValidPhone(false)
+        return
+      }
+      const isValid = await validatePhoneNumber(value)
+      setIsValidPhone(isValid)
+    }
+    validateValue()
+  }, [value])
 
-  // Pokazujemy błąd tylko gdy pole było dotknięte i jest niepoprawne
-  const showError = isTouched && invalid
+  const showError = isTouched && invalid && value?.trim().length > 0
+  const showValid = Boolean(value?.trim()) && isValidPhone
 
   return (
-    <>
-      <InputPhoneNumber
-        name="phone"
-        label="Telefon"
-        value={value || ''}
-        onChange={onChange}
-        onBlur={onBlur}
-        error={showError}
-        valid={isValid}
-      />
-      {error?.message && <InputHelperText variant="error" message={error.message} />}
-    </>
+    <InputPhoneNumber
+      name="phone"
+      label="Telefon"
+      value={value || ''}
+      onChange={(newValue) => {
+        onChange(newValue)
+      }}
+      onBlur={onBlur}
+      error={showError}
+      valid={showValid}
+    />
   )
 }

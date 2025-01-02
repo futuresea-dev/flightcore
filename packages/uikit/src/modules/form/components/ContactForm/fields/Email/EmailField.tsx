@@ -1,4 +1,5 @@
 import type { FC } from 'react'
+import { useEffect, useState } from 'react'
 import type { Control } from 'react-hook-form'
 import { InputEmail } from '../../../InputEmail/InputEmail'
 import { InputHelperText } from '../../../InputHelperText/InputHelperText'
@@ -10,6 +11,8 @@ interface EmailFieldProps {
 }
 
 export const EmailField: FC<EmailFieldProps> = ({ control }) => {
+  const [isValidEmail, setIsValidEmail] = useState(false)
+
   const {
     field: { value, onBlur, onChange },
     fieldState: { error, invalid, isTouched },
@@ -28,7 +31,17 @@ export const EmailField: FC<EmailFieldProps> = ({ control }) => {
     },
   })
 
-  const showValid = Boolean(value && isTouched && /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value))
+  useEffect(() => {
+    if (value) {
+      const isValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value)
+      setIsValidEmail(isValid)
+    } else {
+      setIsValidEmail(false)
+    }
+  }, [value])
+
+  const showError = isTouched && invalid && value?.trim().length > 0
+  const showValid = Boolean(value?.trim()) && isValidEmail
 
   return (
     <InputEmail
@@ -38,7 +51,7 @@ export const EmailField: FC<EmailFieldProps> = ({ control }) => {
       value={value}
       onChange={onChange}
       onBlur={onBlur}
-      error={isTouched && (invalid || !!error?.message)}
+      error={showError}
       valid={showValid}
       after={error?.message && <InputHelperText variant="error" message={error.message} />}
     />

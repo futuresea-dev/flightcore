@@ -11,15 +11,38 @@ import { PhoneField } from './fields/Phone/PhoneField'
 import { useContactForm } from './useContactForm'
 import { useContactFormPromise } from './useContactFormPromise'
 
+interface ErrorResponse {
+  data?: {
+    message?: string
+  }
+}
+
+interface ApiError {
+  message: string
+}
+
 export const ContactForm: React.FC = () => {
   const [showModal, setShowModal] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
+  const [isPhoneValid, setIsPhoneValid] = useState(false)
   const { formState, control, handleSubmit, setError, watch, reset } = useContactForm()
   const formValues = watch()
-  const [isPhoneValid, setIsPhoneValid] = useState(false)
+  const fullFormReset = useCallback(() => {
+    reset({
+      name: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      message: '',
+      consent: false,
+    })
+  }, [reset])
+
   useEffect(() => {
     if (formValues.phone) {
       validatePhoneNumber(formValues.phone).then(setIsPhoneValid)
+    } else {
+      setIsPhoneValid(false)
     }
   }, [formValues.phone])
 
@@ -32,13 +55,21 @@ export const ContactForm: React.FC = () => {
       onResolved() {
         setIsSuccess(true)
         setShowModal(true)
-        reset()
+        fullFormReset()
       },
-      onRejected(reason) {
+      onRejected(error: unknown) {
         setIsSuccess(false)
         setShowModal(true)
+
+        let errorMessage =
+          'Przepraszamy, wystąpił problem z wysłaniem wiadomości. Prosimy spróbować później lub skontaktować się z nami telefonicznie.'
+
+        if (error && typeof error === 'object' && 'data' in error) {
+          errorMessage = (error as ErrorResponse).data?.message || errorMessage
+        }
+
         setError('root', {
-          message: String(reason) ? String(reason) : 'An error occurred',
+          message: errorMessage,
         })
       },
     },
@@ -60,7 +91,7 @@ export const ContactForm: React.FC = () => {
     !formState.errors.phone &&
     !formState.errors.message &&
     formValues.consent === true &&
-    isPhoneValid
+    isPhoneValid // Dodaj to sprawdzenie
 
   const isDisabled = promiseState === 'pending' || !isFormValid
 
@@ -77,7 +108,9 @@ export const ContactForm: React.FC = () => {
           <MessageField control={control} />
           <ConsentField control={control} />
         </div>
-        {promiseError && <div className="text-error mt-4">{promiseError.message}</div>}
+        {promiseError && typeof promiseError === 'object' && 'message' in promiseError ? (
+          <div className="text-error mt-4">{(promiseError as ApiError).message}</div>
+        ) : null}
         <button
           type="submit"
           disabled={isDisabled}
@@ -90,24 +123,6 @@ export const ContactForm: React.FC = () => {
           {promiseState === 'pending' ? 'Wysyłanie...' : 'Wyślij wiadomość'}
         </button>
       </form>
-
-      {/* <div className="space-x-4">
-        <button
-          onClick={() => {
-            setIsSuccess(true)
-            setShowModal(true)
-          }}>
-          Test Success
-        </button>
-
-        <button
-          onClick={() => {
-            setIsSuccess(false)
-            setShowModal(true)
-          }}>
-          Test Error
-        </button>
-      </div> */}
       <ContactResponseModal show={showModal} isSuccess={isSuccess} onClose={() => setShowModal(false)} />
     </>
   )
