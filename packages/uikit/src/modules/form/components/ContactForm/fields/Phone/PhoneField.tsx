@@ -15,7 +15,7 @@ export const PhoneField: FC<PhoneFieldProps> = ({ control }) => {
 
   const {
     field: { value, onBlur, onChange },
-    fieldState: { error, invalid, isTouched },
+    fieldState: { invalid, isTouched },
   } = useContactFormControl({
     control,
     name: 'phone',

@@ -4,9 +4,20 @@ import axios from 'axios'
 
 const { CONTACT_WEBHOOK_URL, CONTACT_WEBHOOK_TOKEN_KEY, CONTACT_WEBHOOK_TOKEN_VALUE } = process.env
 
+// Prosty logger, który można później zastąpić bardziej zaawansowanym rozwiązaniem
+const logger = {
+  error: (message: string, error?: unknown) => {
+    // W środowisku produkcyjnym można tu zaimplementować właściwe logowanie
+    if (import.meta.env.DEV) {
+      // eslint-disable-next-line no-console
+      console.error(message, error)
+    }
+  },
+}
+
 // Sprawdzamy zmienne środowiskowe podczas inicjalizacji
 if (!CONTACT_WEBHOOK_URL || !CONTACT_WEBHOOK_TOKEN_KEY || !CONTACT_WEBHOOK_TOKEN_VALUE) {
-  console.error('Missing required environment variables for contact form')
+  logger.error('Missing required environment variables for contact form')
 }
 
 interface ContactFormData {
@@ -104,18 +115,15 @@ export const POST: APIRoute = async ({ request }) => {
         },
       )
     } catch (webhookError) {
-      // Logujemy błąd webhooka (możesz użyć własnego systemu logowania)
-      console.error('Webhook error:', webhookError)
-
+      logger.error('Webhook error:', webhookError)
       throw new Error('WEBHOOK_ERROR')
     }
   } catch (error) {
-    // Logujemy błąd do konsoli (w produkcji użyj odpowiedniego systemu logowania)
-    console.error('Contact form error:', error)
+    logger.error('Contact form error:', error)
 
     // Określamy odpowiedni komunikat błędu
     let errorMessage =
-      'Przepraszamy, wystąpił problem z wysłaniem wiadomości. Prosimy spróbować później lub skontaktować się z nami telefonicznie: +48 XXX XXX XXX'
+      'Przepraszamy, wystąpił problem z wysłaniem wiadomości. Prosimy spróbować później lub skontaktować się z nami telefonicznie.'
 
     if (error instanceof Error) {
       switch (error.message) {
