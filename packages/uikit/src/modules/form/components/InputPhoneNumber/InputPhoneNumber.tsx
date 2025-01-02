@@ -47,6 +47,7 @@ export const InputPhoneNumber: FC<InputPhoneNumberProps> = ({
 
   return (
     <div className={clsx('relative h-[58px] w-full rounded-[10px]', 'bg-extra-dark outline outline-[1px]', outlineClassName)}>
+      <input type="tel" autoComplete="tel" style={{ display: 'none' }} aria-hidden="true" />
       <ReactPhoneInput
         value={value || ''}
         onChange={handleChange}
@@ -68,7 +69,11 @@ export const InputPhoneNumber: FC<InputPhoneNumberProps> = ({
         }}
         inputProps={{
           name,
+          id: 'phone-input',
           placeholder: '',
+          autoComplete: 'tel',
+          type: 'tel',
+          inputMode: 'tel', // dodaj to
           className: clsx(
             'peer block h-[58px] w-full px-[16px] py-[14px]',
             'rounded-[10px] text-body1 bg-transparent text-blue-lightest',

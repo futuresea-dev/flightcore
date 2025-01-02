@@ -39,6 +39,7 @@ export const LastNameField: FC<LastNameFieldProps> = ({ control }) => {
       value={value}
       onChange={onChange}
       onBlur={onBlur}
+      autoComplete="family-name"
       error={invalid === true || !!error?.message}
       valid={invalid === false && isDirty === true}
       after={error?.message && <InputHelperText variant="error" message={error.message} />}

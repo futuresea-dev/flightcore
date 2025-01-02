@@ -26,6 +26,9 @@ export const MessageField: FC<MessageFieldProps> = ({ control }) => {
       value={value}
       onChange={onChange}
       onBlur={onBlur}
+      autoComplete="off"
+      data-form-type="other"
+      aria-label="Message content"
       error={!!error?.message}
       valid={showValid}
     />

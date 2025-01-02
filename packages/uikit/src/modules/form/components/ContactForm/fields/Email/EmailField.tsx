@@ -51,6 +51,7 @@ export const EmailField: FC<EmailFieldProps> = ({ control }) => {
       value={value}
       onChange={onChange}
       onBlur={onBlur}
+      autoComplete="email"
       error={showError}
       valid={showValid}
       after={error?.message && <InputHelperText variant="error" message={error.message} />}

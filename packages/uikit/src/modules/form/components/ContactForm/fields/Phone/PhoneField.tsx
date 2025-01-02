@@ -55,16 +55,18 @@ export const PhoneField: FC<PhoneFieldProps> = ({ control }) => {
   const showValid = Boolean(value?.trim()) && isValidPhone
 
   return (
-    <InputPhoneNumber
-      name="phone"
-      label="Telefon"
-      value={value || ''}
-      onChange={(newValue) => {
-        onChange(newValue)
-      }}
-      onBlur={onBlur}
-      error={showError}
-      valid={showValid}
-    />
+    <div data-field-type="phone-field-container">
+      <InputPhoneNumber
+        name="phone"
+        label="Telefon"
+        value={value || ''}
+        onChange={(newValue) => {
+          onChange(newValue)
+        }}
+        onBlur={onBlur}
+        error={showError}
+        valid={showValid}
+      />
+    </div>
   )
 }

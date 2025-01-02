@@ -98,9 +98,20 @@ export const ContactForm: React.FC = () => {
   return (
     <>
       <form
+        autoComplete="on"
+        data-tel-autofill-enabled="true"
+        name="contact"
+        method="post"
         onSubmit={handleSubmit(onFormSubmit)}
         className="mt-12 flex w-full flex-col items-center justify-between rounded-[30px] border-2 border-blue-medium p-8 md:mt-0 md:w-[520px] h-auto">
+        <input type="hidden" autoComplete="on" name="contact" />
         <div className="flex flex-col gap-6 w-full">
+          <div aria-hidden="true" className="hidden">
+            <input type="text" autoComplete="given-name" name="given-name" />
+            <input type="text" autoComplete="family-name" name="family-name" />
+            <input type="email" autoComplete="email" name="email" />
+            <input type="tel" autoComplete="tel" name="tel" />
+          </div>
           <FirstNameField control={control} />
           <LastNameField control={control} />
           <EmailField control={control} />
