@@ -1,18 +1,18 @@
-.overlay--entered {
-  @apply visible;
-  @apply bg-[#090e1e]/55 backdrop-blur-sm;
-}
+  .overlay--entered {
+    @apply visible;
+    @apply bg-[#090e1e]/55 backdrop-blur-sm;
+  }
 
-.overlay--entering {
-  @apply visible transition ease-linear duration-[150ms];
-  @apply bg-[#090e1e]/55 backdrop-blur-sm;
-}
+  .overlay--entering {
+    @apply visible transition ease-linear duration-[150ms];
+    @apply bg-[#090e1e]/55 backdrop-blur-sm;
+  }
 
-.overlay--exited {
-  @apply invisible bg-[rgba(0,0,0,0)] backdrop-blur-none;
-}
+  .overlay--exited {
+    @apply invisible bg-[rgba(0,0,0,0)] backdrop-blur-none;
+  }
 
-.overlay--exiting {
-  @apply visible transition ease-linear duration-[150ms];
-  @apply bg-[rgba(0,0,0,0)] backdrop-blur-none;
-}
+  .overlay--exiting {
+    @apply visible transition ease-linear duration-[150ms];
+    @apply bg-[rgba(0,0,0,0)] backdrop-blur-none;
+  }

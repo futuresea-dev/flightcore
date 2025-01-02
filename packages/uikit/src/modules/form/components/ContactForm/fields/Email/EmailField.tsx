@@ -12,7 +12,7 @@ interface EmailFieldProps {
 export const EmailField: FC<EmailFieldProps> = ({ control }) => {
   const {
     field: { value, onBlur, onChange },
-    fieldState: { error, invalid, isDirty },
+    fieldState: { error, invalid, isTouched },
   } = useContactFormControl({
     control,
     name: 'email',
@@ -22,20 +22,13 @@ export const EmailField: FC<EmailFieldProps> = ({ control }) => {
         message: 'Email jest wymagany',
       },
       pattern: {
-        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/i,
+        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
         message: 'Niepoprawny adres email',
-      },
-      validate: (value) => {
-        if (value.length < 5) return 'Email powinien mieć co najmniej 5 znaków'
-        if (!value.includes('@')) return 'Email musi zawierać znak @'
-        if (!value.includes('.')) return 'Email musi zawierać kropkę'
-        return true
       },
     },
   })
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/i
-  const showValid = isDirty && !invalid && emailRegex.test(value)
+  const showValid = Boolean(value && isTouched && /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value))
 
   return (
     <InputEmail
@@ -45,7 +38,7 @@ export const EmailField: FC<EmailFieldProps> = ({ control }) => {
       value={value}
       onChange={onChange}
       onBlur={onBlur}
-      error={invalid === true || !!error?.message}
+      error={isTouched && (invalid || !!error?.message)}
       valid={showValid}
       after={error?.message && <InputHelperText variant="error" message={error.message} />}
     />
