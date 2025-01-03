@@ -1,0 +1,508 @@
+---
+import { AudioPlayer } from '@flightcore/uikit'
+import TimelineConnector from '../../components/layout/AboutUs/TimelineConnector.astro'
+---
+
+<!-- //AboutUsView.astro -->
+<section transition:name="about-us-hero">
+  <div class="container mt-[198px] mb-[150px]">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div>
+        <h1 class="font-['Tactic_Round'] text-[48px] leading-[77px] font-[500] text-blue-lightest mb-16">Histroria</h1>
+        <p class="font-['Tactic_Round'] text-[18px] leading-[30px] font-normal text-blue-lightest">
+          Zapoznaj się z naszą historią Zapoznaj się z naszą historią Zapoznaj się z naszą historią Zapoznaj się z naszą historią
+          Zapoznaj się z naszą historią Zapoznaj się z naszą historią Zapoznaj się z naszą historią
+        </p>
+      </div>
+
+      <div class="flex justify-end mt-[120px]">
+        <AudioPlayer client:load src="assets/audio/test.mp3" title="Nasza historia" artist="Flightcore Studios" />
+      </div>
+    </div>
+  </div>
+
+  <div class="container relative">
+    <TimelineConnector
+      class="hidden md:block"
+      client:visible
+      startId="h1"
+      endId="h2"
+      startOffset={{
+        sm: { x: 280, y: 50 },
+        md: { x: 280, y: 50 },
+        lg: { x: 280, y: 50 },
+        default: { x: 280, y: 50 },
+      }}
+      endOffset={{
+        sm: { x: 0, y: 50 },
+        md: { x: 0, y: 50 },
+        lg: { x: 0, y: 50 },
+        default: { x: 0, y: 50 },
+      }}
+      paths={{
+        sm: [],
+        md: [
+          { direction: 'right', length: 400 },
+          { direction: 'down', length: 'auto' },
+          { direction: 'right', length: 'auto' },
+        ],
+        lg: [
+          // dla lg (1024px) minus padding i offset
+          { direction: 'right', length: 550 },
+          { direction: 'down', length: 'auto' },
+          { direction: 'right', length: 'auto' },
+        ],
+        default: [
+          // dla xl (1252px) minus padding i offset
+          { direction: 'right', length: 800 },
+          { direction: 'down', length: 'auto' },
+          { direction: 'right', length: 1000 },
+        ],
+      }}
+    />
+    <div class="mb-[100px] grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div>
+        <div class="mb-8">
+          <h2
+            id="h1"
+            class="font-['Tactic_Round'] text-[48px] font-[200] leading-none text-transparent"
+            style={{
+              WebkitTextStroke: '1.8px #324760',
+              marginBottom: '-0.2em',
+            }}>
+            2017/18
+          </h2>
+          <h3 class="font-['Tactic_Round'] text-[34px] font-normal text-blue-lightest text-left pl-[60px]">Bemowo</h3>
+        </div>
+        {/* Tekst główny */}
+        <div class="font-['Tactic_Round'] text-[14px] leading-[30px] text-[#DBE2E6] max-w-[728px] space-y-4">
+          <p>
+            Latem roku 2017, dwóch młodych pasjonatów muzyki spotkało się w dobrze znanym warszawskiej młodzieży miejscu. Była to <span
+              class="font-bold">bemowska piwnica</span
+            >, wynajmowana przez nastolatków na imprezy urodzinowe. Po krótkiej rozmowie, <span class="font-bold">Gerard</span> oraz
+            <span class="font-bold">Dister</span> postanowili wspólnie założyć <span class="font-bold">F-Light Studio</span>.
+            Inspiracją do tej nazwy był ich własny lot, luźna atmosfera oraz fakt, że do studia nie docierało ani trochę światła
+            dziennego. Obaj kumple mieli szeroką gamę różniących się od siebie umiejętności. Jeden - rozsądny analityk o rzadkich
+            w tym pokoleniu umiejętnościach technicznych, wynajmował lokal. Drugi - urodzony artysta rozkręcający swoją karierę
+            sceniczną, już niebawem miał przyprowadzić do nowo powstałego studia pierwszych klientów.
+          </p>
+          <p>
+            F-Light był <span class="font-bold">świątynią wolności artystycznej</span> dla każdego, kto się tam zjawił. Od początku
+            wraz z osiedlową ekipą, piwnicę co dnia odwiedzał Jendri, czyli <span class="font-bold">IDEA</span> - artysta z nurtu trapowego,
+            będący częścią ekipy do dziś.
+          </p>
+          <p>
+            Już w ciągu pierwszych 10 miesięcy działalności, bemowską piwnicę odwiedzały ikony dynamicznie rozwijającej się <span
+              class="font-bold">warszawskiej sceny trapowej</span
+            >. Malik Montana, Kaz Bałagane, Smolasty, OLEK, DMN, Frosti oraz Berson, Wiktor z WWA, Młody Dron, Uki Grajda, 2020
+            (SOSO), Tommy Lolo, lecz takze Alcomindz, White Widow oraz wielu, wielu, wielu innych. Dla większości był to moment
+            beztroskiej zabawy muzyką i choć w F-Light panowały warunki amatorskie, każdy zapamietał <span class="font-bold"
+              >Bemowo</span
+            > jako miejsce z <span class="font-bold">charakterem</span>.
+          </p>
+        </div>
+      </div>
+
+      {/* Zdjęcia po prawej */}
+      <div class="relative flex flex-col mt-[100px] w-full">
+        <div class="relative w-full flex justify-end h-[440px]">
+          {/* dodana wysokość dla kontenera */}
+          {/* Pierwsze zdjęcie */}
+          <div class="w-[388px] h-[240px] rounded-lg overflow-hidden absolute right-0 translate-x-[-40px]">
+            <img src="assets/images/studio/studio-1/2.jpg" alt="Studio" class="w-full h-full object-cover" />
+          </div>
+
+          {/* Drugie zdjęcie */}
+          <div class="w-[388px] h-[240px] rounded-lg overflow-hidden absolute right-[80px] top-[200px]">
+            <img src="assets/images/studio/studio-1/1.jpg" alt="Studio" class="w-full h-full object-cover" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-[50px] relative">
+      <TimelineConnector
+        class="hidden md:block"
+        client:visible
+        startId="h2"
+        endId="h3"
+        startOffset={{
+          sm: { x: -50, y: 50 },
+          md: { x: -50, y: 50 },
+          lg: { x: -50, y: 50 },
+          default: { x: -50, y: 50 },
+        }}
+        endOffset={{
+          sm: { x: 0, y: 50 },
+          md: { x: 0, y: 50 },
+          lg: { x: 0, y: 50 },
+          default: { x: 0, y: 50 },
+        }}
+        paths={{
+          sm: [],
+          md: [{ direction: 'left', length: 1000 }],
+          lg: [
+            // dla lg (1024px) minus padding i offset
+            { direction: 'left', length: 1000 },
+          ],
+          default: [
+            // dla xl (1252px) minus padding i offset
+            { direction: 'left', length: 1000 },
+          ],
+        }}
+      />
+      <div class="flex flex-col gap-8">
+        <div>
+          <div class="mb-8">
+            <h2
+              id="h2"
+              class="font-['Tactic_Round'] text-[48px] font-[200] leading-none text-transparent"
+              style={{
+                WebkitTextStroke: '1.8px #324760',
+                marginBottom: '-0.2em',
+              }}>
+              2018/21
+            </h2>
+            <h3 class="font-['Tactic_Round'] text-[34px] font-normal text-blue-lightest text-left pl-[60px]">Centrum</h3>
+          </div>
+          <div class="font-['Tactic_Round'] text-[14px] leading-[1.6] text-blue-lightest space-y-4">
+            <p>
+              W czerwcu 2018 roku mieszkańcy pobliskich bloków mieli dosyć zakłócania <span class="font-bold">ciszy nocnej</span> przez
+              imprezowo-studyjną działalność w ich okolicy. Nadszedł czas aby przenieść działania F-Lighta w inne miejsce. Po <span
+                class="font-bold">długich tygodniach</span
+              > poszukiwań padło na lokal w budynku <span class="font-bold">Teatru Capitol</span>. Tak właśnie zaczął się etap
+              budowania <span class="font-bold">legendarnej marki</span> studia nagrań, zrzeszającego całą podziemną scenę trapową,
+              świat influencerów oraz ścisłą czołówkę polskich mainstreamowych artystów.
+            </p>
+            <p>
+              Wymagania zarządców budynku były restrykcyjne dla przedsiębiorców funkcjonujących w <span class="font-bold"
+                >branży artystycznej</span
+              > - do środka można było wejść maksymalnie do godziny 22, za pozwoleniem ochroniarza. Taki stan rzeczy wielokrotnie skutkował
+              zabawnymi sytuacjami, ponieważ zazwyczaj udawało się te ograniczenia w kreatywny sposób omijać. Wielokrotnie przez studio
+              przewijały się <span class="font-bold">wesołe ekipy</span>, gdy proces nagrywania był jedynie dodatkiem.
+            </p>
+            <p>
+              Jakość świadczonych usług w stosunku do konkurencyjnych cen zapewniała Gerardowi oraz Disterowi mnóstwo godzin pracy
+              każdego dnia. W ciągu <span class="font-bold">trzech lat konsekwentnego rozwoju</span> w drugiej lokalizacji, do ekipy
+              F-Lighta dołączyły trzy kluczowe ogniwa ekipy, którą nazywamy dziś Flightcore: młody wirtuoz produkcji muzycznej - <span
+                class="font-bold">Emkaix</span
+              >, geniusz technologii cyfrowej - <span class="font-bold">Samiryi</span> oraz multiinstrumentalista po szkole muzycznej
+              -
+              <span class="font-bold">Sosad</span>. Studio na Marszałkowskiej miało swój niepowtarzalny klimat, a wydarzenia,
+              które miały tam miejsce, do dzisiaj pozostają w głowach oraz sercach <span class="font-bold">tysięcy ludzi</span>,
+              którzy odwiedzili ten skromny i specyficzny, aczkolwiek <span class="font-bold">magiczny lokal</span>.
+            </p>
+          </div>
+        </div>
+
+        <div class="relative h-[400px] mt-8 flex justify-center">
+          <div class="absolute" style={{ left: 'calc(50% - 532px)' }}>
+            {/* Przysunięte bliżej środka */}
+            <img src="assets/images/studio/studio-2/1.jpg" alt="Studio" class="w-[388px] h-[240px] rounded-lg object-cover" />
+          </div>
+          <div class="absolute top-[60px] z-10">
+            {/* Środkowe zdjęcie na wierzchu */}
+            <img
+              src="assets/images/studio/studio-2/2.jpg"
+              id="middlephoto"
+              alt="Studio"
+              class="w-[388px] h-[240px] rounded-lg object-cover"
+            />
+          </div>
+          <div class="absolute" style={{ left: 'calc(50% + 144px)' }}>
+            {/* Przysunięte bliżej środka */}
+            <img src="assets/images/studio/studio-2/3.jpg" alt="Studio" class="w-[388px] h-[240px] rounded-lg object-cover" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative">
+      <TimelineConnector
+        class="hidden md:block"
+        client:visible
+        startId="h3"
+        endId="middlephoto"
+        startOffset={{
+          sm: { x: 300, y: 30 },
+          md: { x: 300, y: 30 },
+          lg: { x: 300, y: 30 },
+          default: { x: 300, y: 30 },
+        }}
+        endOffset={{
+          sm: { x: 0, y: 50 },
+          md: { x: 0, y: 50 },
+          lg: { x: 0, y: 50 },
+          default: { x: 0, y: 50 },
+        }}
+        paths={{
+          sm: [],
+          md: [
+            { direction: 'right', length: 100 },
+            { direction: 'up', length: 'auto' },
+          ],
+          lg: [
+            // dla lg (1024px) minus padding i offset
+            { direction: 'right', length: 200 },
+            { direction: 'up', length: 'auto' },
+          ],
+          default: [
+            // dla xl (1252px) minus padding i offset
+            { direction: 'right', length: 300 },
+            { direction: 'up', length: 'auto' },
+          ],
+        }}
+      />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <div class="mb-8">
+            <h2
+              id="h3"
+              class="font-['Tactic_Round'] text-[48px] font-[200] leading-none text-transparent"
+              style={{
+                WebkitTextStroke: '1.8px #324760',
+                marginBottom: '-0.2em',
+              }}>
+              2021/22
+            </h2>
+            <h3 class="font-['Tactic_Round'] text-[34px] font-normal text-blue-lightest text-left pl-[60px]">
+              Budowa Flightcore
+            </h3>
+          </div>
+          <div class="font-['Tactic_Round'] text-[14px] leading-[1.6] text-blue-lightest space-y-4">
+            <p>
+              <span class="font-bold">Naturalną konsekwencją</span> coraz większego zapotrzebowania na nagrywki we F-Lighcie stał się
+              pomysł przeniesienia lokalizacji w <span class="font-bold">obszerniejsze miejsce</span>. Poszukiwania lokalu nie
+              były proste - potrzebne było miejsce, do którego dostęp byłby możliwy przez 24 godziny oraz 7 dni w tygodniu, z
+              wysokim sufitem oraz w sąsiedztwie, gdzie hałas nie przeszkadzałby mieszkańcom pobliskich budynków. Po <span
+                class="font-bold">wielu miesiącach poszukiwań</span
+              >, los zechciał aby Gerard oraz Dister przenieśli firmę tuż na przeciwko swojej uczelni, czyli vis a vis <span
+                class="font-bold">Warszawskiej Szkoły Filmowej</span
+              >.
+            </p>
+            <p>
+              Przed Gerardem oraz Samiryiem było zadanie, aby zaprojektować oraz zbudować autentyczne, profesjonalne studio nagrań
+              z prawdziwego zdarzenia. Tym razem celem nie była sama adaptacja akustyczna pomieszczeń - zgodnie ze sztuką,
+              wszystkie pokoje studyjne zostały <span class="font-bold">zbudowane od zera</span>. Proces budowy trwał ponad rok, a
+              po drodze trzeba było pokonać wiele przeciwności losu. Trzy powodzie, kryzys na rynku budowlanym oraz codzienna
+              praca z wełną skalną, której na potrzeby stworzenia studia użyto ponad 8 ton.
+            </p>
+            <p>
+              <span class="font-bold">Szczęśliwie</span>, po kilkunastu miesiącach budowy, można było ogłosić start pierwszej
+              wersji strony internetowej wraz z platformą bookingową - po praktycznie roku nieobecności na mapie, <span
+                class="font-bold">ekipa wróciła do biznesu muzycznego</span
+              >.
+            </p>
+          </div>
+        </div>
+        <TimelineConnector
+          class="hidden md:block"
+          client:visible
+          startId="zdj1"
+          endId="h3"
+          startOffset={{
+            sm: { x: 500, y: 50 },
+            md: { x: 150, y: 50 },
+            lg: { x: 300, y: 50 },
+            default: { x: 500, y: 50 },
+          }}
+          endOffset={{
+            sm: { x: 0, y: 50 },
+            md: { x: 0, y: 50 },
+            lg: { x: 0, y: 50 },
+            default: { x: 0, y: 50 },
+          }}
+          paths={{
+            sm: [],
+            md: [
+              { direction: 'up', length: 'auto' },
+              { direction: 'right', length: 2000 },
+            ],
+            lg: [
+              // dla lg (1024px) minus padding i offset
+              { direction: 'up', length: 'auto' },
+              { direction: 'right', length: 2000 },
+            ],
+            default: [
+              // dla xl (1252px) minus padding i offset
+              { direction: 'up', length: 'auto' },
+              { direction: 'right', length: 2000 },
+            ],
+          }}
+        />
+        <TimelineConnector
+          class="hidden md:block"
+          client:visible
+          startId="zdj1"
+          endId="h4"
+          startOffset={{
+            sm: { x: 500, y: 50 },
+            md: { x: 150, y: 50 },
+            lg: { x: 300, y: 50 },
+            default: { x: 500, y: 50 },
+          }}
+          endOffset={{
+            sm: { x: 0, y: 50 },
+            md: { x: 0, y: 50 },
+            lg: { x: 0, y: 50 },
+            default: { x: 0, y: 50 },
+          }}
+          paths={{
+            sm: [],
+            md: [
+              { direction: 'down', length: 'auto' },
+              { direction: 'right', length: 2000 },
+            ],
+            lg: [
+              // dla lg (1024px) minus padding i offset
+              { direction: 'down', length: 'auto' },
+              { direction: 'right', length: 2000 },
+            ],
+            default: [
+              // dla xl (1252px) minus padding i offset
+              { direction: 'down', length: 'auto' },
+              { direction: 'right', length: 2000 },
+            ],
+          }}
+        />
+        <div class="relative flex flex-col mt-[100px]">
+          <div class="w-[388px] h-[240px] rounded-lg overflow-hidden absolute left-[40px]">
+            <img src="assets/images/studio/studio-1/1.jpg" id="zdj1" alt="Studio" class="w-full h-full object-cover" />
+          </div>
+
+          <div class="w-[388px] h-[240px] rounded-lg overflow-hidden absolute top-[200px]">
+            <img src="assets/images/studio/studio-1/2.jpg" id="zdj2" alt="Studio" class="w-full h-full object-cover" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-[202px] relative">
+      <TimelineConnector
+        class="hidden md:block"
+        client:visible
+        startId="h4"
+        endId="h3"
+        startOffset={{
+          sm: { x: -50, y: 50 },
+          md: { x: -50, y: 50 },
+          lg: { x: -50, y: 50 },
+          default: { x: -50, y: 50 },
+        }}
+        endOffset={{
+          sm: { x: 0, y: 50 },
+          md: { x: 0, y: 50 },
+          lg: { x: 0, y: 50 },
+          default: { x: 0, y: 50 },
+        }}
+        paths={{
+          sm: [],
+          md: [{ direction: 'left', length: 1000 }],
+          lg: [
+            // dla lg (1024px) minus padding i offset
+            { direction: 'left', length: 1000 },
+          ],
+          default: [
+            // dla xl (1252px) minus padding i offset
+            { direction: 'left', length: 1000 },
+          ],
+        }}
+      />
+      <div class="flex flex-col gap-8">
+        <div>
+          <div class="mb-8">
+            <h2
+              id="h4"
+              class="font-['Tactic_Round'] text-[48px] font-[200] leading-none text-transparent"
+              style={{
+                WebkitTextStroke: '1.8px #324760',
+                marginBottom: '-0.2em',
+              }}>
+              2022...
+            </h2>
+            <h3 class="font-['Tactic_Round'] text-[34px] font-normal text-blue-lightest text-left pl-[60px]">Żoliborz</h3>
+          </div>
+          <div class="font-['Tactic_Round'] text-[14px] leading-[1.6] text-blue-lightest space-y-4">
+            <p>
+              Dzisiaj <span class="font-bold">Flightcore to trzy studia dźwiękowe</span> mieszczące się na łącznej powierzchni 154m².
+              Do trzech razy sztuka - choć obecna siedziba firmy znajduje się pod ziemią, tym razem do środka wpada całkiem solidna
+              dawka
+              <span class="font-bold">światła słonecznego</span>. Aby uczcić owoce konsekwentnego,
+              <span class="font-bold">trwającego wiele lat grindu</span>, dzisiejsza nazwa nawiązuje do solidnej etyki pracy
+              priorytetyzującej rozwój oraz pełne skupienie na spełnieniu nawet najbardziej odległej wizji. Obecnie jesteśmy w
+              położeniu, o którym marzyliśmy wiele lat temu. Mamy jednak świadomość, że jest to dopiero pewien etap naszej drogi,
+              dlatego nie osiadamy na laurach. <span class="font-bold">Pułap obieranych przez nas celów wzrasta</span> proporcjonalnie
+              do ilości zadowolonych klientów.
+            </p>
+            <p>
+              Jesteśmy znani z tego, że zapewniamy nowoczesne, czyste brzmienie, a w skład naszych realizatorów nagrań wchodzą
+              również uzdolnieni
+              <span class="font-bold">producenci i songwriterzy</span>. To właśnie szeroka gama kwalifikacji naszego składu
+              sprawia, że wszystkie nagrania zrealizowane we Flightcore mają <span class="font-bold">wysoką jakość</span> - zarówno
+              w rozumieniu technicznym, jak i jeśli chodzi o wykon artystów. Nasi realizatorzy często dzielą się swoimi spostrzeżeniami
+              z wokalistą, dając <span class="font-bold">natychmiastowy feedback</span> z perspektywy słuchacza - jest to bardzo istotny
+              czynnik w procesie produkcji utworu muzycznego.
+            </p>
+            <p>
+              Dlatego kompleksowo podchodzimy do wszystkich projektów i <span class="font-bold"
+                >pomagamy na każdym etapie tworzenia</span
+              > - począwszy od pisania tekstu i produkcji, przez nagranie oraz aranżację, aż po mix/mastering utworu.
+            </p>
+          </div>
+        </div>
+        <TimelineConnector
+          class="hidden md:block"
+          client:visible
+          startId="bottomphoto"
+          endId="h4"
+          startOffset={{
+            sm: { x: -1000, y: 550 },
+            md: { x: -1000, y: 550 },
+            lg: { x: -1000, y: 550 },
+            default: { x: -1000, y: 550 },
+          }}
+          endOffset={{
+            sm: { x: 0, y: 50 },
+            md: { x: 0, y: 50 },
+            lg: { x: 0, y: 50 },
+            default: { x: 0, y: 50 },
+          }}
+          paths={{
+            sm: [],
+            md: [
+              { direction: 'right', length: 1970 },
+              { direction: 'up', length: 600 },
+              { direction: 'right', length: 2000 },
+            ],
+            lg: [
+              // dla lg (1024px) minus padding i offset
+              { direction: 'right', length: 1970 },
+              { direction: 'up', length: 600 },
+              { direction: 'right', length: 2000 },
+            ],
+            default: [
+              // dla xl (1252px) minus padding i offset
+              { direction: 'right', length: 1970 },
+              { direction: 'up', length: 600 },
+              { direction: 'right', length: 2000 },
+            ],
+          }}
+        />
+        <div class="flex justify-center mt-8">
+          <img
+            src="assets/images/studio/studio-1/1.jpg"
+            id="bottomphoto"
+            alt="Studio"
+            class="w-[866px] h-[468px] rounded-lg object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container flex flex-col items-center justify-center text-center">
+    <h3 class="font-['Tactic_Round'] text-[34px] leading-[40px] tracking-[0.25px] text-blue-lightest font-normal">
+      Czuj się swobodnie aby nas odwiedzić.<br />
+      Do usłyszenia!
+    </h3>
+  </div>
+</section>

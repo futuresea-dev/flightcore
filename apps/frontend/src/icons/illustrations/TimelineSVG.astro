@@ -1,0 +1,30 @@
+---
+// TimelineSVG.astro
+interface Props {
+  class?: string
+  variant: '1' | '2'
+}
+
+const { class: className, variant = 'path' } = Astro.props
+---
+
+{
+  variant === '1' && (
+    <svg viewBox="0 0 1065 769" fill="none" xmlns="http://www.w3.org/2000/svg" class={className} preserveAspectRatio="none">
+      <path
+        d="M0 2H731.452C748.021 2 761.452 15.4315 761.452 32V737C761.452 753.569 774.884 767 791.452 767H1065"
+        stroke="#324760"
+        stroke-width="3"
+        stroke-dasharray="10 10"
+      />
+    </svg>
+  )
+}
+
+{
+  variant === '2' && (
+    <svg width="158" height="3" viewBox="0 0 158 3" fill="none" xmlns="http://www.w3.org/2000/svg" class={className}>
+      <line y1="1.5" x2="158" y2="1.5" stroke="#1B2634" stroke-width="3" stroke-dasharray="6 12" />
+    </svg>
+  )
+}

@@ -1,0 +1,18 @@
+---
+import type { TimelineSection } from '../../../../content/about-us/timeline/types'
+import TimelineSectionComponent from '../TimelineSection/TimelineSection.astro'
+
+interface Props {
+  sections: TimelineSection[]
+}
+
+const { sections } = Astro.props
+---
+
+<div>
+  {
+    sections.map((section, index) => (
+      <TimelineSectionComponent {...section} class={index !== sections.length - 1 ? 'mb-[100px]' : ''} layout={section.layout} />
+    ))
+  }
+</div>

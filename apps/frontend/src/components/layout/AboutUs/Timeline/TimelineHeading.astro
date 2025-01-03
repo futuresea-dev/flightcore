@@ -1,0 +1,24 @@
+---
+type Props = {
+  id: string
+  year: string
+  title: string
+  class?: string
+}
+
+const { id, year, title, class: className = '' } = Astro.props
+---
+
+<div id={id} class={`mb-8 relative ${className}`}>
+  <h2
+    class="font-['Tactic_Round'] text-[48px] font-[200] leading-none text-transparent"
+    style={{
+      WebkitTextStroke: '1.8px #324760',
+      marginBottom: '-0.2em',
+    }}>
+    {year}
+  </h2>
+  <h3 class="font-['Tactic_Round'] text-[34px] font-normal text-blue-lightest text-left pl-[60px]">
+    {title}
+  </h3>
+</div>

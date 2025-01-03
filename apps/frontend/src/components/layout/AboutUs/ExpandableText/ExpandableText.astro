@@ -1,0 +1,44 @@
+---
+// components/layout/AboutUs/ExpandableText/ExpandableText.astro
+type Props = {
+  class?: string
+}
+
+const { class: className = '' } = Astro.props
+---
+
+<div class={`text-wrapper relative sm:block ${className}`}>
+  <div class="text-content max-h-[150px] overflow-hidden sm:max-h-none sm:overflow-visible">
+    <slot />
+  </div>
+  <div class="read-more-fade absolute bottom-0 left-0 w-full h-[50px] bg-gradient-to-t from-[#111827] to-transparent sm:hidden">
+  </div>
+  <button class="read-more-btn text-green-400 mt-2 sm:hidden">Dowiedz się więcej</button>
+</div>
+
+<script>
+  const initExpandableText = () => {
+    const readMoreButtons = document.querySelectorAll<HTMLButtonElement>('.read-more-btn')
+
+    readMoreButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const wrapper = button.closest<HTMLDivElement>('.text-wrapper')
+        if (!wrapper) return
+
+        const content = wrapper.querySelector<HTMLDivElement>('.text-content')
+        const fade = wrapper.querySelector<HTMLDivElement>('.read-more-fade')
+
+        if (content && fade && button) {
+          content.style.maxHeight = 'none'
+          fade.style.display = 'none'
+          button.style.display = 'none'
+        }
+      })
+    })
+  }
+
+  // Inicjalizacja przy pierwszym załadowaniu
+  document.addEventListener('DOMContentLoaded', initExpandableText)
+  // Inicjalizacja przy nawigacji Astro
+  document.addEventListener('astro:page-load', initExpandableText)
+</script>

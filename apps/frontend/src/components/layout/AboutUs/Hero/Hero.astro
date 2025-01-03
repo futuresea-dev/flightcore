@@ -1,0 +1,28 @@
+---
+import type { HeroProps } from './Hero.types'
+import { AudioPlayer } from '@flightcore/uikit'
+
+const { class: className = '' } = Astro.props as HeroProps
+---
+
+<div class={`container mx-auto ${className}`}>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div>
+      <h1 class="font-['Tactic_Round'] text-[48px] leading-[77px] font-[500] text-blue-lightest mb-16">Nasza historia</h1>
+      <p class="font-['Tactic_Round'] text-[18px] leading-[30px] font-normal text-blue-lightest">
+        Od pierwszego studio na warszawskim Bemowie do profesjonalnego kompleksu nagraniowego. Przeczytaj historię Flight Core
+        Studio i poznaj nas lepiej.
+      </p>
+    </div>
+
+    <div class="flex justify-end mt-[120px]">
+      <AudioPlayer client:load src="/assets/audio/test.mp3" title="Nasza historia" artist="Flightcore Studios" />
+    </div>
+  </div>
+</div>
+
+<style>
+  .container {
+    max-width: 1252px;
+  }
+</style>

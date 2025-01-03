@@ -1,0 +1,64 @@
+---
+import type { TimelineSectionProps } from './TimelineSection.types'
+import { LAYOUTS } from './TimelineSection.types'
+import TimelineHeading from '../Timeline/TimelineHeading.astro'
+import ExpandableText from '../ExpandableText/ExpandableText.astro'
+
+interface Props extends TimelineSectionProps {
+  class?: string
+}
+
+const { id, year, title, content, images = [], layout = 'right', class: className = '' } = Astro.props
+
+const layoutConfig = LAYOUTS[layout]
+const isFullWidth = layout === 'bottom' || layout === 'bottom-single'
+const isSingleBottom = layout === 'bottom-single'
+---
+
+<div class="relative">
+  {
+    isSingleBottom ? (
+      <div class="flex flex-col gap-8">
+        <div class="w-full">
+          <TimelineHeading id={id} year={year} title={title} />
+          <ExpandableText>
+            <div class="font-['Tactic_Round'] text-[14px] leading-[30px] text-[#DBE2E6] space-y-4">
+              <Fragment set:html={content} />
+            </div>
+          </ExpandableText>
+        </div>
+        <div class="w-full flex justify-center">
+          {images.map((image) => (
+            <div class="w-[866px] h-[468px] rounded-lg overflow-hidden">
+              <img src={image.src} alt={image.alt} class="w-full h-full object-cover" />
+            </div>
+          ))}
+        </div>
+      </div>
+    ) : (
+      <div class={`${isFullWidth ? 'block' : 'grid grid-cols-1 md:grid-cols-2'} gap-8 ${className}`}>
+        <div class={isFullWidth ? 'w-full' : ''}>
+          <TimelineHeading id={id} year={year} title={title} />
+          <ExpandableText>
+            <div
+              class={`font-['Tactic_Round'] text-[14px] leading-[30px] text-[#DBE2E6] space-y-4 ${
+                isFullWidth ? 'w-full max-w-full' : 'max-w-[728px]'
+              }`}>
+              <Fragment set:html={content} />
+            </div>
+          </ExpandableText>
+        </div>
+
+        <div class={`${layoutConfig.containerClasses} ${isFullWidth ? 'w-full' : ''}`}>
+          {images.map((image, index) => (
+            <div
+              class={`${layoutConfig.imageClasses} ${image.className || ''}`}
+              style={{ ...layoutConfig.getImageStyle(index), ...image.style }}>
+              <img src={image.src} alt={image.alt} class="w-full h-full object-cover" />
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+</div>
